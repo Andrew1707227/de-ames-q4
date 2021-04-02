@@ -25,7 +25,7 @@ public class LazerSight : MonoBehaviour
         lookDir = new Vector2(lookDir.y, -lookDir.x);
 
         //Set line start point to players current position
-        lr.SetPosition(0, gameObject.transform.position);
+        lr.SetPosition(0, gameObject.transform.position);//.x, gameObject.transform.position.y, 0));
 
         //Send ray out to find colliders
         RaycastHit2D lazerGetter = Physics2D.Raycast(gameObject.transform.position, lookDir, 30);
