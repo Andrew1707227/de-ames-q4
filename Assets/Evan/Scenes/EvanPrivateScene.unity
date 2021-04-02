@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 1687996447}
   - component: {fileID: 1687996450}
   - component: {fileID: 1687996449}
-  m_Layer: 4
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 2040113339}
   - component: {fileID: 2040113338}
   - component: {fileID: 2040113340}
-  m_Layer: 4
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
