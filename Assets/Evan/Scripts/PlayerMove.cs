@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //Apply horizonatal movement
-        rb2.AddForce(new Vector2(horizAxis * Time.deltaTime, 0), ForceMode2D.Impulse);
+        rb2.AddForce(new Vector2((horizAxis * Time.deltaTime) * speed, 0), ForceMode2D.Impulse);
 
 
         //If turning around vertically
@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //Apply vertical movement
-        rb2.AddForce(new Vector2(0, vertAxis * Time.deltaTime), ForceMode2D.Impulse);
+        rb2.AddForce(new Vector2(0, (vertAxis * Time.deltaTime) * speed), ForceMode2D.Impulse);
 
 
         //Clamp to max speed
