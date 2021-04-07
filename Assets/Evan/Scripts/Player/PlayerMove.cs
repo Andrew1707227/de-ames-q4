@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     //Editable values
-    [SerializeField] float speed = 1; //Player speed
+    [SerializeField] float speed = 1.25f; //Player speed
     [SerializeField] float maxSpeed = 2.5f; //Player max speed
     [SerializeField] float turnSpeedUp = 3; //Speed player turns around at
 
@@ -25,6 +25,34 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Gets both axes
+        horizAxis = Input.GetAxis("Horizontal");
+        vertAxis = Input.GetAxis("Vertical");
+
+        //If turning around Horizonatally
+        if (rb2.velocity.x > 0 && horizAxis > 0)
+        {
+            horizAxis = horizAxis * turnSpeedUp;
+        }
+        else if (rb2.velocity.x < 0 && horizAxis < 0)
+        {
+            horizAxis = horizAxis * turnSpeedUp;
+        }
+
+        //Apply horizonatal movement
+        rb2.velocity += new Vector2((horizAxis * Time.deltaTime) * speed, 0);
+
+
+        //Apply vertical movement
+        rb2.velocity += new Vector2(0, (vertAxis * Time.deltaTime) * speed);
+
+
+        //Clamp to max speed
+        rb2.velocity = new Vector2(Mathf.Clamp(rb2.velocity.x, -maxSpeed, maxSpeed),
+                                   Mathf.Clamp(rb2.velocity.y, -maxSpeed, maxSpeed));
+
+        //Orignial way
+        /*
         //Gets both axes
         horizAxis = Input.GetAxis("Horizontal");
         vertAxis = Input.GetAxis("Vertical");
@@ -61,5 +89,6 @@ public class PlayerMove : MonoBehaviour
         //Clamp to max speed
         rb2.velocity = new Vector2(Mathf.Clamp(rb2.velocity.x, -maxSpeed, maxSpeed),
                                    Mathf.Clamp(rb2.velocity.y, -maxSpeed, maxSpeed));
+        */
     }
 }
