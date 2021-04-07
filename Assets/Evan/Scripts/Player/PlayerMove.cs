@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //Gets both axes
         horizAxis = Input.GetAxis("Horizontal");
         vertAxis = Input.GetAxis("Vertical");
@@ -50,9 +51,9 @@ public class PlayerMove : MonoBehaviour
         //Clamp to max speed
         rb2.velocity = new Vector2(Mathf.Clamp(rb2.velocity.x, -maxSpeed, maxSpeed),
                                    Mathf.Clamp(rb2.velocity.y, -maxSpeed, maxSpeed));
-
+        */
         //Orignial way
-        /*
+        
         //Gets both axes
         horizAxis = Input.GetAxis("Horizontal");
         vertAxis = Input.GetAxis("Vertical");
@@ -89,6 +90,6 @@ public class PlayerMove : MonoBehaviour
         //Clamp to max speed
         rb2.velocity = new Vector2(Mathf.Clamp(rb2.velocity.x, -maxSpeed, maxSpeed),
                                    Mathf.Clamp(rb2.velocity.y, -maxSpeed, maxSpeed));
-        */
+        
     }
 }
