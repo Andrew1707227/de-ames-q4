@@ -7,6 +7,7 @@ public class Flipper : MonoBehaviour
     //Gets robot
     public GameObject robot;
     RobotFollow rf;
+    RobotFollowV2 rf2;
 
     //Reference to main Camera
     public Camera cam;
@@ -26,6 +27,8 @@ public class Flipper : MonoBehaviour
         rSR = robot.GetComponent<SpriteRenderer>();
         sR = gameObject.GetComponent<SpriteRenderer>();
         rf = robot.GetComponent<RobotFollow>();
+        rf2 = robot.GetComponent<RobotFollowV2>();
+
     }
 
     // Update is called once per frame
@@ -44,6 +47,8 @@ public class Flipper : MonoBehaviour
             //Flip robot follow position
             rf.offset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
             rf.currentOffset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
+            rf2.offset = new Vector3(-rf2.baseOffset.x, rf2.baseOffset.y, 0);
+            rf2.currentOffset = new Vector3(-rf2.baseOffset.x, rf2.baseOffset.y, 0);
         }
         if (mousePos.x < transform.position.x)
         {
@@ -54,6 +59,8 @@ public class Flipper : MonoBehaviour
             //Flip robot follow position
             rf.offset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
             rf.currentOffset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
+            rf2.offset = new Vector3(rf2.baseOffset.x, rf2.baseOffset.y, 0);
+            rf2.currentOffset = new Vector3(rf2.baseOffset.x, rf2.baseOffset.y, 0);
         }
     }
 }
