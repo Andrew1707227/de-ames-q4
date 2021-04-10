@@ -443,12 +443,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 322073812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c132ef0c4a1a204a96d2ab183c4e7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 14bff4bf3bbc74940b01639831699bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxSpeed: 20
-  turnSpeedUp: 1.5
+  speed: 0.025
+  maxSpeed: 3
+  burstLength: 0.75
+  horizTimer: 0
+  vertTimer: 0
 --- !u!50 &322073814
 Rigidbody2D:
   serializedVersion: 4
@@ -914,9 +916,9 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
