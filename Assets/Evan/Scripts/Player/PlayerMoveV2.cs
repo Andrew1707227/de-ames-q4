@@ -7,14 +7,14 @@ public class PlayerMoveV2 : MonoBehaviour
     //Editable values
     [SerializeField] float speed = 1.25f; //Player speed
     [SerializeField] float maxSpeed = 2.5f; //Player max speed
-    [SerializeField] float burstLength = 0.25f; //Holds how long the burst can take maximum
+    public float burstLength = 0.25f; //Holds how long the burst can take maximum
 
     //Holds horizontal and vertical axis when using them
     float horizAxis;
     float vertAxis;
 
-    float horizTimer;
-    float vertTimer;
+    public float horizTimer;
+    public float vertTimer;
 
     //References
     Rigidbody2D rb2;
