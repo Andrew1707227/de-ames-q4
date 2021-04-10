@@ -859,7 +859,6 @@ GameObject:
   - component: {fileID: 1983162128}
   - component: {fileID: 1983162131}
   - component: {fileID: 1983162130}
-  - component: {fileID: 1983162132}
   m_Layer: 0
   m_Name: robotman
   m_TagString: Untagged
@@ -969,23 +968,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1983162132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983162127}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00fa4c6f387c4d4eaf800bf67fea56a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  player: {fileID: 2040113335}
-  baseOffset: {x: 0.5, y: 0.6, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  currentOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2040113335
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +981,7 @@ GameObject:
   - component: {fileID: 2040113339}
   - component: {fileID: 2040113338}
   - component: {fileID: 2040113340}
+  - component: {fileID: 2040113341}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1125,7 +1108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040113335}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c132ef0c4a1a204a96d2ab183c4e7e1, type: 3}
   m_Name: 
@@ -1133,3 +1116,18 @@ MonoBehaviour:
   speed: 1.75
   maxSpeed: 2.25
   turnSpeedUp: 1.75
+--- !u!114 &2040113341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040113335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bff4bf3bbc74940b01639831699bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.025
+  maxSpeed: 3
+  burstLength: 0.75

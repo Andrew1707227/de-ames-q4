@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMoveV2 : MonoBehaviour
 {
     //Editable values
     [SerializeField] float speed = 1.25f; //Player speed
     [SerializeField] float maxSpeed = 2.5f; //Player max speed
-    [SerializeField] float turnSpeedUp = 3; //Speed player turns around at
+    [SerializeField] float burstLength = 0.25f; //Holds how long the burst can take maximum
 
     //Holds horizontal and vertical axis when using them
     float horizAxis;
     float vertAxis;
+
+    float horizTimer;
+    float vertTimer;
 
     //References
     Rigidbody2D rb2;
@@ -20,47 +23,49 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rb2 = gameObject.GetComponent<Rigidbody2D>();
+
+        horizTimer = burstLength;
+        vertTimer = burstLength;
     }
 
     // Update is called once per frame
     void Update()
-    {    
+    {
         //Gets both axes
         horizAxis = Input.GetAxis("Horizontal");
         vertAxis = Input.GetAxis("Vertical");
 
-
-        //If turning around Horizonatally
-        if (rb2.velocity.x > 0 && horizAxis < 0)
+        if (horizAxis != 0)
         {
-            horizAxis = horizAxis * turnSpeedUp;
+            if (horizTimer > 0)
+            {
+                rb2.AddForce(new Vector2((horizAxis * speed) * (burstLength / horizTimer), 0), ForceMode2D.Impulse);
+
+                horizTimer -= Time.deltaTime;
+            }
         }
-        if (rb2.velocity.x < 0 && horizAxis > 0)
+        else
         {
-            horizAxis = horizAxis * turnSpeedUp;
-        }
-
-        //Apply horizonatal movement
-        rb2.AddForce(new Vector2((horizAxis * Time.deltaTime) * speed, 0), ForceMode2D.Impulse);
-
-
-        //If turning around vertically
-        if (rb2.velocity.y > 0 && vertAxis < 0)
-        {
-            vertAxis = vertAxis * turnSpeedUp;
-        }
-        if (rb2.velocity.y < 0 && vertAxis > 0)
-        {
-            vertAxis = vertAxis * turnSpeedUp;
+            horizTimer = burstLength;
         }
 
-        //Apply vertical movement
-        rb2.AddForce(new Vector2(0, (vertAxis * Time.deltaTime) * speed), ForceMode2D.Impulse);
 
+        if (vertAxis != 0)
+        {
+            if (vertTimer > 0)
+            {
+                rb2.AddForce(new Vector2(0, (vertAxis * speed) * (burstLength / vertTimer)), ForceMode2D.Impulse);
+
+                horizTimer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            vertTimer = burstLength;
+        }
 
         //Clamp to max speed
         rb2.velocity = new Vector2(Mathf.Clamp(rb2.velocity.x, -maxSpeed, maxSpeed),
                                    Mathf.Clamp(rb2.velocity.y, -maxSpeed, maxSpeed));
-        
     }
 }

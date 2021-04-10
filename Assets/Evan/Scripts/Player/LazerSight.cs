@@ -15,6 +15,8 @@ public class LazerSight : MonoBehaviour
     {
         pa = gameObject.GetComponent<PlayerAim>();
         lr = gameObject.GetComponent<LineRenderer>();
+
+        gameObject.GetComponent<LineRenderer>().material.SetColor("_Color", new Color(1f, 1f, 1f, 0.3f));
     }
 
     // Update is called once per frame
