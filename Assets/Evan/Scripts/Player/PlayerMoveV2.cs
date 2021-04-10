@@ -92,7 +92,7 @@ public class PlayerMoveV2 : MonoBehaviour
                     rb2.AddForce(new Vector2(0, (vertAxis * speed) * (burstLength / vertTimer)), ForceMode2D.Impulse);
 
                     //Increments timer
-                    horizTimer -= Time.deltaTime;
+                    vertTimer -= Time.deltaTime;
                 }
             }
             else
