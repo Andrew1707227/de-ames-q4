@@ -32,35 +32,35 @@ public class MMUEffects : MonoBehaviour {
 
             if (sr.flipX) {
                 if (Mathf.Abs(rb2.velocity.x) > Mathf.Abs(rb2.velocity.y) + .1) {
-                    xPos = -.3f;
+                    xPos = -.42f;
                     yPos = -.03f;
                     zRot = 180;
 
                 } else if (rb2.velocity.y > 0) {
-                    xPos = -.175f;
-                    yPos = -.25f;
+                    xPos = -.24f;
+                    yPos = -.31f;
                     zRot = 270;
 
                 } else {
-                    xPos = -.175f;
-                    yPos = .25f;
+                    xPos = -.24f;
+                    yPos = .31f;
                     zRot = 90;
                 }
 
             } else {
                 if (Mathf.Abs(rb2.velocity.x) > Mathf.Abs(rb2.velocity.y) + .1) {
-                    xPos = .3f;
+                    xPos = .42f;
                     yPos = -.03f;
                     zRot = 0;
 
                 } else if (rb2.velocity.y > 0) {
-                    xPos = .175f;
-                    yPos = -.25f;
+                    xPos = .24f;
+                    yPos = -.31f;
                     zRot = 270;
 
                 } else {
-                    xPos = .175f;
-                    yPos = .25f;
+                    xPos = .24f;
+                    yPos = .31f;
                     zRot = 90;
                 }
             }
