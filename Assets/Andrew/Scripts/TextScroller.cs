@@ -10,6 +10,7 @@ public class TextScroller : MonoBehaviour {
     private bool isFinished = false;
     private bool isTextArrayFinished = false;
     private AudioClip defaultClip;
+    public Image background;
 
     private void Awake() {
         ASource = GetComponent<AudioSource>();
@@ -31,6 +32,7 @@ public class TextScroller : MonoBehaviour {
 
     public IEnumerator RunText(string[] text, AudioClip tone, float speed) {
         isTextArrayFinished = false;
+        background.enabled = true;
         for (int i = 0; i < text.Length; i++) {
             isFinished = false;
             StartCoroutine(WriteText(text[i],tone,speed));
@@ -57,6 +59,8 @@ public class TextScroller : MonoBehaviour {
 
     public void CloseTextBox() {
         TextComponent.text = "";
+        background.enabled = false;
+
     }
 
     public bool isTextFinished() {
