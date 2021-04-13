@@ -45,17 +45,12 @@ public class PlayerMoveV2 : MonoBehaviour
             if (diagonalTimer > 0)
             {
                 //Adds force
-                rb2.AddForce(new Vector2((horizAxis * speed) * (burstLength / diagonalTimer), (vertAxis * speed) * (burstLength / diagonalTimer)), ForceMode2D.Impulse);
+                rb2.AddForce(new Vector2(horizAxis * speed, vertAxis * speed), ForceMode2D.Impulse);
 
                 //Increments timers
                 horizTimer -= Time.deltaTime;
                 vertTimer -=Time.deltaTime;
                 diagonalTimer -= Time.deltaTime;
-            }
-            else
-            {
-                //Resets timer
-                diagonalTimer = burstLength;
             }
         }
         else
@@ -70,7 +65,7 @@ public class PlayerMoveV2 : MonoBehaviour
                 if (horizTimer > 0)
                 {
                     //Adds force
-                    rb2.AddForce(new Vector2((horizAxis * speed) * (burstLength / horizTimer), 0), ForceMode2D.Impulse);
+                    rb2.AddForce(new Vector2(horizAxis * speed, 0), ForceMode2D.Impulse);
 
                     //Increments timer
                     horizTimer -= Time.deltaTime;
@@ -89,7 +84,7 @@ public class PlayerMoveV2 : MonoBehaviour
                 if (vertTimer > 0)
                 {
                     //Adds force
-                    rb2.AddForce(new Vector2(0, (vertAxis * speed) * (burstLength / vertTimer)), ForceMode2D.Impulse);
+                    rb2.AddForce(new Vector2(0, vertAxis * speed), ForceMode2D.Impulse);
 
                     //Increments timer
                     vertTimer -= Time.deltaTime;
