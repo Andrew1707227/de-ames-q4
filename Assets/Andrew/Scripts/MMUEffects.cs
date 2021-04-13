@@ -26,7 +26,9 @@ public class MMUEffects : MonoBehaviour {
     }
     
     void Update() {
-        if ((move.horizTimer < .1 || move.vertTimer < .1) && !Asource.isPlaying) {
+        float horiz = move.horizTimer;
+        float vert = move.vertTimer;
+        if ((horiz == Mathf.Clamp(horiz, .5f, .7f) || vert == Mathf.Clamp(vert, .5f, .7f)) && !Asource.isPlaying) {
             Vector3 pos = transform.localPosition;
             Vector3 coneRot = transform.eulerAngles;
 

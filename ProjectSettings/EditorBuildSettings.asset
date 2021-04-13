@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Evan/Scenes/EvanPrivateScene.unity
+    guid: 72dd0da48d8e1934e812dfe6175feb25
   - enabled: 0
     path: Assets/Andrew/Scenes/AndrewPrivateScene.unity
     guid: 8ae14800886223e449570a7863edd092
-  - enabled: 1
+  - enabled: 0
     path: Assets/Andrew/Scenes/EvanSceneGoBrr.unity
     guid: 11e8543599bef164d9405acac3a207a0
   - enabled: 1
