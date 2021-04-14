@@ -69,6 +69,8 @@ public class MMUEffects : MonoBehaviour {
             transform.eulerAngles = new Vector3(coneRot.x, coneRot.y, zRot);
             transform.localPosition = new Vector3(xPos, yPos, pos.z);
             ps.Play();
+            Debug.Log(rb2.velocity.magnitude / 2);
+            Asource.pitch = Mathf.Clamp(rb2.velocity.magnitude / 2, .8f, 1.2f) + Random.Range(-.05f, .05f);
             Asource.Play();
         }
     }
