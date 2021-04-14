@@ -15,6 +15,9 @@ public class MMUEffects : MonoBehaviour {
     private float xPos = .3f;
     private float yPos = -.03f;
 
+    private float maxHoriz;
+    private float maxVert;
+
     void Start() {
         ps = GetComponent<ParticleSystem>();
         Asource = GetComponent<AudioSource>();
@@ -23,22 +26,25 @@ public class MMUEffects : MonoBehaviour {
         move = player.GetComponent<PlayerMoveV2>();
         sr = player.GetComponent<SpriteRenderer>();
         rb2 = player.GetComponent<Rigidbody2D>();
+
+        maxHoriz = move.horizTimer;
+        maxVert = move.vertTimer;
     }
     
     void Update() {
         float horiz = move.horizTimer;
         float vert = move.vertTimer;
-        if ((horiz == Mathf.Clamp(horiz, .5f, .7f) || vert == Mathf.Clamp(vert, .5f, .7f)) && !Asource.isPlaying) {
+        if ((horiz == Mathf.Clamp(horiz, maxHoriz - .2f, maxHoriz - .05f) || vert == Mathf.Clamp(vert, maxVert - .2f, maxVert - .05f)) && !Asource.isPlaying) {
             Vector3 pos = transform.localPosition;
             Vector3 coneRot = transform.eulerAngles;
 
             if (sr.flipX) {
-                if (Mathf.Abs(rb2.velocity.x) > Mathf.Abs(rb2.velocity.y) + .1) {
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
                     xPos = -.42f;
                     yPos = -.03f;
                     zRot = 180;
 
-                } else if (rb2.velocity.y > 0) {
+                } else if (Input.GetAxis("Vertical") > 0) {
                     xPos = -.24f;
                     yPos = -.31f;
                     zRot = 270;
@@ -50,12 +56,12 @@ public class MMUEffects : MonoBehaviour {
                 }
 
             } else {
-                if (Mathf.Abs(rb2.velocity.x) > Mathf.Abs(rb2.velocity.y) + .1) {
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
                     xPos = .42f;
                     yPos = -.03f;
                     zRot = 0;
 
-                } else if (rb2.velocity.y > 0) {
+                } else if (Input.GetAxis("Vertical") > 0) {
                     xPos = .24f;
                     yPos = -.31f;
                     zRot = 270;
