@@ -40,9 +40,16 @@ public class MMUEffects : MonoBehaviour {
 
             if (sr.flipX) {
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
-                    xPos = -.42f;
-                    yPos = -.03f;
-                    zRot = 180;
+                    if (Input.GetAxis("Horizontal") > 0) {
+                        xPos = -.42f;
+                        yPos = -.03f;
+                        zRot = 180;
+
+                    } else {
+                        xPos = -.24f;
+                        yPos = -.03f;
+                        zRot = 0;
+                    }
 
                 } else if (Input.GetAxis("Vertical") > 0) {
                     xPos = -.24f;
@@ -57,9 +64,16 @@ public class MMUEffects : MonoBehaviour {
 
             } else {
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
-                    xPos = .42f;
-                    yPos = -.03f;
-                    zRot = 0;
+                    if (Input.GetAxis("Horizontal") > 0) {
+                        xPos = .24f;
+                        yPos = -.03f;
+                        zRot = 180;
+
+                    } else {
+                        xPos = .42f;
+                        yPos = -.03f;
+                        zRot = 0;
+                    }
 
                 } else if (Input.GetAxis("Vertical") > 0) {
                     xPos = .24f;
