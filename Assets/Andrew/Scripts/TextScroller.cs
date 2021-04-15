@@ -9,14 +9,14 @@ public class TextScroller : MonoBehaviour {
     private Text TextComponent;
     private bool isFinished = false;
     private bool isTextArrayFinished = false;
-    private AudioClip defaultClip;
+    public AudioClip defaultClip;
+    public AudioClip distortedClip;
     public Image background;
     Vector2 bSize;
     Vector2 bPos;
 
     private void Awake() {
         ASource = GetComponent<AudioSource>();
-        defaultClip = ASource.clip;
         TextComponent = GetComponent<Text>();
         isFinished = false;
         bSize = background.rectTransform.sizeDelta;
@@ -24,18 +24,13 @@ public class TextScroller : MonoBehaviour {
         TextComponent.text = "";
         background.enabled = false;
     }
-
+    /// <summary>
+    /// Opens up the dialogue box, displays the text, then closes it
+    /// (See ExampleDialogue.cs for adding distortion).
+    /// </summary>
+    /// <param name="text">An array of dialogue lines</param>
+    /// <returns>TextScroller.isTextFinished(); will return true when finished.</returns>
     public IEnumerator RunText(string[] text) {
-        StartCoroutine(RunText(text, defaultClip, 0.05f));
-        yield return null;
-    }
-
-    public IEnumerator RunText(string[] text, AudioClip tone) {
-        StartCoroutine(RunText(text, tone, 0.05f));
-        yield return null;
-    }
-
-    public IEnumerator RunText(string[] text, AudioClip tone, float speed) {
         isTextArrayFinished = false;
         background.enabled = true;
         background.rectTransform.sizeDelta = new Vector2(5, bSize.y);
@@ -45,16 +40,22 @@ public class TextScroller : MonoBehaviour {
             background.rectTransform.anchoredPosition = new Vector2(bPos.x, i);
             yield return new WaitForFixedUpdate();
         }
+        background.rectTransform.anchoredPosition = bPos;
         yield return new WaitForSeconds(.2f);
 
         for (int i = 5; i <= bSize.x; i += 40) {
             background.rectTransform.sizeDelta = new Vector2(i, bSize.y);
             yield return new WaitForFixedUpdate();
         }
+        background.rectTransform.sizeDelta = bSize;
 
         for (int i = 0; i < text.Length; i++) {
             isFinished = false;
-            StartCoroutine(WriteText(text[i],tone,speed));
+            if (text[i].StartsWith("<d>")) {
+                StartCoroutine(WriteText(text[i].Substring(3), distortedClip));
+            } else {
+                StartCoroutine(WriteText(text[i], defaultClip));
+            }
             yield return new WaitUntil(() => isFinished);
             yield return new WaitForSeconds(1);
             TextComponent.text = "";
@@ -76,18 +77,18 @@ public class TextScroller : MonoBehaviour {
             background.rectTransform.anchoredPosition = new Vector2(bPos.x, i);
             yield return new WaitForFixedUpdate();
         }
-        
+        background.rectTransform.anchoredPosition = new Vector2(bPos.x, bPos.y - 100);
         background.enabled = false;
         isTextArrayFinished = true;
     }
 
-    private IEnumerator WriteText(string text, AudioClip tone, float speed) {
+    private IEnumerator WriteText(string text, AudioClip tone) {
         ASource.clip = tone;
         for (int i = 0; i < text.Length; i++) {
             TextComponent.text = TextComponent.text + text.Substring(i, 1);
             ASource.volume = Random.Range(.7f, 1f);
             if (text.Substring(i, 1) != " ") ASource.Play();
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSeconds(.05f);
             ASource.Stop();
         }
         isFinished = true;
