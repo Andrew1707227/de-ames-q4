@@ -592,6 +592,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChangerObject: {fileID: 178282734}
+  moveLength: 170
+  moveSpeed: 4
+  expandSpeed: 30
 --- !u!1 &379956828
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +739,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChangerObject: {fileID: 178282734}
+  moveLength: 100
+  moveSpeed: 4
+  expandSpeed: 30
 --- !u!1 &1454514038
 GameObject:
   m_ObjectHideFlags: 0

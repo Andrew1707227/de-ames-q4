@@ -12,26 +12,26 @@ public class SceneChanger : MonoBehaviour
     public void toTitle()
     {
         leaving = true;
-        StartCoroutine(waiter("TitleScene"));
+        StartCoroutine(waiter("TitleScene", 0.5f));
     }
 
     //Trasititons to game start scene
     public void toGame()
     {
         leaving = true;
-        StartCoroutine(waiter("Level"));
+        StartCoroutine(waiter("Level", 1.3f));
     }
 
     //Trasititons to credits scene
     public void toCredits()
     {
         leaving = true;
-        StartCoroutine(waiter("CreditsScene"));
+        StartCoroutine(waiter("CreditsScene", 1.3f));
     }
 
-    public IEnumerator waiter(string location)
+    public IEnumerator waiter(string location, float waitTime)
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(location);
     }
 }

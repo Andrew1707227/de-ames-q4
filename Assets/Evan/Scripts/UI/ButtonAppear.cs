@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class ButtonAppear : MonoBehaviour
 {
+    //Hold the object that has the scenechanger attached
     public GameObject sceneChangerObject;
 
-    Vector2 bSize;
-    Vector2 bPos;
-    bool done = false;
+    public int moveLength = 100;
+    public int moveSpeed = 12;
+    public int expandSpeed = 40;
 
+    Vector2 bSize; //Holds button size
+    Vector2 bPos; //Holds button position
+    bool done = false; //Holds if button is done so it doesnt try to close twice
+
+    //Componenet references
     Image i;
     RectTransform rt;
     SceneChanger sC;
@@ -22,66 +28,84 @@ public class ButtonAppear : MonoBehaviour
         i = gameObject.GetComponent<Image>();
         sC = sceneChangerObject.GetComponent<SceneChanger>();
 
-        bSize = rt.sizeDelta;
-        bPos = rt.anchoredPosition;
-        i.enabled = false;
+        bSize = rt.sizeDelta; //Get defualt size
+        bPos = rt.anchoredPosition; //Get defualt position
+        i.enabled = false; //Make button invisible
     }
 
     private void Start()
     {
+        //Start open button
         StartCoroutine(openButton());
     }
 
     private void Update()
     {
+        //If leaving scene and havent done this before
         if (!done && sC.leaving)
         {
-            done = true;
-            StartCoroutine(closeButton());
+            done = true; //Set done to true
+            StartCoroutine(closeButton()); //Start close button
         }
     }
 
     private IEnumerator closeButton()
     {
-        rt.sizeDelta = bSize;
-        rt.anchoredPosition = bPos;
+        rt.sizeDelta = bSize; //Sets size to defualt size
+        rt.anchoredPosition = bPos; //Sets position to defualt position
 
-        for (int i = (int)bSize.x; i >= 5; i -= 40)
+        //Shrink horizontally
+        for (int i = (int)bSize.x; i >= 5; i -= expandSpeed)
         {
             rt.sizeDelta = new Vector2(i, bSize.y);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); //Wait
         }
-        rt.sizeDelta = new Vector2(5, bSize.y);
-        yield return new WaitForSeconds(.2f);
 
-        for (int i = (int)bPos.y; i >= bPos.y - 100; i -= 12)
+        //Set x length to five
+        rt.sizeDelta = new Vector2(5, bSize.y);
+        yield return new WaitForSeconds(.2f); //Wait
+
+        //Slide off screen
+        for (int i = (int)bPos.y; i >= bPos.y - moveLength; i -= moveSpeed)
         {
             rt.anchoredPosition = new Vector2(bPos.x, i);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); //Wait
         }
-        rt.anchoredPosition = new Vector2(bPos.x, bPos.y - 100);
-        i.enabled = false;
+
+        //Set position to off screen
+        rt.anchoredPosition = new Vector2(bPos.x, bPos.y - moveLength);
+        i.enabled = false; //Make button invisible
     }
 
     public IEnumerator openButton()
     {
+        //Make button visible
         i.enabled = true;
-        rt.sizeDelta = new Vector2(5, bSize.y);
-        rt.anchoredPosition = new Vector2(bPos.x, bPos.y - 100);
 
-        for (int i = (int)(bPos.y - 100); i <= bPos.y; i += 12)
+
+        rt.sizeDelta = new Vector2(5, bSize.y); //Set x length to five
+        rt.anchoredPosition = new Vector2(bPos.x, bPos.y - moveLength); //Set position to off screen
+
+
+        //Slide on screen
+        for (int i = (int)(bPos.y - moveLength); i <= bPos.y; i += moveSpeed)
         {
             rt.anchoredPosition = new Vector2(bPos.x, i);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); //Wait
         }
-        rt.anchoredPosition = bPos;
-        yield return new WaitForSeconds(.2f);
 
-        for (int i = 5; i <= bSize.x; i += 40)
+        //Set position to defualt position
+        rt.anchoredPosition = bPos;
+        yield return new WaitForSeconds(.2f); //Wait
+
+        //Expand horizontally
+        for (int i = 5; i <= bSize.x; i += expandSpeed)
         {
             rt.sizeDelta = new Vector2(i, bSize.y);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); //Wait
         }
+
+        //Set size to defualt size
         rt.sizeDelta = bSize;
     }
 
