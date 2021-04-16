@@ -12,6 +12,10 @@ public class GunShoot : MonoBehaviour
     //Holds how fast the player can shoot in seconds
     public float fireSpeed= 0.25f;
 
+    public float maxAmmo = 5f;
+    public float currentAmmo = 5f;
+    public float rechargeRate = 1f;
+
     //Times out shots
     float fireTimer = 0;
 
@@ -33,8 +37,14 @@ public class GunShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && fireTimer <= 0)
+
+        currentAmmo += rechargeRate * Time.deltaTime;
+        currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
+
+        if (currentAmmo >= 1 && Input.GetKeyDown(KeyCode.Mouse0) && fireTimer <= 0)
         {
+            currentAmmo--;
+
             //Gets look diection
             lookDir = pa.currentLookDir.normalized;
 

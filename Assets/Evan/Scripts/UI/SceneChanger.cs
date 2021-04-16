@@ -29,6 +29,14 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(waiter("CreditsScene", 1.3f));
     }
 
+    //Exit game
+    public void exit()
+    {
+        Debug.Log("Would of quit if built");
+        Application.Quit();
+    }
+
+    //Waits for waitTime
     public IEnumerator waiter(string location, float waitTime)
     {
         yield return new WaitForSeconds(waitTime);

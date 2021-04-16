@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChangerObject: {fileID: 178282734}
-  moveLength: 160
+  moveLength: 180
   moveSpeed: 4
   expandSpeed: 30
 --- !u!1 &379956828
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChangerObject: {fileID: 178282734}
-  moveLength: 100
+  moveLength: 120
   moveSpeed: 4
   expandSpeed: 30
 --- !u!1 &768746817
@@ -824,7 +824,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 768746820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 178282738}
+        m_MethodName: exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &768746820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneChangerObject: {fileID: 178282734}
-  moveLength: 40
+  moveLength: 60
   moveSpeed: 4
   expandSpeed: 30
 --- !u!1 &1454514038
