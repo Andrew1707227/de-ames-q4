@@ -4,24 +4,11 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour {
     public Vector3 offset;
+    public float speed;
     public GameObject player;
-    private bool isTouchingWall;
 
-    void Start() {
-        isTouchingWall = false;
-    }
-
-    void Update() {
-        if (!isTouchingWall) {
-            Camera.main.transform.position = player.transform.position + offset;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Wall") isTouchingWall = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Wall") isTouchingWall = false;
+    void FixedUpdate() {
+        Vector3 desiredPos = player.transform.position + offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPos, speed);
     }
 }
