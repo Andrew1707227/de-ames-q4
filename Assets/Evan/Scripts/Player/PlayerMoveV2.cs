@@ -32,8 +32,9 @@ public class PlayerMoveV2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
         //Gets both axes
         horizAxis = Input.GetAxis("Horizontal");
         vertAxis = Input.GetAxis("Vertical");
@@ -49,7 +50,7 @@ public class PlayerMoveV2 : MonoBehaviour
 
                 //Increments timers
                 horizTimer -= Time.deltaTime;
-                vertTimer -=Time.deltaTime;
+                vertTimer -= Time.deltaTime;
                 diagonalTimer -= Time.deltaTime;
             }
         }
