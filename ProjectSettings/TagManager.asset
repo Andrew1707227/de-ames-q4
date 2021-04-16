@@ -7,6 +7,7 @@ TagManager:
   - bad
   - also bad
   - not very good
+  - Wall
   layers:
   - Default
   - TransparentFX
