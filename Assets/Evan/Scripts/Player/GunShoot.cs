@@ -7,20 +7,17 @@ public class GunShoot : MonoBehaviour
     public GameObject bullet; //Bullet
     public GameObject cloneHolder; //Parent for bullet clone
 
-    //Holds speed of the bullet
-    public float bulletSpeed = 25;
-    //Holds how fast the player can shoot in seconds
-    public float fireSpeed= 0.25f;
-
-    public float maxAmmo = 5f;
-    public float currentAmmo = 5f;
+    public float bulletSpeed = 25; //Holds speed of the bullet
+    public float fireSpeed= 0.25f; //Holds how fast the player can shoot in seconds
+    public float maxAmmo = 5f; //Holds max ammo
+    public float currentAmmo = 5f; //Holds currentAmmo
     public float rechargeRate = 1f;
 
-    //Times out shots
-    float fireTimer = 0;
 
-    //Holds where the gun is looking
-    Vector2 lookDir;
+    float fireTimer = 0; //Times out shots
+    bool reloadingFast = false; //Holds if reloading fast
+    bool reloadingSlow = false; //Holds if reloading slow
+    Vector2 lookDir; //Holds where the gun is looking
 
     //Holds angle data
     float shootAngle;
@@ -37,12 +34,49 @@ public class GunShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If trying to reload and is possible
+        if (currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
+        {
+            //Check if ammo = 0 or not
+            if (currentAmmo != 0)
+            {
+                //Set fast reload
+                reloadingFast = true;
+            }
+            else
+            {
+                //Set slow reload
+                reloadingSlow = true;
+            }
+        }
 
-        currentAmmo += rechargeRate * Time.deltaTime;
+        //Checks if fast or slow reload
+        if (reloadingFast)
+        {
+            //Increments up by rechargeRate
+            currentAmmo += rechargeRate * Time.deltaTime;
+        }
+        else if (reloadingSlow)
+        {
+            //Increments up by rechargeRate / 1.3
+            currentAmmo += (rechargeRate / 1.3f) * Time.deltaTime;
+        }
+
+        //Makes sure ammo doesnt get to big
         currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
 
-        if (currentAmmo >= 1 && Input.GetKeyDown(KeyCode.Mouse0) && fireTimer <= 0)
+        //Checks if reloading is done
+        if (currentAmmo == maxAmmo)
         {
+            //Resets reloading bools
+            reloadingSlow = false;
+            reloadingFast = false;
+        }
+
+        //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
+        if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown(KeyCode.Mouse0) && fireTimer <= 0)
+        {
+            //increment ammo
             currentAmmo--;
 
             //Gets look diection
@@ -64,10 +98,12 @@ public class GunShoot : MonoBehaviour
             //Destroy bullet after 4 seconds
             Destroy(bulletClone, 2);
 
+            //Reset fire timer
             fireTimer = fireSpeed;
         }
-        else if (fireTimer >= 0)
+        else if (fireTimer >= 0) //If fire timer is not 0 or smaller
         {
+            //Increment fire timer
             fireTimer -= Time.deltaTime;
         }
     }
