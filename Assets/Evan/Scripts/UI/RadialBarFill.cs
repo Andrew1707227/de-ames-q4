@@ -8,6 +8,9 @@ public class RadialBarFill : MonoBehaviour
     //Holds reference to arm and fill
     public GameObject arm;
 
+    //Holds current precent of ammo
+    public float curAmmoPrecent;
+
     float minValue = 0.25f;
     float maxValue = 0.75f;
 
@@ -39,7 +42,7 @@ public class RadialBarFill : MonoBehaviour
         currentAmmoCount = gs.currentAmmo;
 
         //Gets current ammo precent
-        float curAmmoPrecent = currentAmmoCount / maxAmmo;
+        curAmmoPrecent = currentAmmoCount / maxAmmo;
 
         //If slider is higher than ammo
         if (i.fillAmount > curAmmoPrecent * (maxValue - minValue) + minValue)
