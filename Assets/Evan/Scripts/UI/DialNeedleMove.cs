@@ -8,6 +8,9 @@ public class DialNeedleMove : MonoBehaviour
     //Holds reference to arm and fill
     public GameObject dialFill;
 
+    float min = 270;
+    float max = 450;
+
     RectTransform rt;
     RadialBarFill rbf;
 
@@ -33,9 +36,9 @@ public class DialNeedleMove : MonoBehaviour
             convertedAngle = rt.rotation.eulerAngles.z;
         }
 
-        if (((1 - rbf.curAmmoPrecent) * (450 - 270)) + 270 != convertedAngle)
+        if (((1 - rbf.curAmmoPrecent) * (max - min)) + min != convertedAngle)
         {
-            rt.Rotate(new Vector3(0, 0, ((((1 - rbf.curAmmoPrecent) * (450 - 270)) + 270) - convertedAngle) / 25));
+            rt.Rotate(new Vector3(0, 0, ((((1 - rbf.curAmmoPrecent) * (max - min)) + min) - convertedAngle) / 25));
         }
     }
 }

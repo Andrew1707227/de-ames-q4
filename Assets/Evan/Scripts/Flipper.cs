@@ -8,6 +8,9 @@ public class Flipper : MonoBehaviour
     public GameObject robot;
     RobotFollow rf;
 
+    //Gets all pops
+    public GameObject popHolder;
+
     //Reference to main Camera
     public Camera cam;
 
@@ -15,6 +18,8 @@ public class Flipper : MonoBehaviour
     SpriteRenderer pSR;
     SpriteRenderer rSR;
     SpriteRenderer sR;
+
+    Transform pT;
 
     //Holds mouse position
     Vector2 mousePos;
@@ -26,6 +31,7 @@ public class Flipper : MonoBehaviour
         rSR = robot.GetComponent<SpriteRenderer>();
         sR = gameObject.GetComponent<SpriteRenderer>();
         rf = robot.GetComponent<RobotFollow>();
+        pT = popHolder.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -41,6 +47,9 @@ public class Flipper : MonoBehaviour
             rSR.flipX = true;
             sR.flipX = true;
 
+            //Flip pops
+            pT.localScale = new Vector3(-1, 1, 1);
+
             //Flip robot follow position
             rf.offset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
             rf.currentOffset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
@@ -50,6 +59,9 @@ public class Flipper : MonoBehaviour
             pSR.flipX = false;
             rSR.flipX = false;
             sR.flipX = false;
+
+            //Flip pops
+            pT.localScale = new Vector3(1, 1, 1);
 
             //Flip robot follow position
             rf.offset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);

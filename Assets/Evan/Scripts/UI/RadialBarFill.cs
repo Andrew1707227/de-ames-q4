@@ -32,7 +32,7 @@ public class RadialBarFill : MonoBehaviour
         maxAmmo = gs.maxAmmo;
         baseColor = i.color;
 
-        i.fillAmount = 0.75f;
+        i.fillAmount = maxValue;
     }
 
     // Update is called once per frame
@@ -60,11 +60,13 @@ public class RadialBarFill : MonoBehaviour
         i.fillAmount = Mathf.Clamp(i.fillAmount, minValue, maxValue);
 
         //Get current slider position in a percentage
-        float changePercent = 1 - (curAmmoPrecent * (maxValue - minValue) + minValue);
+        float changePercent = 1 - curAmmoPrecent;//(curAmmoPrecent * (maxValue - minValue) + minValue);
+
+        Debug.Log(changePercent);
 
         //Use precent to make color darker as bar gets lower
-        i.color = new Color(baseColor.r - ((baseColor.r * changePercent) / 3),
-                            baseColor.g - ((baseColor.g * changePercent) / 3),
-                            baseColor.b - ((baseColor.b * changePercent)) / 3);
+        i.color = new Color(baseColor.r - ((baseColor.r * changePercent) / 5),
+                            baseColor.g - ((baseColor.g * changePercent) / 5),
+                            baseColor.b - ((baseColor.b * changePercent)) / 5);
     }
 }
