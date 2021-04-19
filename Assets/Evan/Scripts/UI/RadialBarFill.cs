@@ -5,31 +5,31 @@ using UnityEngine.UI;
 
 public class RadialBarFill : MonoBehaviour
 {
-    //Holds reference to arm and fill
-    public GameObject arm;
+    //Holds reference to player
+    public GameObject player;
 
-    //Holds current precent of ammo
-    public float curAmmoPrecent;
+    //Holds current precent of Pops
+    public float curPopPrecent;
 
     float minValue = 0.25f;
     float maxValue = 0.75f;
 
-    float currentAmmoCount; //Holds the current ammo count
-    float maxAmmo; //Holds max ammo
+    float currentPopCount; //Holds the current ammo count
+    float maxPops; //Holds max ammo
     Color baseColor; //Holds original color
 
-    GunShoot gs;
+    PlayerPop p;
     Image i;
 
     // Start is called before the first frame update
     void Start()
     {
-        gs = arm.GetComponent<GunShoot>();
+        p = player.GetComponent<PlayerPop>();
         i = gameObject.GetComponent<Image>();
 
         //Gets defualt values
-        currentAmmoCount = gs.currentAmmo;
-        maxAmmo = gs.maxAmmo;
+        currentPopCount = p.currentPops;
+        maxPops = p.maxPops;
         baseColor = i.color;
 
         i.fillAmount = maxValue;
@@ -39,34 +39,34 @@ public class RadialBarFill : MonoBehaviour
     void Update()
     {
         //Gets current ammo count
-        currentAmmoCount = gs.currentAmmo;
+        currentPopCount = p.currentPops;
 
         //Gets current ammo precent
-        curAmmoPrecent = currentAmmoCount / maxAmmo;
+        curPopPrecent = currentPopCount / maxPops;
 
         //If slider is higher than ammo
-        if (i.fillAmount > curAmmoPrecent * (maxValue - minValue) + minValue)
+        if (i.fillAmount > curPopPrecent * (maxValue - minValue) + minValue)
         {
             //Slide value down in tell it catches up to ammo
-            i.fillAmount -= 1f * Time.deltaTime;
+            i.fillAmount += (((curPopPrecent * (maxValue - minValue) + minValue) - i.fillAmount)) * Time.deltaTime;
         }
-        else
-        {
-            //Set slider value to current ammo count
-            i.fillAmount = curAmmoPrecent * (maxValue - minValue) + minValue;
-        }
+
+        //Uncomment this if it is ever needed to refill the dial (Not currently needed but not positive)
+        //else
+        //{
+        //    //Set slider value to current ammo count
+        //    i.fillAmount = curPopPrecent * (maxValue - minValue) + minValue;
+        //}
 
         //Makes sure the bar doesnt get to big or small
         i.fillAmount = Mathf.Clamp(i.fillAmount, minValue, maxValue);
 
         //Get current slider position in a percentage
-        float changePercent = 1 - curAmmoPrecent;//(curAmmoPrecent * (maxValue - minValue) + minValue);
-
-        Debug.Log(changePercent);
+        float changePercent = 1 - i.fillAmount - 0.25f;
 
         //Use precent to make color darker as bar gets lower
-        i.color = new Color(baseColor.r - ((baseColor.r * changePercent) / 5),
-                            baseColor.g - ((baseColor.g * changePercent) / 5),
-                            baseColor.b - ((baseColor.b * changePercent)) / 5);
+        i.color = new Color(baseColor.r - (baseColor.r * changePercent),
+                            baseColor.g - (baseColor.g * changePercent),
+                            baseColor.b - (baseColor.b * changePercent));
     }
 }

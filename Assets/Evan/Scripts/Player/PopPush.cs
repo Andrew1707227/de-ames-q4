@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PopPush : MonoBehaviour
 {
-    public string playerName;
+    //Holds player name to find player
+    public string playerName; 
 
+    //Holds direction to push player
     public Vector3 pushDirection;
 
     Rigidbody2D pRB2;
@@ -19,6 +21,7 @@ public class PopPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Pushes player
         pRB2.AddForce(pushDirection/2 * Time.deltaTime, ForceMode2D.Impulse);
     }
 }
