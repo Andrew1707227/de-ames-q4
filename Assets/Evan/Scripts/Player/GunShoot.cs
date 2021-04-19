@@ -35,7 +35,7 @@ public class GunShoot : MonoBehaviour
     void Update()
     {
         //If trying to reload and is possible
-        if (currentAmmo != maxAmmo && Input.GetKeyDown(KeyCode.R))
+        if (currentAmmo != maxAmmo && Input.GetAxis("Reload") == 1)
         {
             //Check if ammo = 0 or not
             if (currentAmmo != 0)
@@ -74,7 +74,7 @@ public class GunShoot : MonoBehaviour
         }
 
         //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
-        if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown(KeyCode.Mouse0) && fireTimer <= 0)
+        if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetAxis("Fire1") == 1 && fireTimer <= 0)
         {
             //increment ammo
             currentAmmo--;
