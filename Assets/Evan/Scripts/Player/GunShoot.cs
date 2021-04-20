@@ -7,6 +7,12 @@ public class GunShoot : MonoBehaviour
     public GameObject bullet; //Bullet
     public GameObject cloneHolder; //Parent for bullet clone
 
+    public AudioClip shootSFX;
+    public AudioClip reloadSFX;
+    public AudioClip reloadFastSFX;
+
+    private AudioSource Asource;
+
     public float bulletSpeed = 25; //Holds speed of the bullet
     public float fireSpeed= 0.25f; //Holds how fast the player can shoot in seconds
     public float maxAmmo = 5f; //Holds max ammo
@@ -29,6 +35,7 @@ public class GunShoot : MonoBehaviour
     void Start()
     {
         pa = gameObject.GetComponent<PlayerAim>();
+        Asource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,11 +50,13 @@ public class GunShoot : MonoBehaviour
             {
                 //Set fast reload
                 reloadingFast = true;
+                Asource.PlayOneShot(reloadFastSFX);
             }
             else
             {
                 //Set slow reload
                 reloadingSlow = true;
+                Asource.PlayOneShot(reloadSFX);
             }
         }
 
@@ -59,8 +68,8 @@ public class GunShoot : MonoBehaviour
         }
         else if (reloadingSlow)
         {
-            //Increments up by rechargeRate / 1.3
-            currentAmmo += (rechargeRate / 1.3f) * Time.deltaTime;
+            //Increments up by rechargeRate / 1.1
+            currentAmmo += (rechargeRate / 1.1f) * Time.deltaTime;
         }
 
         //Makes sure ammo doesnt get to big
@@ -77,6 +86,7 @@ public class GunShoot : MonoBehaviour
         //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
         if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown("mouse 0") && fireTimer <= 0)
         {
+            Asource.PlayOneShot(shootSFX);
             //increment ammo
             currentAmmo--;
 
