@@ -45,7 +45,7 @@ public class DialNeedleMove : MonoBehaviour
         if (((1 - rbf.curPopPrecent) * (max - min)) + min != convertedAngle)
         {
             //Rotate gameobject to wanted position (divided by 300 to slow down the turn)
-            rt.Rotate(new Vector3(0, 0, ((((1 - rbf.curPopPrecent) * (max - min)) + min) - convertedAngle) / 300));
+            rt.Rotate(new Vector3(0, 0, ((((1 - rbf.curPopPrecent) * (max - min)) + min) - convertedAngle) / 75));
         }
     }
 }

@@ -50,12 +50,16 @@ public class GunShoot : MonoBehaviour
             {
                 //Set fast reload
                 reloadingFast = true;
+
+                //Plays normal reload sound
                 Asource.PlayOneShot(reloadFastSFX);
             }
             else
             {
                 //Set slow reload
                 reloadingSlow = true;
+
+                //Plays clang reload sound
                 Asource.PlayOneShot(reloadSFX);
             }
         }
@@ -86,7 +90,9 @@ public class GunShoot : MonoBehaviour
         //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
         if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown("mouse 0") && fireTimer <= 0)
         {
+            //Plays shoot sound
             Asource.PlayOneShot(shootSFX);
+
             //increment ammo
             currentAmmo--;
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1804664743030921814}
   m_Layer: 0
   m_Name: Pop
-  m_TagString: Untagged
+  m_TagString: Pop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player
+  armName: Arm
   pushDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &9111939012668350540
 GameObject:

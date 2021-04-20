@@ -14,6 +14,9 @@ public class Flipper : MonoBehaviour
     //Reference to main Camera
     public Camera cam;
 
+    //Tells pops to flip their own velocity
+    public bool Popflipx = false;
+
     //Holds parentm robot and own spriteRenderer referencees
     SpriteRenderer pSR;
     SpriteRenderer rSR;
@@ -47,6 +50,9 @@ public class Flipper : MonoBehaviour
             rSR.flipX = true;
             sR.flipX = true;
 
+            //Inform unknown number of pops to flip their own velocity
+            Popflipx = true;
+
             //Flip pops
             pT.localScale = new Vector3(-1, 1, 1);
 
@@ -59,6 +65,9 @@ public class Flipper : MonoBehaviour
             pSR.flipX = false;
             rSR.flipX = false;
             sR.flipX = false;
+
+            //Inform unknown number of pops to flip their own velocity
+            Popflipx = false;
 
             //Flip pops
             pT.localScale = new Vector3(1, 1, 1);
