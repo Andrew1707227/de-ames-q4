@@ -19,10 +19,9 @@ public class GunShoot : MonoBehaviour
     public float currentAmmo = 5f; //Holds currentAmmo
     public float rechargeRate = 1f;
 
-
     float fireTimer = 0; //Times out shots
-    bool reloadingFast = false; //Holds if reloading fast
-    bool reloadingSlow = false; //Holds if reloading slow
+    public bool reloadingFast = false; //Holds if reloading fast
+    public bool reloadingSlow = false; //Holds if reloading slow
     Vector2 lookDir; //Holds where the gun is looking
 
     //Holds angle data

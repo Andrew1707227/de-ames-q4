@@ -10,6 +10,8 @@ public class AmmoCounter : MonoBehaviour
 
     float currentAmmoCount; //Holds the current ammo count
 
+    string loading = ".  ";
+    bool stop = false;
 
     GunShoot gs;
     Text t;
@@ -29,12 +31,46 @@ public class AmmoCounter : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
         //Gets current ammo count
         currentAmmoCount = gs.currentAmmo;
 
-        //Updates text to match current ammo
-        t.text = "" + (int)currentAmmoCount;
+        if ((gs.reloadingFast || gs.reloadingSlow) && !stop)
+        {
+            stop = true;
+            StartCoroutine(loadingDots());
+        }
+        else if(!gs.reloadingFast && !gs.reloadingSlow)
+        {
+            stop = false;
 
+            //Updates text to match current ammo
+            t.text = (int)currentAmmoCount + "/5";
+        }
+    }
+
+    public IEnumerator loadingDots()
+    {
+        while (gs.reloadingFast || gs.reloadingSlow)
+        {
+            t.text = loading;
+
+            if (loading == ".  ")
+            {
+                loading = ".. ";
+            }
+            else if (loading == ".. ")
+            {
+                loading = "...";
+            }
+            else
+            {
+                loading = ".  ";
+            }
+
+            yield return new WaitForSeconds(.2f); //Wait
+        }
+
+        loading = ".  ";
     }
 }
