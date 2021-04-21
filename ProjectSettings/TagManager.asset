@@ -8,6 +8,7 @@ TagManager:
   - also bad
   - not very good
   - Wall
+  - Pop
   layers:
   - Default
   - TransparentFX
