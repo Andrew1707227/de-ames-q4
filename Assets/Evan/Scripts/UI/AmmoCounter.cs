@@ -9,7 +9,7 @@ public class AmmoCounter : MonoBehaviour
     public GameObject arm;
 
     float currentAmmoCount; //Holds the current ammo count
-    float maxAmmo; //Holds max ammo
+
 
     GunShoot gs;
     Text t;
@@ -22,10 +22,9 @@ public class AmmoCounter : MonoBehaviour
 
         //Gets defualt values
         currentAmmoCount = gs.currentAmmo;
-        maxAmmo = gs.maxAmmo;
 
         //Sets text to defualt text value
-        t.text = (int)currentAmmoCount + "/" + (int)maxAmmo;
+        t.text = "" + (int)currentAmmoCount;
     }
 
     // Update is called once per frame
@@ -35,7 +34,7 @@ public class AmmoCounter : MonoBehaviour
         currentAmmoCount = gs.currentAmmo;
 
         //Updates text to match current ammo
-        t.text = (int)currentAmmoCount + "/" + (int)maxAmmo;
+        t.text = "" + (int)currentAmmoCount;
 
     }
 }
