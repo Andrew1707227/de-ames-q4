@@ -16,6 +16,8 @@ public class LazerSight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.queriesHitTriggers = false;
+
         pa = gameObject.GetComponent<PlayerAim>();
         lr = gameObject.GetComponent<LineRenderer>();
 
