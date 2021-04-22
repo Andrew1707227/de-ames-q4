@@ -88,7 +88,8 @@ public class TextScroller : MonoBehaviour {
             TextComponent.text = TextComponent.text + text.Substring(i, 1);
             ASource.volume = Random.Range(.7f, 1f);
             if (text.Substring(i, 1) != " ") ASource.Play();
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
             ASource.Stop();
         }
         isFinished = true;

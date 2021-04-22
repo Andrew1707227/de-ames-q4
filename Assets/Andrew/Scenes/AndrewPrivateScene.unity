@@ -280,7 +280,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: f0888a47cbd004447afcd8bb4c1c9592, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d1285286fb7ff45b30722469949df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultClip: {fileID: 8300000, guid: 7fa3d9f59cbb41f4eab257d235e575bd, type: 3}
+  distortedClip: {fileID: 8300000, guid: 1780b3d6fd559184e82f415ca4f0f421, type: 3}
   background: {fileID: 477076407}
 --- !u!114 &209602419
 MonoBehaviour:

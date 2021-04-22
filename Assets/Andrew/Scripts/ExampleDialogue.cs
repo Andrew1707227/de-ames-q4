@@ -12,7 +12,7 @@ public class ExampleDialogue : MonoBehaviour {
     private IEnumerator ExampleText() {
         yield return new WaitForSeconds(1);
         //Type <d> at the start in order to use the distored audio (typing nothing uses the default)
-        StartCoroutine(textScroller.RunText(new string[] { "Hello there! My name is T.O.D.D.", "I've been in this slimy worm for a long time,", 
+        StartCoroutine(textScroller.RunText(new string[] { "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","Hello there! My name is T.O.D.D.", "I've been in this slimy worm for a long time,", 
             "and sometimes I'll malfunction and say things like,", "<d>You're trash."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         StartCoroutine(textScroller.RunText(new string[] { "<d>Stings doesn't it?", "But what was I gonna say?","Oh yes, Depresso Espresso is pretty cool you should check them out.", 
