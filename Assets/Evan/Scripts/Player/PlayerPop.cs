@@ -22,19 +22,22 @@ public class PlayerPop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Increment pops
-        currentPops--;
+        if (collision.transform.tag != "SafeTouch")
+        {
+            //Increment pops
+            currentPops--;
 
-        //Gets collision point
-        ContactPoint2D contact = collision.GetContact(0);
+            //Gets collision point
+            ContactPoint2D contact = collision.GetContact(0);
 
-        //Turns collision normal into Quaternion
-        Quaternion qNormal = Quaternion.LookRotation(new Vector3(0, 0, 1), contact.normal);
+            //Turns collision normal into Quaternion
+            Quaternion qNormal = Quaternion.LookRotation(new Vector3(0, 0, 1), contact.normal);
 
-        //Creates pop object
-        GameObject newPop = Instantiate(pop, contact.point, qNormal, pT);
+            //Creates pop object
+            GameObject newPop = Instantiate(pop, contact.point, qNormal, pT);
 
-        //Gives pop object push direction
-        newPop.GetComponent<PopPush>().pushDirection = contact.normal;
+            //Gives pop object push direction
+            newPop.GetComponent<PopPush>().pushDirection = contact.normal;
+        }
     }
 }
