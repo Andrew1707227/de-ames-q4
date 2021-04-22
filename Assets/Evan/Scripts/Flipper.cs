@@ -47,8 +47,12 @@ public class Flipper : MonoBehaviour
         if (mousePos.x > transform.position.x)
         {
             pSR.flipX = true;
-            rSR.flipX = true;
             sR.flipX = true;
+
+            if (rf.enabled)
+            {
+                rSR.flipX = true;
+            }
 
             //Inform unknown number of pops to flip their own velocity
             Popflipx = true;
@@ -63,11 +67,15 @@ public class Flipper : MonoBehaviour
         if (mousePos.x < transform.position.x)
         {
             pSR.flipX = false;
-            rSR.flipX = false;
             sR.flipX = false;
 
-            //Inform unknown number of pops to flip their own velocity
-            Popflipx = false;
+            if (rf.enabled)
+            {
+                rSR.flipX = false;
+            }
+
+                //Inform unknown number of pops to flip their own velocity
+                Popflipx = false;
 
             //Flip pops
             pT.localScale = new Vector3(1, 1, 1);
