@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - bad
-  - also bad
-  - not very good
   - Wall
   - Pop
   - SafeTouch

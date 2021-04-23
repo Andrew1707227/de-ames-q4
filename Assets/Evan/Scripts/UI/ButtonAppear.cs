@@ -9,8 +9,8 @@ public class ButtonAppear : MonoBehaviour
     //Hold the object that has the scenechanger attached
     public GameObject sceneChangerObject;
 
-    public int moveLength = 100;
-    public int moveSpeed = 12;
+    public int moveLength = 120;
+    public int moveSpeed = 13;
     public int expandSpeed = 40;
 
     Vector2 bSize; //Holds button size
@@ -45,6 +45,7 @@ public class ButtonAppear : MonoBehaviour
         if (!done && sC.leaving)
         {
             done = true; //Set done to true
+            moveSpeed = moveSpeed + (moveSpeed/2);
             StartCoroutine(closeButton()); //Start close button
         }
     }
