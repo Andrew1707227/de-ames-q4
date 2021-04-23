@@ -9,6 +9,8 @@ TagManager:
   - not very good
   - Wall
   - Pop
+  - SafeTouch
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

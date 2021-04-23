@@ -12,15 +12,15 @@ public class RadialBarFill : MonoBehaviour
     public float curPopPrecent;
 
     float minValue = 0.25f;
-    float maxValue = 0.75f;
+    public float maxValue = 0.75f;
 
     float currentPopCount; //Holds the current ammo count
     float maxPops; //Holds max ammo
     Color baseColor; //Holds original color
 
     PlayerPop p;
-    Image i;
-
+    public Image i;
+        
     // Start is called before the first frame update
     void Start()
     {
