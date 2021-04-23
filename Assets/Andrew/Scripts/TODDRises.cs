@@ -7,21 +7,27 @@ public class TODDRises : MonoBehaviour {
     public MMUEffects MMUEffects;
     public TextScroller textScroller;
     GameObject player;
+    private Rigidbody2D rb2;
+    private PlayerMoveV2 move;
+    private bool debounce = false;
 
     void Start() {
         player = GameObject.Find("Player");
+        rb2 = player.GetComponent<Rigidbody2D>();
+        move = player.GetComponent<PlayerMoveV2>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player") {
+        if (collision.tag == "Player" && !debounce) {
+            debounce = true;
             StartCoroutine(TODDGoUp());
         }
     }
 
     IEnumerator TODDGoUp() {
-        player.GetComponent<PlayerMoveV2>().enabled = false;
+        move.enabled = false;
         MMUEffects.enabled = false;
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        rb2.velocity = Vector2.zero;
         Vector3 TODDPos = TODD.transform.position;
         for (float i = TODDPos.y; i < TODDPos.y + 1.5f; i += 1/60f ) {
             TODD.transform.position = new Vector3(TODDPos.x, i, TODDPos.z);
@@ -29,12 +35,17 @@ public class TODDRises : MonoBehaviour {
         }
         yield return new WaitForSeconds(1);
         StartCoroutine(textScroller.RunText(new string[] {"Hello traveller! You must be so confused.", "Well, welcome to the worm!", "Since you're here, it's only fair that I properly introduce myself.",
-        "My name is The Organization Doppler Drone." ,"What's The Organization you ask?","<d>Well, I'm not telling you.","Anyway, you can call me T.O.D.D. for short."}));
+        "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
+        move.enabled = true;
+        yield return new WaitUntil(() => rb2.velocity.magnitude > 1);
+        move.enabled = false;
+        TODD.GetComponent<RobotFollow>().enabled = true;
+        rb2.velocity = Vector2.zero;
         StartCoroutine(textScroller.RunText(new string[] { "Wait!", "Don't leave I....","I need your help.", "I know a place where there's a working spaceship, but I can't repair it alone.",
             "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical." }));
-        player.GetComponent<PlayerMoveV2>().enabled = true;
-        TODD.GetComponent<RobotFollow>().enabled = true;
+        yield return new WaitUntil(() => textScroller.isTextFinished());
+        move.enabled = true;
         MMUEffects.enabled = true;
     }
 }
