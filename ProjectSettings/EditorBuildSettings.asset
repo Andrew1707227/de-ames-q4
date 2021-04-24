@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Public/Scenes/CreditsScene.unity
     guid: adbe343c13ee14c4b99c0f32343876b7
+  - enabled: 1
+    path: Assets/Andrew/Scenes/TODDIntro.unity
+    guid: 5eedea80ac427394fa14767c8f71b90b
   m_configObjects: {}

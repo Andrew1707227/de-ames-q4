@@ -38,7 +38,7 @@ public class TODDRises : MonoBehaviour {
         "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
-        yield return new WaitUntil(() => rb2.velocity.magnitude > 1);
+        yield return new WaitUntil(() => rb2.velocity.magnitude > .25f);
         move.enabled = false;
         TODD.GetComponent<RobotFollow>().enabled = true;
         rb2.velocity = Vector2.zero;
