@@ -8,7 +8,7 @@ public class BulletStop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player" && collision.tag != "Checkpoint")
+        if (collision.tag != "Player" && collision.tag != "Trigger")
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
