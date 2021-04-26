@@ -41,7 +41,7 @@ public class GunShoot : MonoBehaviour
     void Update()
     {
         //If trying to reload and is possible
-        if (currentAmmo != maxAmmo && Input.GetKeyDown("r"))
+        if (currentAmmo != maxAmmo && Input.GetKeyDown("r") && !PauseMenu.gameIsPaused)
         {
 
             //Check if ammo = 0 or not
@@ -87,7 +87,7 @@ public class GunShoot : MonoBehaviour
         }
 
         //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
-        if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown("mouse 0") && fireTimer <= 0)
+        if (!reloadingFast && !reloadingSlow && currentAmmo >= 1 && Input.GetKeyDown("mouse 0") && fireTimer <= 0 && !PauseMenu.gameIsPaused)
         {
             //Plays shoot sound
             Asource.PlayOneShot(shootSFX);

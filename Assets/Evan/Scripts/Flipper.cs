@@ -43,46 +43,49 @@ public class Flipper : MonoBehaviour
         //Sets mousePos to current mouse position
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        //Flip player based on aiming direction
-        if (mousePos.x > transform.position.x)
+        if (!PauseMenu.gameIsPaused)
         {
-            pSR.flipX = true;
-            sR.flipX = true;
-
-            if (rf.enabled)
+            //Flip player based on aiming direction
+            if (mousePos.x > transform.position.x)
             {
-                rSR.flipX = true;
+                pSR.flipX = true;
+                sR.flipX = true;
+
+                if (rf.enabled)
+                {
+                    rSR.flipX = true;
+                }
+
+                //Inform unknown number of pops to flip their own velocity
+                Popflipx = true;
+
+                //Flip pops
+                pT.localScale = new Vector3(-1, 1, 1);
+
+                //Flip robot follow position
+                rf.offset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
+                rf.currentOffset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
             }
-
-            //Inform unknown number of pops to flip their own velocity
-            Popflipx = true;
-
-            //Flip pops
-            pT.localScale = new Vector3(-1, 1, 1);
-
-            //Flip robot follow position
-            rf.offset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
-            rf.currentOffset = new Vector3(-rf.baseOffset.x, rf.baseOffset.y, 0);
-        }
-        if (mousePos.x < transform.position.x)
-        {
-            pSR.flipX = false;
-            sR.flipX = false;
-
-            if (rf.enabled)
+            if (mousePos.x < transform.position.x)
             {
-                rSR.flipX = false;
-            }
+                pSR.flipX = false;
+                sR.flipX = false;
+
+                if (rf.enabled)
+                {
+                    rSR.flipX = false;
+                }
 
                 //Inform unknown number of pops to flip their own velocity
                 Popflipx = false;
 
-            //Flip pops
-            pT.localScale = new Vector3(1, 1, 1);
+                //Flip pops
+                pT.localScale = new Vector3(1, 1, 1);
 
-            //Flip robot follow position
-            rf.offset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
-            rf.currentOffset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
+                //Flip robot follow position
+                rf.offset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
+                rf.currentOffset = new Vector3(rf.baseOffset.x, rf.baseOffset.y, 0);
+            }
         }
     }
 }
