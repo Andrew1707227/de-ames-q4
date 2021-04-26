@@ -17,6 +17,8 @@ public class PlayerMoveV2 : MonoBehaviour
     public float vertTimer; //Holds current boost time for vertical axis
     float diagonalTimer; //Holds current boost time for when going diagonally
 
+    public static Vector2 prevSpeed; //if the player came from another scene it will retain it's speed because it look pwetty
+
     //References
     Rigidbody2D rb2;
 
@@ -24,7 +26,7 @@ public class PlayerMoveV2 : MonoBehaviour
     void Start()
     {
         rb2 = gameObject.GetComponent<Rigidbody2D>();
-
+        rb2.velocity = prevSpeed;
         //Sets up defaults for timers
         horizTimer = burstLength;
         vertTimer = burstLength;
