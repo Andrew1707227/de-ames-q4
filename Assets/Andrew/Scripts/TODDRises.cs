@@ -9,12 +9,14 @@ public class TODDRises : MonoBehaviour {
     GameObject player;
     private Rigidbody2D rb2;
     private PlayerMoveV2 move;
+    private FollowCamera camFollow;
     private bool debounce = false;
 
     void Start() {
         player = GameObject.Find("Player");
         rb2 = player.GetComponent<Rigidbody2D>();
         move = player.GetComponent<PlayerMoveV2>();
+        camFollow = Camera.main.GetComponent<FollowCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -33,11 +35,17 @@ public class TODDRises : MonoBehaviour {
             TODD.transform.position = new Vector3(TODDPos.x, i, TODDPos.z);
             yield return new WaitForFixedUpdate();
         }
+        camFollow.enabled = false;
+        for (float i = 0; i < 2; i++) {
+
+            yield return new WaitForFixedUpdate();
+        }
         yield return new WaitForSeconds(1);
         StartCoroutine(textScroller.RunText(new string[] {"Hello traveller! You must be so confused.", "Well, welcome to the worm!", "Since you're here, it's only fair that I properly introduce myself.",
         "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
+        camFollow.enabled = true;
         yield return new WaitUntil(() => rb2.velocity.magnitude > .25f);
         move.enabled = false;
         TODD.GetComponent<RobotFollow>().enabled = true;
