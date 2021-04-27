@@ -59,7 +59,7 @@ public class GunShoot : MonoBehaviour
                 reloadingSlow = true;
 
                 //Plays clang reload sound
-                Asource.PlayOneShot(reloadSFX, 0.5f);
+                Asource.PlayOneShot(reloadSFX, 0.6f);
             }
         }
 

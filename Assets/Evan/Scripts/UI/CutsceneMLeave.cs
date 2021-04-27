@@ -44,6 +44,6 @@ public class CutsceneMLeave : MonoBehaviour
         a.enabled = true;
 
         yield return new WaitForSeconds(15);
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("TODDIntro");
     }
 }

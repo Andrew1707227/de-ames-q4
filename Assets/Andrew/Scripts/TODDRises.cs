@@ -11,12 +11,14 @@ public class TODDRises : MonoBehaviour {
     private PlayerMoveV2 move;
     private FollowCamera camFollow;
     private bool debounce = false;
+    private bool canMove;
 
     void Start() {
         player = GameObject.Find("Player");
         rb2 = player.GetComponent<Rigidbody2D>();
         move = player.GetComponent<PlayerMoveV2>();
         camFollow = Camera.main.GetComponent<FollowCamera>();
+        canMove = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -26,8 +28,15 @@ public class TODDRises : MonoBehaviour {
         }
     }
 
+    private void LateUpdate() {
+        if (!canMove) {
+            rb2.velocity = Vector2.zero;
+        }
+    }
+
     IEnumerator TODDGoUp() {
         move.enabled = false;
+        canMove = false;
         MMUEffects.enabled = false;
         rb2.velocity = Vector2.zero;
         Vector3 TODDPos = TODD.transform.position;
@@ -45,15 +54,18 @@ public class TODDRises : MonoBehaviour {
         "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
+        canMove = true;
         camFollow.enabled = true;
         yield return new WaitUntil(() => rb2.velocity.magnitude > .25f);
         move.enabled = false;
+        canMove = false;
         TODD.GetComponent<RobotFollow>().enabled = true;
         rb2.velocity = Vector2.zero;
         StartCoroutine(textScroller.RunText(new string[] { "Wait!", "Don't leave I....","I need your help.", "I know a place where there's a working spaceship, but I can't repair it alone.",
             "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical." }));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
+        canMove = true;
         MMUEffects.enabled = true;
     }
 }
