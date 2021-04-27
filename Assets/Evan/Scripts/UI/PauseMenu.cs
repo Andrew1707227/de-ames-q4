@@ -141,6 +141,8 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
+            //Start sound up again
+            AudioListener.pause = false;
             //Resets Time
             Time.timeScale = 1f;
             //Sets gameIsPaused to true
