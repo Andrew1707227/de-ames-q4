@@ -18,14 +18,11 @@ public class FallingAcidDialogue : MonoBehaviour {
     }
 
     private IEnumerator Intro() {
-        Debug.Log("hello");
-        move.enabled = false;
-        yield return new WaitForSeconds(.75f);
-        Debug.Log("there");
+        yield return new WaitForSeconds(.4f);
         StartCoroutine(textScroller.RunText(new string[] {"WAIT!", "The worm is shooting acid at us, we must be careful here.", "<d>Or at least, YOU must be careful.",
             "<d>I on the other hand am invulnerable to acid, so I could care less.","Try to make it out alive!"}));
-        yield return new WaitForSeconds(.25f);
-        rb2.velocity = Vector2.zero;
+        yield return new WaitForSeconds(.1f);
+        move.enabled = false;
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
     }

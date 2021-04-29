@@ -84,6 +84,7 @@ public class TextScroller : MonoBehaviour {
 
     private IEnumerator WriteText(string text, AudioClip tone) {
         ASource.clip = tone;
+        StartCoroutine(GlitchEffect());
         for (int i = 0; i < text.Length; i++) {
             TextComponent.text = TextComponent.text + text.Substring(i, 1);
             ASource.volume = Random.Range(.7f, 1f);
@@ -93,6 +94,11 @@ public class TextScroller : MonoBehaviour {
             ASource.Stop();
         }
         isFinished = true;
+    }
+
+    private IEnumerator GlitchEffect() {
+       
+        yield return null;
     }
 
     public bool isTextFinished() {

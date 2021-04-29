@@ -16,6 +16,7 @@ public class TODDRises : MonoBehaviour {
         player = GameObject.Find("Player");
         rb2 = player.GetComponent<Rigidbody2D>();
         move = player.GetComponent<PlayerMoveV2>();
+        PlayerMoveV2.prevSpeed = Vector2.zero;
         camFollow = Camera.main.GetComponent<FollowCamera>();
     }
 
