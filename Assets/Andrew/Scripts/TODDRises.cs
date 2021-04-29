@@ -66,6 +66,7 @@ public class TODDRises : MonoBehaviour {
             "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical." }));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         move.enabled = true;
+        yield return new WaitForSeconds(.5f);
         MMUEffects.enabled = true;
     }
 }
