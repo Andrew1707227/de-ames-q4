@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 34364761}
   - component: {fileID: 34364763}
   - component: {fileID: 34364762}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 36486062}
   - component: {fileID: 36486061}
   - component: {fileID: 36486060}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256712513}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot(5)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -472,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475521804}
   - component: {fileID: 475521805}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 610417012}
   - component: {fileID: 610417014}
   - component: {fileID: 610417013}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,6 +627,114 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &610922167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610922170}
+  - component: {fileID: 610922169}
+  - component: {fileID: 610922168}
+  m_Layer: 0
+  m_Name: Square (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &610922168
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610922167}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &610922169
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610922167}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 39c4c5715ff1bd54c8972645555b3664, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &610922170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610922167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03, y: -4.51, z: 0}
+  m_LocalScale: {x: 17.761688, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &645753975
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +747,7 @@ GameObject:
   - component: {fileID: 645753978}
   - component: {fileID: 645753977}
   - component: {fileID: 645753976}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +876,7 @@ GameObject:
   - component: {fileID: 761791872}
   - component: {fileID: 761791874}
   - component: {fileID: 761791873}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +986,7 @@ GameObject:
   - component: {fileID: 896083540}
   - component: {fileID: 896083539}
   - component: {fileID: 896083538}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946060374}
   - component: {fileID: 946060375}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1053,7 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973567189}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Targets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 989587015}
   - component: {fileID: 989587016}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1139,7 +1247,7 @@ GameObject:
   - component: {fileID: 997021767}
   - component: {fileID: 997021769}
   - component: {fileID: 997021768}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1248,7 +1356,7 @@ GameObject:
   - component: {fileID: 1253849036}
   - component: {fileID: 1253849038}
   - component: {fileID: 1253849037}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406677165}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot(3)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -1386,7 +1494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453510799}
   - component: {fileID: 1453510800}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1435,7 +1543,7 @@ GameObject:
   - component: {fileID: 1560418347}
   - component: {fileID: 1560418349}
   - component: {fileID: 1560418348}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,6 +1651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561121614}
   - component: {fileID: 1561121613}
+  - component: {fileID: 1561121615}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -1608,12 +1717,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561121612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: -4.51, z: 0}
-  m_LocalScale: {x: 17.799492, y: 1, z: 1}
+  m_LocalPosition: {x: -8.44, y: 0.03, z: 0}
+  m_LocalScale: {x: 1.0131043, y: 9.99811, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1561121615
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561121612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1619921553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,7 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1619921554}
   - component: {fileID: 1619921555}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget (4)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1674,7 +1809,7 @@ GameObject:
   - component: {fileID: 1658137107}
   - component: {fileID: 1658137106}
   - component: {fileID: 1658137105}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1801,7 +1936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756815987}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot(2)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -1834,7 +1969,7 @@ GameObject:
   - component: {fileID: 1804024509}
   - component: {fileID: 1804024508}
   - component: {fileID: 1804024507}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1961,7 +2096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1823165670}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -1994,7 +2129,7 @@ GameObject:
   - component: {fileID: 1832364398}
   - component: {fileID: 1832364397}
   - component: {fileID: 1832364396}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderLeg (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2125,7 +2260,7 @@ GameObject:
   - component: {fileID: 1838550444}
   - component: {fileID: 1838550443}
   - component: {fileID: 1838550442}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2293,7 +2428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1839993837}
   - component: {fileID: 1839993838}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderTarget (5)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2342,6 +2477,7 @@ GameObject:
   - component: {fileID: 1967120147}
   - component: {fileID: 1967120146}
   - component: {fileID: 1967120145}
+  - component: {fileID: 1967120148}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2414,6 +2550,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967120148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967120144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1972001319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,7 +2592,7 @@ GameObject:
   - component: {fileID: 1972001320}
   - component: {fileID: 1972001322}
   - component: {fileID: 1972001321}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BottomSpiderLeg (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2532,7 +2699,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2023268408}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot(4)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -2562,7 +2729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2084057412}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpiderFoot(1)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
