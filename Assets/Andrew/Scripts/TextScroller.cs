@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class TextScroller : MonoBehaviour {
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class TextScroller : MonoBehaviour {
         bPos = background.rectTransform.anchoredPosition;
         TextComponent.text = "";
         background.enabled = false;
+        background.material.EnableKeyword("NoiseAmount");
     }
     /// <summary>
     /// Opens up the dialogue box, displays the text, then closes it
@@ -52,6 +54,7 @@ public class TextScroller : MonoBehaviour {
         for (int i = 0; i < text.Length; i++) {
             isFinished = false;
             if (text[i].StartsWith("<d>")) {
+                StartCoroutine(GlitchEffect());
                 StartCoroutine(WriteText(text[i].Substring(3), distortedClip));
             } else {
                 StartCoroutine(WriteText(text[i], defaultClip));
@@ -84,9 +87,8 @@ public class TextScroller : MonoBehaviour {
 
     private IEnumerator WriteText(string text, AudioClip tone) {
         ASource.clip = tone;
-        StartCoroutine(GlitchEffect());
         for (int i = 0; i < text.Length; i++) {
-            TextComponent.text = TextComponent.text + text.Substring(i, 1);
+            TextComponent.text += text.Substring(i, 1);
             ASource.volume = Random.Range(.7f, 1f);
             if (text.Substring(i, 1) != " ") ASource.Play();
             yield return new WaitForFixedUpdate();
@@ -97,8 +99,12 @@ public class TextScroller : MonoBehaviour {
     }
 
     private IEnumerator GlitchEffect() {
-       
-        yield return null;
+        int noiseAmount = Shader.PropertyToID("Vector1_82F66C44");
+        Material glitchMaterial = background.material;
+        for (int i = 90; i >= 0; i -= 6) {
+            glitchMaterial.SetFloat(noiseAmount,i);
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public bool isTextFinished() {
