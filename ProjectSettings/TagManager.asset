@@ -9,6 +9,7 @@ TagManager:
   - SafeTouch
   - Checkpoint
   - Trigger
+  - enemy
   layers:
   - Default
   - TransparentFX
