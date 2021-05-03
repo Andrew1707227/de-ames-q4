@@ -16,14 +16,19 @@ public class SpiderTestMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        rb2.velocity = -transform.right;
+
+        
         if (Input.GetKeyDown("a"))
         {
-            rb2.AddRelativeForce(-Vector3.right, ForceMode2D.Impulse);
+            rb2.AddForce(-transform.right, ForceMode2D.Impulse);
         }
 
         if (Input.GetKeyDown("d"))
         {
-            rb2.AddRelativeForce(Vector3.right, ForceMode2D.Impulse);
+            rb2.AddForce(transform.right, ForceMode2D.Impulse);
         }
+        
     }
 }

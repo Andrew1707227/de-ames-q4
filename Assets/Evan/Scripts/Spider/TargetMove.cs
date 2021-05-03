@@ -17,12 +17,14 @@ public class TargetMove : MonoBehaviour
     bool CR_running = false;
     IEnumerator coroutine;
 
+    Transform st;
     Transform lt;
     Rigidbody2D rb2;
 
     // Start is called before the first frame update
     void Start()
     {
+        st = spiderBody.GetComponent<Transform>();
         lt = targetLegBase.GetComponent<Transform>();
         rb2 = spiderBody.GetComponent<Rigidbody2D>();
 
@@ -33,12 +35,17 @@ public class TargetMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wantedX = lt.position.x + footOffset;
+        Vector3 localLimbStart = st.InverseTransformPoint(lt.position);
+        Vector3 localPosition = st.InverseTransformPoint(transform.position);
 
-        if (transform.position.x > wantedX + pXLeeway) 
+        wantedX = st.InverseTransformPoint(lt.position).x + footOffset;
+
+        Debug.Log(localPosition);
+
+        if (localPosition.x > wantedX + pXLeeway) 
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, -Vector2.right, 2, layerMask);
-            Debug.DrawRay(lt.position, new Vector3(-2, 0, 0), Color.red, 3);
+            RaycastHit2D wallChecker = Physics2D.Raycast(localLimbStart, -st.right, 2, layerMask);
+            Debug.DrawRay(localLimbStart, -st.right, Color.red, 3);
 
             if (wallChecker.point != Vector2.zero)
             {
@@ -52,8 +59,8 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, lt.position.y), Vector2.down, 2, layerMask);
-                Debug.DrawRay(new Vector2(wantedX, lt.position.y), new Vector3(0, -2, 0), Color.red, 3);
+                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, localLimbStart.y), -st.up, 2, layerMask);
+                Debug.DrawRay(new Vector2(wantedX, localLimbStart.y), -st.up, Color.red, 3);
 
                 if (CR_running)
                 {
@@ -66,10 +73,10 @@ public class TargetMove : MonoBehaviour
         }
         
 
-        if (transform.position.x < wantedX - nXLeeway)
+        if (localPosition.x < wantedX - nXLeeway)
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, Vector2.right, 2f, layerMask);
-            Debug.DrawRay(lt.position, new Vector3(2f, 0, 0), Color.blue, 3);
+            RaycastHit2D wallChecker = Physics2D.Raycast(localLimbStart, st.right, 2f, layerMask);
+            Debug.DrawRay(localLimbStart, st.right, Color.blue, 3);
 
             if (wallChecker.point != Vector2.zero)
             {
@@ -83,8 +90,8 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, lt.position.y), Vector2.down, 2f, layerMask);
-                Debug.DrawRay(new Vector2(wantedX, lt.position.y), new Vector3(0, -2, 0), Color.blue, 3);
+                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, localLimbStart.y), -st.up, 2f, layerMask);
+                Debug.DrawRay(new Vector2(wantedX, localLimbStart.y), -st.up, Color.blue, 3);
 
                 if (CR_running)
                 {
@@ -107,7 +114,7 @@ public class TargetMove : MonoBehaviour
 
         for(int i = 0; i < times; i++)
         {
-            transform.position += difference / times;
+           transform.position += difference / times;
 
             if (i <= times / 2)
             {
@@ -118,8 +125,7 @@ public class TargetMove : MonoBehaviour
                 transform.position -= new Vector3(0, 0.05f, 0);
             }
 
-            //Will need to change from rb2.velocity.x when start turning spider
-            yield return new WaitForSeconds(0.0025f / rb2.velocity.x); //Wait
+            yield return new WaitForSeconds(0.0025f / transform.InverseTransformDirection(rb2.velocity).x); //Wait
         }
         CR_running =false;
     }
