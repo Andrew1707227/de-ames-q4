@@ -10,6 +10,7 @@ public class TargetMove : MonoBehaviour
     public float footOffset = -1.83f;
     public float pXLeeway = 1.9f;
     public float nXLeeway = 2.3f;
+    float localWantedX;
     float wantedX;
 
     int layerMask;
@@ -38,14 +39,13 @@ public class TargetMove : MonoBehaviour
         Vector3 localLimbStart = st.InverseTransformPoint(lt.position);
         Vector3 localPosition = st.InverseTransformPoint(transform.position);
 
-        wantedX = st.InverseTransformPoint(lt.position).x + footOffset;
+        localWantedX = st.InverseTransformPoint(lt.position).x + footOffset;
+        wantedX = lt.position.x + footOffset;
 
-        Debug.Log(localPosition);
-
-        if (localPosition.x > wantedX + pXLeeway) 
+        if (localPosition.x > localWantedX + pXLeeway) 
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(localLimbStart, -st.right, 2, layerMask);
-            Debug.DrawRay(localLimbStart, -st.right, Color.red, 3);
+            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, -st.right, 2, layerMask);
+            Debug.DrawRay(lt.position, -st.right, Color.red, 3);
 
             if (wallChecker.point != Vector2.zero)
             {
@@ -59,8 +59,9 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, localLimbStart.y), -st.up, 2, layerMask);
-                Debug.DrawRay(new Vector2(wantedX, localLimbStart.y), -st.up, Color.red, 3);
+                Vector2 floorCheckStart = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
+                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -st.up, 2, layerMask);
+                Debug.DrawRay(floorCheckStart, -st.up, Color.red, 3);
 
                 if (CR_running)
                 {
@@ -73,10 +74,10 @@ public class TargetMove : MonoBehaviour
         }
         
 
-        if (localPosition.x < wantedX - nXLeeway)
+        if (localPosition.x < localWantedX - nXLeeway)
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(localLimbStart, st.right, 2f, layerMask);
-            Debug.DrawRay(localLimbStart, st.right, Color.blue, 3);
+            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, st.right, 2f, layerMask);
+            Debug.DrawRay(lt.position, st.right, Color.blue, 3);
 
             if (wallChecker.point != Vector2.zero)
             {
@@ -90,8 +91,9 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floorChecker = Physics2D.Raycast(new Vector2(wantedX, localLimbStart.y), -st.up, 2f, layerMask);
-                Debug.DrawRay(new Vector2(wantedX, localLimbStart.y), -st.up, Color.blue, 3);
+                Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
+                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart2, -st.up, 2f, layerMask);
+                Debug.DrawRay(floorCheckStart2, -st.up, Color.blue, 3);
 
                 if (CR_running)
                 {
@@ -109,6 +111,7 @@ public class TargetMove : MonoBehaviour
         CR_running = true;
 
         Vector3 difference = endPoint - transform.position;
+        Vector3 lift = new Vector3(-st.InverseTransformDirection(new Vector3(0, 0.05f, 0)).x, st.InverseTransformDirection(new Vector3(0, 0.05f, 0)).y, 0);
 
         int times = 25;
 
@@ -118,14 +121,14 @@ public class TargetMove : MonoBehaviour
 
             if (i <= times / 2)
             {
-                transform.position += new Vector3(0, 0.05f, 0);
+                transform.position += lift;
             }
             else
             {
-                transform.position -= new Vector3(0, 0.05f, 0);
+                transform.position -= lift;
             }
-
-            yield return new WaitForSeconds(0.0025f / transform.InverseTransformDirection(rb2.velocity).x); //Wait
+            Debug.Log(st.InverseTransformDirection(rb2.velocity).x);
+            yield return new WaitForSeconds(0.0025f / st.InverseTransformDirection(rb2.velocity).x); //Wait
         }
         CR_running =false;
     }
