@@ -44,7 +44,8 @@ public class TargetMove : MonoBehaviour
 
         if (localPosition.x > localWantedX + pXLeeway) 
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, -st.right, 2, layerMask);
+            /*
+            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, -st.right, 4, layerMask);
             Debug.DrawRay(lt.position, -st.right, Color.red, 3);
 
             if (wallChecker.point != Vector2.zero)
@@ -59,8 +60,9 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
+            */
                 Vector2 floorCheckStart = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
-                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -st.up, 2, layerMask);
+                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -st.up, 4, layerMask);
                 Debug.DrawRay(floorCheckStart, -st.up, Color.red, 3);
 
                 if (CR_running)
@@ -70,13 +72,14 @@ public class TargetMove : MonoBehaviour
                 }
                 coroutine = arcMove(floorChecker.point);
                 StartCoroutine(coroutine);
-            }
+            //}
         }
         
 
         if (localPosition.x < localWantedX - nXLeeway)
         {
-            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, st.right, 2f, layerMask);
+            /*
+            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, st.right, 4f, layerMask);
             Debug.DrawRay(lt.position, st.right, Color.blue, 3);
 
             if (wallChecker.point != Vector2.zero)
@@ -91,8 +94,9 @@ public class TargetMove : MonoBehaviour
             }
             else
             {
-                Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
-                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart2, -st.up, 2f, layerMask);
+            */
+            Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
+                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart2, -st.up, 4f, layerMask);
                 Debug.DrawRay(floorCheckStart2, -st.up, Color.blue, 3);
 
                 if (CR_running)
@@ -102,7 +106,7 @@ public class TargetMove : MonoBehaviour
                 }
                 coroutine = arcMove(floorChecker.point);
                 StartCoroutine(coroutine);
-            }
+            //}
         }
     }
 

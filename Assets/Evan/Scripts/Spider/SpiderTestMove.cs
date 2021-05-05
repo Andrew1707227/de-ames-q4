@@ -17,7 +17,7 @@ public class SpiderTestMove : MonoBehaviour
     void Update()
     {
 
-        rb2.velocity = -transform.right * 3;
+        rb2.velocity = -transform.right * 2;
 
         
         if (Input.GetKeyDown("a"))

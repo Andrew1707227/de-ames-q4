@@ -23,7 +23,10 @@ public class BodyHover : MonoBehaviour
         if (floorDistance.distance != hoverDist)
         {
             Vector3 wantedPos = new Vector3(floorDistance.point.x, floorDistance.point.y, 0) + transform.up * 1.1f;
-            transform.position = wantedPos;
+
+            transform.position += (wantedPos - transform.position) / 60;
+
+            //transform.position = wantedPos;
         }
     }
 }
