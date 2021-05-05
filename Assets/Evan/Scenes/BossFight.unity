@@ -336,7 +336,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34364760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -431,7 +431,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36486059}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 475521804}
   - component: {fileID: 475521805}
   m_Layer: 9
-  m_Name: SpiderTarget (1)
+  m_Name: SpiderTargetF(1)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 610922170}
   - component: {fileID: 610922169}
   - component: {fileID: 610922168}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1346,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645753975}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 717793992}
   - component: {fileID: 717793991}
   - component: {fileID: 717793993}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TestMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1979,7 +1979,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761791871}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -2059,9 +2059,9 @@ GameObject:
   - component: {fileID: 778279520}
   - component: {fileID: 778279519}
   - component: {fileID: 778279521}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Test for Boss Level
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2206,13 +2206,13 @@ PolygonCollider2D:
       - {x: -13.16551, y: -1.9591165}
       - {x: -13.011161, y: -0.83747214}
       - {x: -13.229632, y: -0.7403739}
-      - {x: -13.302456, y: 2.2696707}
-      - {x: -13.399554, y: 2.2939453}
-      - {x: -13.798171, y: 2.3416913}
-      - {x: -13.84484, y: 2.9436166}
-      - {x: -13.413478, y: 2.9649765}
-      - {x: -13.406283, y: 3.214059}
-      - {x: -13.01082, y: 3.639995}
+      - {x: -13.307551, y: 1.758411}
+      - {x: -13.297972, y: 1.9715316}
+      - {x: -13.301985, y: 2.1130216}
+      - {x: -13.286383, y: 2.4116313}
+      - {x: -13.126398, y: 2.691146}
+      - {x: -12.977871, y: 3.0373943}
+      - {x: -12.781156, y: 3.5030797}
       - {x: -12.549945, y: 3.896066}
       - {x: -12.5282345, y: 4.505367}
       - {x: -12.25865, y: 4.5272045}
@@ -2889,7 +2889,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896083536}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -2989,7 +2989,7 @@ GameObject:
   - component: {fileID: 946060374}
   - component: {fileID: 946060375}
   m_Layer: 9
-  m_Name: SpiderTarget
+  m_Name: SpiderTargetF
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3151,7 +3151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973567188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.501, y: -7.33, z: 0}
+  m_LocalPosition: {x: 3.55, y: -7.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 946060374}
@@ -3174,7 +3174,7 @@ GameObject:
   - component: {fileID: 989587015}
   - component: {fileID: 989587016}
   m_Layer: 9
-  m_Name: SpiderTarget (3)
+  m_Name: SpiderTargetM(3)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3209,7 +3209,7 @@ MonoBehaviour:
   targetLegBase: {fileID: 1832364395}
   spiderBody: {fileID: 1838550441}
   footOffset: 1
-  pXLeeway: 0.8
+  pXLeeway: 0.7
   nXLeeway: 0.9
 --- !u!1 &997021766
 GameObject:
@@ -3251,7 +3251,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997021766}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3778,7 +3778,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253849035}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3956,7 +3956,7 @@ GameObject:
   - component: {fileID: 1453510799}
   - component: {fileID: 1453510800}
   m_Layer: 9
-  m_Name: SpiderTarget (2)
+  m_Name: SpiderTargetM(2)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3990,8 +3990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 1658137104}
   spiderBody: {fileID: 1838550441}
-  footOffset: 0.8
-  pXLeeway: 0.7
+  footOffset: 0.5
+  pXLeeway: 1
   nXLeeway: 0.8
 --- !u!1 &1486973627
 GameObject:
@@ -4280,7 +4280,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560418346}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -4360,7 +4360,7 @@ GameObject:
   - component: {fileID: 1561121614}
   - component: {fileID: 1561121613}
   - component: {fileID: 1561121615}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4838,7 +4838,7 @@ GameObject:
   - component: {fileID: 1619921554}
   - component: {fileID: 1619921555}
   m_Layer: 9
-  m_Name: SpiderTarget (4)
+  m_Name: SpiderTargetE(4)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4872,7 +4872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 36486059}
   spiderBody: {fileID: 1838550441}
-  footOffset: 0.9
+  footOffset: 1
   pXLeeway: 0.7
   nXLeeway: 0.7
 --- !u!1 &1658137104
@@ -4901,7 +4901,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658137104}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5608,7 +5608,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804024506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5768,7 +5768,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832364395}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -6032,7 +6032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838550441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.451, y: -8.83, z: 0}
+  m_LocalPosition: {x: 1.5, y: -8.83, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 1804024510}
@@ -6085,7 +6085,7 @@ GameObject:
   - component: {fileID: 1839993837}
   - component: {fileID: 1839993838}
   m_Layer: 9
-  m_Name: SpiderTarget (5)
+  m_Name: SpiderTargetE(5)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6119,7 +6119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 896083536}
   spiderBody: {fileID: 1838550441}
-  footOffset: 0.6
+  footOffset: 0.5
   pXLeeway: 1
   nXLeeway: 0.7
 --- !u!1 &1864485069
@@ -11247,7 +11247,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972001319}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
