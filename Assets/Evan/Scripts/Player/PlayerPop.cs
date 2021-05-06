@@ -17,6 +17,8 @@ public class PlayerPop : MonoBehaviour
     public float maxPops = 3; //Max pop's before death
     public float currentPops = 3; //Current pops left
 
+    public bool respawnBot = true;
+
     Transform pT;
     Rigidbody2D rb2;
     Rigidbody2D rRb2;
@@ -35,6 +37,13 @@ public class PlayerPop : MonoBehaviour
         rbf = dial.GetComponent<RadialBarFill>();
     }
 
+    private void Update()
+    {
+        if(respawnBot == false && rf.enabled)
+        { 
+            respawnBot = true;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -64,7 +73,10 @@ public class PlayerPop : MonoBehaviour
             transform.position = new Vector3(checkpoint.x, checkpoint.y, transform.position.z); 
             rbf.i.fillAmount = rbf.maxValue; //Reset dial fill
             rb2.velocity = Vector2.zero; //Reset velocity
-            rRb2.transform.position = checkpoint + rf.offset; //Reset robot position
+            if (respawnBot)
+            {
+                //rRb2.transform.position = checkpoint + rf.offset; //Reset robot position
+            }
             gs.currentAmmo = gs.maxAmmo; //Reset ammo
 
             //Get rid of pop objects
