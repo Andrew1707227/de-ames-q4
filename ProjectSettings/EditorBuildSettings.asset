@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Andrew/Scenes/FallingAcid.unity
     guid: 0ddd44ff408238f44aa68c7db8a974aa
+  - enabled: 1
+    path: Assets/Evan/Scenes/BossFight.unity
+    guid: 394162331ba19884798f130c51357788
   m_configObjects: {}

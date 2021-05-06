@@ -22,6 +22,7 @@ public class GunShoot : MonoBehaviour
     float fireTimer = 0; //Times out shots
     public bool reloadingFast = false; //Holds if reloading fast
     public bool reloadingSlow = false; //Holds if reloading slow
+    float reloadTimer = 0;
     Vector2 lookDir; //Holds where the gun is looking
 
     //Holds angle data
@@ -67,23 +68,23 @@ public class GunShoot : MonoBehaviour
         if (reloadingFast)
         {
             //Increments up by rechargeRate
-            currentAmmo += rechargeRate * Time.deltaTime;
+            reloadTimer -= rechargeRate * Time.deltaTime;
         }
         else if (reloadingSlow)
         {
             //Increments up by rechargeRate / 1.1
-            currentAmmo += (rechargeRate / 1.1f) * Time.deltaTime;
+            reloadTimer -= (rechargeRate / 2f) * Time.deltaTime;
         }
 
-        //Makes sure ammo doesnt get to big
-        currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
 
         //Checks if reloading is done
-        if (currentAmmo == maxAmmo)
+        if (reloadTimer <= 0)
         {
             //Resets reloading bools
             reloadingSlow = false;
             reloadingFast = false;
+            currentAmmo = maxAmmo;
+            reloadTimer = rechargeRate;
         }
 
         //If not reloading, have enough ammo, not shooting to fast, and clicked mouse
