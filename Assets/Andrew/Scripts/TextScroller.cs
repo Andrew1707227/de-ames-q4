@@ -100,16 +100,19 @@ public class TextScroller : MonoBehaviour {
     }
 
     private IEnumerator GlitchEffect() {
-        var shape = ps.shape;
-        //shape.position = new Vector3(shape.position.x, Camera.main.orthographicSize / -1.5f, shape.position.z);
+        /*var shape = ps.shape;
+        shape.scale = shape.scale;
+        shape.position = Camera.main.ScreenToWorldPoint(new Vector3());//new Vector3(shape.position.x, Camera.main.orthographicSize / -1.5f, shape.position.z);*/
+        background.canvas.renderMode = RenderMode.ScreenSpaceCamera;
         ps.Play();
         int noiseAmount = Shader.PropertyToID("Vector1_82F66C44");
         Material glitchMaterial = background.material;
-        for (int i = 90; i >= 0; i -= 6) {
+        for (int i = 100; i >= 0; i -= 10) {
             glitchMaterial.SetFloat(noiseAmount,i);
             yield return new WaitForFixedUpdate();
         }
         ps.Stop();
+        background.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
     public bool isTextFinished() {
