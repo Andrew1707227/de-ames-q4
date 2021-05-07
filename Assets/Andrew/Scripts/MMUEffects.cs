@@ -18,6 +18,11 @@ public class MMUEffects : MonoBehaviour {
     private float maxHoriz;
     private float maxVert;
 
+    /// <summary>
+    /// ignore the input value if it's basically zero
+    /// </summary>
+    private const float dead = .01f;
+
     void Start() {
         ps = GetComponent<ParticleSystem>();
         Asource = GetComponent<AudioSource>();
@@ -40,23 +45,23 @@ public class MMUEffects : MonoBehaviour {
 
             if (sr.flipX) {
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
-                    if (Input.GetAxis("Horizontal") > 0) {
+                    if (Input.GetAxis("Horizontal") > dead) {
                         xPos = -.42f;
                         yPos = -.03f;
                         zRot = 180;
 
-                    } else {
+                    } else if (Input.GetAxis("Horizontal") < -dead) {
                         xPos = -.24f;
                         yPos = -.03f;
                         zRot = 0;
                     }
 
-                } else if (Input.GetAxis("Vertical") > 0) {
+                } else if (Input.GetAxis("Vertical") > dead) {
                     xPos = -.24f;
                     yPos = -.31f;
                     zRot = 270;
 
-                } else {
+                } else if (Input.GetAxis("Vertical") < -dead) {
                     xPos = -.24f;
                     yPos = .31f;
                     zRot = 90;
@@ -64,23 +69,23 @@ public class MMUEffects : MonoBehaviour {
 
             } else {
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > Mathf.Abs(Input.GetAxis("Vertical")) + .1) {
-                    if (Input.GetAxis("Horizontal") > 0) {
+                    if (Input.GetAxis("Horizontal") > dead) {
                         xPos = .24f;
                         yPos = -.03f;
                         zRot = 180;
 
-                    } else {
+                    } else if (Input.GetAxis("Horizontal") < -dead) {
                         xPos = .42f;
                         yPos = -.03f;
                         zRot = 0;
                     }
 
-                } else if (Input.GetAxis("Vertical") > 0) {
+                } else if (Input.GetAxis("Vertical") > dead) {
                     xPos = .24f;
                     yPos = -.31f;
                     zRot = 270;
 
-                } else {
+                } else if (Input.GetAxis("Vertical") < -dead) {
                     xPos = .24f;
                     yPos = .31f;
                     zRot = 90;
@@ -88,9 +93,11 @@ public class MMUEffects : MonoBehaviour {
             }
             transform.eulerAngles = new Vector3(coneRot.x, coneRot.y, zRot);
             transform.localPosition = new Vector3(xPos, yPos, pos.z);
-            ps.Play();
-            Asource.pitch = Mathf.Clamp(rb2.velocity.magnitude / 2, .8f, 1.2f) + Random.Range(-.05f, .05f);
-            Asource.Play();
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) > dead || Mathf.Abs(Input.GetAxis("Vertical")) > dead) {
+                ps.Play();
+                Asource.pitch = Mathf.Clamp(rb2.velocity.magnitude / 2, .8f, 1.2f) + Random.Range(-.05f, .05f);
+                Asource.Play();
+            }
         }
     }
 }

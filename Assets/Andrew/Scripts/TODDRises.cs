@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TODDRises : MonoBehaviour {
     public GameObject TODD;
-    public MMUEffects MMUEffects;
     public TextScroller textScroller;
     GameObject player;
     private Rigidbody2D rb2;
@@ -43,9 +42,7 @@ public class TODDRises : MonoBehaviour {
     }
 
     IEnumerator TODDGoUp() {
-        move.enabled = false;
-        MMUEffects.enabled = false;
-        rb2.velocity = Vector2.zero;
+        PlayerManager.StopMoving();
         Vector3 TODDPos = TODD.transform.position;
         camFollow.enabled = false;
         yield return new WaitForSeconds(.5f);
@@ -57,17 +54,15 @@ public class TODDRises : MonoBehaviour {
         StartCoroutine(textScroller.RunText(new string[] {"Hello traveller! You must be so confused.", "Well, welcome to the worm!", "Since you're here, it's only fair that I properly introduce myself.",
         "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
-        move.enabled = true;
+        PlayerManager.StartMoving();
         camFollow.enabled = true;
         yield return new WaitUntil(() => rb2.velocity.magnitude > .25f);
-        move.enabled = false;
+        PlayerManager.StopMoving();
         TODD.GetComponent<RobotFollow>().enabled = true;
-        rb2.velocity = Vector2.zero;
         StartCoroutine(textScroller.RunText(new string[] { "Wait!", "Don't leave I....","I need your help.", "I know a place where there's a working spaceship, but I can't repair it alone.",
             "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical." }));
         yield return new WaitUntil(() => textScroller.isTextFinished());
-        move.enabled = true;
+        PlayerManager.StartMoving();
         yield return new WaitForSeconds(.5f);
-        MMUEffects.enabled = true;
     }
 }
