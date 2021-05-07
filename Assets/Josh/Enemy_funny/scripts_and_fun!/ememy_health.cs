@@ -22,14 +22,14 @@ public class ememy_health : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-       // hitEffect = GetComponent<hitEffect>();
+       // hitEffect = GetComponent<bullets>();
         currLives = maxLives;
         aniTimer = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Trigger" && !debounce)
+        if (collision.tag == "Bullets" && !debounce)
         {
             debounce = true; //keep it from hitting twice
             if (currLives - 1 <= 0)
