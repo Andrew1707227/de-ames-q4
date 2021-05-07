@@ -32,6 +32,8 @@ public class PlayerPop : MonoBehaviour
 
     public Volume deathFadeVolume;
     public MMUEffects mMUEffects;
+    public Sprite defaultSprite;
+    public Sprite defaultArm;
     Image Fade;
 
     // Start is called before the first frame update
@@ -45,6 +47,8 @@ public class PlayerPop : MonoBehaviour
         rbf = dial.GetComponent<RadialBarFill>();
 
         Fade = GameObject.Find("Fade").GetComponent<Image>();
+        defaultSprite = GetComponent<SpriteRenderer>().sprite;
+        defaultArm = arm.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()
@@ -86,6 +90,8 @@ public class PlayerPop : MonoBehaviour
         if (deathFadeVolume.profile.TryGet(out Vignette vignette)) {
             GetComponent<Collider2D>().isTrigger = true;
             GetComponent<PlayerMoveV2>().enabled = false;
+            GetComponent<AudioSource>().Play();
+            GetComponent<Animator>().enabled = true;
             Color temp = Fade.color;
             for (float i = 0; i <= 1; i += 1 / 60f) {
                 vignette.intensity.SetValue(new NoInterpFloatParameter(i, true));
@@ -96,6 +102,9 @@ public class PlayerPop : MonoBehaviour
             foreach (Transform child in popsHolder.transform) {
                 Destroy(child.gameObject);
             }
+            GetComponent<Animator>().enabled = false;
+            GetComponent<SpriteRenderer>().sprite = defaultSprite;
+            arm.GetComponent<SpriteRenderer>().sprite = defaultArm;
             yield return new WaitForSeconds(1);
             currentPops = 3; //Reset pops
             //Reset position
