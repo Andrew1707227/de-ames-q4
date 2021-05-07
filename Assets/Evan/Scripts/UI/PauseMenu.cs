@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject buttonHolder;  //Holds holder for pause menu buttons
     public GameObject pauseMenuUI;  //Holds reference to pause menu UI
     public GameObject checkScreenHolder;  //Holds the checkscreen
+    public Canvas canvas;
 
     string location;
 
@@ -159,6 +160,8 @@ public class PauseMenu : MonoBehaviour
     //Fades in blur
     private IEnumerator slowBlurIn()
     {
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         //While blur is not low enough
         while (dOF.focusDistance.value > wantedBlur)
         {
@@ -172,7 +175,7 @@ public class PauseMenu : MonoBehaviour
 
     //Fades out blur
     private IEnumerator slowBlurOut()
-    {
+    {      
         //While blur is not low enough
         while (dOF.focusDistance.value < 1.8f)
         {
@@ -182,6 +185,8 @@ public class PauseMenu : MonoBehaviour
         }
         //Set blure to wanted blur
         dOF.focusDistance.value = 1.8f;
+
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
     }
 
     //Slides in ui
