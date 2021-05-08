@@ -1,0 +1,42 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ResolutionChanger : MonoBehaviour {
+
+    private Text text;
+    public Vector2Int[] resolutionOptions;
+    public int currPos;
+    public bool isFullScreen;
+
+    void Start() {
+        text = GetComponent<Text>();
+        UpdateResolution();
+    }
+
+    public void prev() {
+        if (currPos > 0) {
+            currPos--;
+            UpdateResolution();
+        }
+    }
+
+    public void next() {
+        if (currPos < resolutionOptions.Length - 1) {
+            currPos++;
+            UpdateResolution();
+        }
+    }
+
+    public void UpdateResolution() {
+        Vector2Int resolution = resolutionOptions[currPos];
+        text.text = resolution.x + "px by " + resolution.y + "px";
+        Screen.SetResolution(resolution.x, resolution.y, isFullScreen);
+    }
+
+    public void toggleFullScreen() {
+        isFullScreen = !isFullScreen;
+        UpdateResolution();
+    }
+}
