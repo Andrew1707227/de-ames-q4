@@ -42,8 +42,8 @@ public class CutsceneMLeave : MonoBehaviour
         while (i.color.a > 0)
         {
             //Fade off background
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - 0.005f);
-            yield return new WaitForSeconds(0.01f); //Wait
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - 0.01f);
+            yield return new WaitForFixedUpdate();//Wait
         }
 
         //Turn on cutscene

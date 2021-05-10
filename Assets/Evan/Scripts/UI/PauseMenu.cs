@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject buttonHolder;  //Holds holder for pause menu buttons
     public GameObject pauseMenuUI;  //Holds reference to pause menu UI
     public GameObject checkScreenHolder;  //Holds the checkscreen
+    public GameObject optionsScreen; //Hold the option menu
     public Canvas canvas;
 
     string location;
@@ -70,6 +71,9 @@ public class PauseMenu : MonoBehaviour
 
             //Turn of check screen
             checkScreenHolder.SetActive(false);
+
+            //Turn of options screen
+            optionsScreen.SetActive(false);
 
             //Turn on time
             Time.timeScale = 1f;
@@ -166,10 +170,10 @@ public class PauseMenu : MonoBehaviour
         while (dOF.focusDistance.value > wantedBlur)
         {
             //Increment blur value
-            dOF.focusDistance.value -= 0.025f;
-            yield return new WaitForSeconds(0.01f); //Wait
+            dOF.focusDistance.value -= 0.05f;
+            yield return new WaitForFixedUpdate(); //Wait
         }
-        //Set blure to wanted blur
+        //Set blur to wanted blur
         dOF.focusDistance.value = wantedBlur;
     }
 
@@ -181,9 +185,9 @@ public class PauseMenu : MonoBehaviour
         {
             //Increment blur value
             dOF.focusDistance.value += 0.05f;
-            yield return new WaitForSeconds(0.01f); //Wait
+            yield return new WaitForFixedUpdate(); //Wait
         }
-        //Set blure to wanted blur
+        //Rest blur
         dOF.focusDistance.value = 1.8f;
 
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
@@ -196,8 +200,8 @@ public class PauseMenu : MonoBehaviour
         while (rt.anchoredPosition.x < wantedPosX)
         {
             //Move transform
-            rt.anchoredPosition += new Vector2(4f, 0);
-            yield return new WaitForSeconds(0.001f); //Wait
+            rt.anchoredPosition += new Vector2(10f, 0);
+            yield return new WaitForFixedUpdate(); //Wait
         }
         //Set postion to wantedx
         rt.anchoredPosition = new Vector2(wantedPosX, rt.anchoredPosition.y);
@@ -213,8 +217,8 @@ public class PauseMenu : MonoBehaviour
         while (rt.anchoredPosition.x > defaultx.x)
         {
             //Move transform
-            rt.anchoredPosition -= new Vector2(8f, 0);
-            yield return new WaitForSeconds(0.001f); //Wait
+            rt.anchoredPosition -= new Vector2(16f, 0);
+            yield return new WaitForFixedUpdate(); //Wait
         }
         //Set postion to wantedx
         rt.anchoredPosition = defaultx;

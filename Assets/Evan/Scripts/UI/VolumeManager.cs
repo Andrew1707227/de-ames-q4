@@ -10,6 +10,8 @@ public class VolumeManager : MonoBehaviour
 
     //Holds master volume
     public static float masterVolume = 0.5f;
+    static bool firstTime = true;
+
 
     Slider s;
 
@@ -17,6 +19,12 @@ public class VolumeManager : MonoBehaviour
     void Start()
     {
         s = volumeSlider.GetComponent<Slider>();
+
+        if (firstTime && Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            masterVolume = 0.15f;
+            firstTime = false;
+        }
 
         //Sets slider to current volume (No reset)
         s.value = masterVolume;

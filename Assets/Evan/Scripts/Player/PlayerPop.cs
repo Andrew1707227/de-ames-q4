@@ -20,6 +20,8 @@ public class PlayerPop : MonoBehaviour
 
     public float maxPops = 3; //Max pop's before death
     public float currentPops = 3; //Current pops left
+    public float invulnTime = 1f; //Time invuln after hit
+    float currentInvuln = 0;
 
     public bool respawnBot = true;
 
@@ -57,12 +59,20 @@ public class PlayerPop : MonoBehaviour
         { 
             respawnBot = true;
         }
+
+        if (currentInvuln > 0)
+        {
+            currentInvuln -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag != "SafeTouch")
+        if (collision.transform.tag != "SafeTouch" && currentInvuln <= 0)
         {
+            //Start invulTimer
+            currentInvuln = invulnTime;
+
             //Increment pops
             currentPops--;
 
