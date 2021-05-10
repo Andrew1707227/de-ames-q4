@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class BrightManager : MonoBehaviour
 {
@@ -9,12 +10,13 @@ public class BrightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (gameObject.name == "Global Light 2D")
+        {
+            gameObject.GetComponent<Light2D>().intensity += brightnessShift;
+        }
+        else
+        {
+            gameObject.GetComponent<Light2D>().intensity -= brightnessShift;
+        }
     }
 }
