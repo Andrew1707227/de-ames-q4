@@ -24,26 +24,34 @@ public class CutsceneMLeave : MonoBehaviour
         a = cutScene.GetComponent<Animator>();
     }
 
+    //Starts cutscene
     public void toGameCutScene()
     {
+        //Inform buttons to leave
         sC.leaving = true;
+
+        //Starts cutscene
         StartCoroutine(waiter());
     }
 
     //Waits for waitTime
     public IEnumerator waiter()
     {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.3f); //Wait
 
         while (i.color.a > 0)
         {
+            //Fade off background
             i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - 0.005f);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.01f); //Wait
         }
 
+        //Turn on cutscene
         a.enabled = true;
 
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(15);//wait
+
+        //Start game
         SceneManager.LoadScene("TODDIntro");
     }
 }
