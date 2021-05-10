@@ -39,7 +39,7 @@ public class LazerSight : MonoBehaviour
         int layerMask = ~LayerMask.GetMask("Player");
 
         //Send ray out to find colliders
-        RaycastHit2D lazerGetter = Physics2D.Raycast(gameObject.transform.position, lookDir, 30, layerMask);
+        RaycastHit2D lazerGetter = Physics2D.Raycast(gameObject.transform.position, lookDir, 300, layerMask);
 
         //Send ray out to find screen edges
         Ray screenEdgeRay = new Ray(gameObject.transform.position, lookDir);
@@ -47,6 +47,8 @@ public class LazerSight : MonoBehaviour
         float currentMinDistance = float.MaxValue; //Holds the current minimum distance to screen edge
         Vector3 hitPoint = Vector3.zero; //Holds current screen edge hitpoint
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main); //Holds screen edges
+
+        //Debug.Log(lazerGetter.point);
 
         //Checks all planes on the sides of the camera
         for (int i = 0; i < 4; i++)
@@ -63,8 +65,11 @@ public class LazerSight : MonoBehaviour
             }
         }
 
-        //If the ray it and object
-        if (lazerGetter.point != Vector2.zero && !(lazerGetter.point.magnitude > hitPoint.magnitude))
+        //Set line render end point to lazerGetter hitpoint
+        lr.SetPosition(1, lazerGetter.point);
+      
+        //If the ray hit an object
+        if (lazerGetter.point != Vector2.zero) //&& !(lazerGetter.point.magnitude > hitPoint.magnitude))
         {
             //Set line render end point to lazerGetter hitpoint
             lr.SetPosition(1, lazerGetter.point);
@@ -73,7 +78,7 @@ public class LazerSight : MonoBehaviour
         {
             //Set line render end point to hitpoint
             lr.SetPosition(1,hitPoint);
-        }
+        }    
 
         //Gets length of the line
         float length = (lr.GetPosition(1) - lr.GetPosition(0)).magnitude;
