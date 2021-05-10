@@ -15,6 +15,12 @@ public class fsSpriteToggle : MonoBehaviour
     void Start()
     {
         i = gameObject.GetComponent<Image>();
+        if (!Screen.fullScreen) {
+            i.sprite = uncheckedBox;
+        }
+        else {
+            i.sprite = checkedBox;
+        }
     }
 
     public void toggleSprite()

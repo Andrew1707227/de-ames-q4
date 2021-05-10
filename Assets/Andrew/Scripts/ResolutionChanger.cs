@@ -7,11 +7,22 @@ public class ResolutionChanger : MonoBehaviour {
 
     private Text text;
     public Vector2Int[] resolutionOptions;
+    public GameObject resolutionHolder;
     public int currPos;
     public bool isFullScreen;
 
     void Start() {
         text = GetComponent<Text>();
+        if (Application.platform == RuntimePlatform.WebGLPlayer) {
+            resolutionHolder.SetActive(false);
+        }
+        isFullScreen = Screen.fullScreen;
+        for (int i = resolutionOptions.Length - 1; i >= 0; i--) {
+            if (resolutionOptions[i].x <= Display.main.renderingWidth) {
+                currPos = i;
+                break;
+            }
+        }
         UpdateResolution();
     }
 
@@ -36,7 +47,7 @@ public class ResolutionChanger : MonoBehaviour {
     }
 
     public void toggleFullScreen() {
-        isFullScreen = !isFullScreen;
+        isFullScreen = !Screen.fullScreen;
         UpdateResolution();
     }
 }
