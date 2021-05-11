@@ -1,38 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class camara_compadre : MonoBehaviour
 {
-    public float interpVelocity;
-    public float minDistance;
-    public float followDistance;
-    public GameObject target;
+    public Transform Target;
     public Vector3 offset;
-    Vector3 targetPos;
-    // Use this for initialization
-    void Start()
+    public float SpeedSmooth;
+    private void FixedUpdate()
     {
-        targetPos = transform.position;
+        Follow();
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    void Follow()
     {
-        if (target)
-        {
-            Vector3 posNoZ = transform.position;
-            posNoZ.z = target.transform.position.z;
-
-            Vector3 targetDirection = (target.transform.position - posNoZ);
-
-            interpVelocity = targetDirection.magnitude * 5f;
-
-            targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime);
-
-            transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
-            //stole this ffrom the internet ;)
-
-        }
+        Vector3 TargetPosition = Target.position + offset;
+        Vector3 SmoothPosition = Vector3.Lerp(transform.position, TargetPosition, SpeedSmooth * Time.fixedDeltaTime);
+        transform.position = SmoothPosition;
     }
 }
