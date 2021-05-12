@@ -10,8 +10,8 @@ public class SpiderSpinner : MonoBehaviour
 
     int layerMask;
 
-    Transform lT;
-    Transform rT;
+    public Transform lT;
+    public Transform rT;
     Transform tt;
 
     // Start is called before the first frame update

@@ -9,14 +9,15 @@ public class SpiderFollow : MonoBehaviour
     public GameObject targetHolder;
     public GameObject[] legs = new GameObject[6];
     public GameObject[] targets = new GameObject[6];
+    public GameObject[] feet = new GameObject[6];
     public bool flipped = false;
-
-    GameObject[] feet = new GameObject[6];
     bool facingLeft = true;
 
     int layerMask;
 
     Rigidbody2D rb2;
+    BodyHover bh;
+    SpiderSpinner ss;
     Transform t;
     Transform pT;
     Transform[] tLS = new Transform[6];
@@ -29,6 +30,8 @@ public class SpiderFollow : MonoBehaviour
     void Start()
     {
         rb2 = gameObject.GetComponent<Rigidbody2D>();
+        bh = gameObject.GetComponent<BodyHover>();
+        ss = gameObject.GetComponent<SpiderSpinner>();
         t = gameObject.GetComponent<Transform>();
         pT = player.GetComponent<Transform>();
 
@@ -45,7 +48,7 @@ public class SpiderFollow : MonoBehaviour
         }
         for (int i = 0; i <= 5; i++)
         {
-            tFS[i] = legs[i].GetComponentInChildren<Transform>().GetComponentInChildren<Transform>();
+            tFS[i] = feet[i].GetComponent<Transform>();
         }
         for (int i = 0; i <= 5; i++)
         {
@@ -64,30 +67,30 @@ public class SpiderFollow : MonoBehaviour
 
         if (localPpos.y > 5)
         {
-            rb2.velocity = -transform.right * 2;
+            //rb2.velocity = -transform.right * 2;
         }
         else if (localPpos.x < -0.5f)
         {
             if (!facingLeft)
             {
-                spiderFlip();
+                StartCoroutine(spiderFlip());
             }
-            rb2.velocity = -transform.right * 2;
+            //rb2.velocity = -transform.right * 2;
         }
         else if(localPpos.x > 0.5f)
         {
             if (facingLeft)
             {
-                spiderFlip();
+                StartCoroutine(spiderFlip());
             }
-            rb2.velocity = transform.right * 2;
+            //rb2.velocity = transform.right * 2;
         }
     }
 
-    private void spiderFlip()
+    private IEnumerator spiderFlip()
     {
         //Turns off ik
-        for(int i = 0; i <= 5; i++)
+        for (int i = 0; i <= 5; i++)
         {
             iKS[i].enabled = false;
         }
@@ -104,35 +107,46 @@ public class SpiderFollow : MonoBehaviour
             transform.Rotate(0, -180, 0);
         }
 
+        //Sets target pos to new foot pos
         for (int i = 0; i <= 5; i++)
         {
-            //tTS[i].position = tFS[i].position;
-
-            float curFootOffset;
-            if (flipped)
-            {
-                curFootOffset = -tM[i].footOffset;
-            }
-            else
-            {
-                curFootOffset = tM[i].footOffset;
-            }
-
-            float curWantedX = tLS[i].position.x + curFootOffset;
-
-            Vector2 floorCheckStart = new Vector2(curWantedX, tLS[i].position.y);
-            RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -t.up, 4f, layerMask);
-            Debug.DrawRay(floorCheckStart, -t.up, Color.green, 3);
-
-            Debug.Log(floorChecker.point);
-
-            tTS[i].position = floorChecker.point;
+            tTS[i].position = tFS[i].position;
         }
+
+        //Sets correct hover hight
+        RaycastHit2D floorDistance = Physics2D.Raycast(transform.position, -transform.up, 10, layerMask);
+
+        if (floorDistance.distance != bh.hoverDist)
+        {
+            Vector3 wantedPos = new Vector3(floorDistance.point.x, floorDistance.point.y, 0) + transform.up * 1.1f;
+
+            transform.position = wantedPos;
+        }
+
+        //Sets correct rotation
+        for (int i = 1; i <= 20; i++)
+        {
+            //Checks grond distance on both ends
+            RaycastHit2D leftDistance = Physics2D.Raycast(ss.lT.position, -transform.up, 10, layerMask);
+            RaycastHit2D rightDistance = Physics2D.Raycast(ss.rT.position, -transform.up, 10, layerMask);
+
+            //If distance uneven enough rotate until fixed
+            if (Mathf.Round(leftDistance.distance * 10f) / 10f > Mathf.Round(rightDistance.distance * 10f) / 10f)
+            {
+                transform.Rotate(new Vector3(0, 0, 0.75f));
+            }
+            else if (Mathf.Round(leftDistance.distance * 10f) / 10f < Mathf.Round(rightDistance.distance * 10f) / 10f)
+            {
+                transform.Rotate(new Vector3(0, 0, -0.75f));
+            }
+        }
+
+        yield return new WaitForFixedUpdate();
 
         //Turns on ik
         for (int i = 0; i <= 5; i++)
         {
-            iKS[i].enabled = true;
+            //iKS[i].enabled = true;
         }
     }
 }

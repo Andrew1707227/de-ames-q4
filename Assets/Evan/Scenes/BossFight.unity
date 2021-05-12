@@ -713,7 +713,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165437397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83532b983ceef874bb6b072d76a316c7, type: 3}
   m_Name: 
@@ -3149,7 +3149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &973567189
 Transform:
   m_ObjectHideFlags: 0
@@ -6202,7 +6202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1838550442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6370,6 +6370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCheck: {fileID: 1739113272}
   rightCheck: {fileID: 1290244085}
+  lT: {fileID: 0}
+  rT: {fileID: 0}
 --- !u!114 &1838550448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6411,6 +6413,13 @@ MonoBehaviour:
   - {fileID: 989587014}
   - {fileID: 1619921553}
   - {fileID: 1839993836}
+  feet:
+  - {fileID: 1823165669}
+  - {fileID: 2084057411}
+  - {fileID: 1756815986}
+  - {fileID: 1406677164}
+  - {fileID: 2023268407}
+  - {fileID: 256712512}
   flipped: 0
 --- !u!1 &1839993836
 GameObject:
