@@ -20,6 +20,7 @@ public class TargetMove : MonoBehaviour
 
     Transform st;
     Transform lt;
+    SpiderFollow sf;
     Rigidbody2D rb2;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class TargetMove : MonoBehaviour
     {
         st = spiderBody.GetComponent<Transform>();
         lt = targetLegBase.GetComponent<Transform>();
+        sf = spiderBody.GetComponent<SpiderFollow>();
         rb2 = spiderBody.GetComponent<Rigidbody2D>();
 
         //Get layermask
@@ -39,8 +41,24 @@ public class TargetMove : MonoBehaviour
         Vector3 localLimbStart = st.InverseTransformPoint(lt.position);
         Vector3 localPosition = st.InverseTransformPoint(transform.position);
 
-        localWantedX = st.InverseTransformPoint(lt.position).x + footOffset;
-        wantedX = lt.position.x + footOffset;
+        float curFootOffset;
+        float curPXLeeway;
+        float curNXLeeway;
+        if (sf.flipped)
+        {
+            curFootOffset = -footOffset;
+            curPXLeeway = -pXLeeway;
+            curNXLeeway = -nXLeeway;
+        }
+        else
+        {
+            curFootOffset = footOffset;
+            curPXLeeway = pXLeeway;
+            curNXLeeway = nXLeeway;
+        }
+
+        localWantedX = st.InverseTransformPoint(lt.position).x + curFootOffset;
+        wantedX = lt.position.x + curFootOffset;
 
         if (localPosition.x > localWantedX + pXLeeway) 
         {
@@ -95,7 +113,7 @@ public class TargetMove : MonoBehaviour
             else
             {
             */
-            Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
+                Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
                 RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart2, -st.up, 4f, layerMask);
                 Debug.DrawRay(floorCheckStart2, -st.up, Color.blue, 3);
 
@@ -131,7 +149,6 @@ public class TargetMove : MonoBehaviour
             {
                 transform.position -= lift;
             }
-            Debug.Log(st.InverseTransformDirection(rb2.velocity).x);
             yield return new WaitForSeconds(0.0025f / st.InverseTransformDirection(rb2.velocity).x); //Wait
         }
         CR_running =false;

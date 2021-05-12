@@ -69,7 +69,7 @@ public class LazerSight : MonoBehaviour
         lr.SetPosition(1, lazerGetter.point);
       
         //If the ray hit an object
-        if (lazerGetter.point != Vector2.zero) //&& !(lazerGetter.point.magnitude > hitPoint.magnitude))
+        if (lazerGetter.point != Vector2.zero)
         {
             //Set line render end point to lazerGetter hitpoint
             lr.SetPosition(1, lazerGetter.point);
