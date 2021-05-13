@@ -5,10 +5,13 @@ using UnityEngine;
 public class Attacks : MonoBehaviour
 {
     public GameObject player;
+    public GameObject acidSpit;
+    public GameObject[] shootPoints = new GameObject[2];
+    public GameObject[] heads = new GameObject[2];
     public GameObject[] frontTargets = new GameObject[4];
 
-    public Vector3 bodyChange;
     public float bodySpin;
+    public float headSpin;
 
     public float attackTime = 7;
     float curAttackTime;
@@ -20,6 +23,8 @@ public class Attacks : MonoBehaviour
     BodyHover bh;
     SpiderFollow sf;
     Transform pT;
+    Transform[] spT = new Transform[2];
+    Transform[] hT = new Transform[2];
     LegRear[] lr = new LegRear[4];
 
     // Start is called before the first frame update
@@ -31,6 +36,14 @@ public class Attacks : MonoBehaviour
         sf = gameObject.GetComponent<SpiderFollow>();
         pT = player.GetComponent<Transform>();
 
+        for (int i = 0; i <= 1; i++)
+        {
+            spT[i] = shootPoints[i].GetComponent<Transform>();
+        }
+        for (int i = 0; i <= 1; i++)
+        {
+            hT[i] = heads[i].GetComponent<Transform>();
+        }
         for (int i = 0; i <= 3; i++)
         {
             lr[i] = frontTargets[i].GetComponent<LegRear>();
@@ -79,44 +92,51 @@ public class Attacks : MonoBehaviour
         bh.enabled = false;
         sf.enabled = false;
 
+        int times = 10;
+        float bRotation;
+        float hRotation;
         if (sf.facingLeft)
         {
+            bRotation = -bodySpin / times;
+            hRotation = -headSpin / times;
             lr[0].doRearUp();
             lr[1].doRearUp();
         }
         else
         {
+            bRotation = bodySpin / times;
+            hRotation = headSpin / times;
             lr[2].doRearUp();
             lr[3].doRearUp();
         }
 
-        //transform.Rotate(new Vector3(0, 0, -bodySpin));
+        for (int i = 0; i < times; i++)
+        {
+            transform.Rotate(new Vector3(0, 0, bRotation));
+            hT[0].Rotate(new Vector3(0, 0, hRotation));
+            hT[1].Rotate(new Vector3(0, 0, hRotation));
 
-        int times = 10;
-        float rotation;
+            yield return new WaitForFixedUpdate(); //Wait
+        }
+
         if (sf.facingLeft)
         {
-            rotation = -bodySpin / times;
+            for (int i = 25; i >= -25; i -= 25)
+            {
+                GameObject acidClone = Instantiate(acidSpit, spT[0].position, Quaternion.Euler(0, 0, i));
+                acidClone.GetComponent<AcidSpitFly>().shootDir = -transform.right * 5;
+            }
         }
         else
         {
-            rotation = bodySpin / times;
+            for (int i = 25; i >= -25; i -= 25)
+            {
+                GameObject acidClone = Instantiate(acidSpit, spT[1].position, Quaternion.Euler(0, 0, i));
+                acidClone.GetComponent<AcidSpitFly>().shootDir = transform.right * 5;
+            }
         }
 
-        for (int i = 0; i < times; i++)
-        {
-            transform.Rotate(new Vector3(0, 0, rotation));
-
-            Debug.Log(-bodySpin / times);
-
-            //t.position += legChange / times;
-            
-            yield return new WaitForFixedUpdate(); //Wait
-        }
-        
-
-        //ftT[i].position += legChange;
-        yield return new WaitForFixedUpdate();
+        //yield return new WaitForFixedUpdate();
 
         //ss.enabled = true;
         //bh.enabled = true;
