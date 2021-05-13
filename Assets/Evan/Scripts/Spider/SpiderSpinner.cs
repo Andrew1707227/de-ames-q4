@@ -10,7 +10,9 @@ public class SpiderSpinner : MonoBehaviour
 
     int layerMask;
 
+    [HideInInspector]
     public Transform lT;
+    [HideInInspector]
     public Transform rT;
     Transform tt;
 

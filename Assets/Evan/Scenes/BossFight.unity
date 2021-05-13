@@ -647,7 +647,7 @@ Transform:
   - {fileID: 36486063}
   - {fileID: 896083537}
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &106278794
 GameObject:
@@ -1278,6 +1278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475521804}
   - component: {fileID: 475521805}
+  - component: {fileID: 475521806}
   m_Layer: 9
   m_Name: SpiderTargetF(1)
   m_TagString: Untagged
@@ -1313,9 +1314,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 645753975}
   spiderBody: {fileID: 1838550441}
-  footOffset: -1.7
+  footOffset: -1.5
   pXLeeway: 0.8
   nXLeeway: 1.1
+--- !u!114 &475521806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475521803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33c7b5c8389fa4fbd0f095fa49be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderBody: {fileID: 1838550441}
+  legChange: {x: 0.5, y: 2.3, z: 0}
 --- !u!1 &480227220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &610417013
 PolygonCollider2D:
@@ -3647,6 +3662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946060374}
   - component: {fileID: 946060375}
+  - component: {fileID: 946060376}
   m_Layer: 9
   m_Name: SpiderTargetF
   m_TagString: Untagged
@@ -3682,9 +3698,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 1804024506}
   spiderBody: {fileID: 1838550441}
-  footOffset: -2.1
+  footOffset: -1.9
   pXLeeway: 1
   nXLeeway: 0.8
+--- !u!114 &946060376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946060373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33c7b5c8389fa4fbd0f095fa49be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderBody: {fileID: 1838550441}
+  legChange: {x: 0.4, y: 2.2, z: 0}
 --- !u!1 &968968239
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,6 +4510,36 @@ Transform:
   m_Father: {fileID: 973567189}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1137867413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137867414}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137867414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137867413}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.003, y: 1.635, z: -18.173721}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1838550446}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140610296
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,7 +5311,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357429036
 GameObject:
@@ -5293,6 +5353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366487009}
   - component: {fileID: 1366487010}
+  - component: {fileID: 1366487011}
   m_Layer: 9
   m_Name: SpiderTargetFr
   m_TagString: Untagged
@@ -5328,9 +5389,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 311161986}
   spiderBody: {fileID: 1838550441}
-  footOffset: 2.1
+  footOffset: 1.9
   pXLeeway: 0.8
   nXLeeway: 1
+--- !u!114 &1366487011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366487008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33c7b5c8389fa4fbd0f095fa49be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderBody: {fileID: 1838550441}
+  legChange: {x: 0.4, y: 2.2, z: 0}
 --- !u!1 &1406677164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,7 +5588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &1479486002
 PolygonCollider2D:
@@ -7002,7 +7077,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749271224
 GameObject:
@@ -7207,7 +7282,7 @@ Transform:
   - {fileID: 1770475386}
   - {fileID: 1170933523}
   m_Father: {fileID: 1838550446}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1756815986
 GameObject:
@@ -8085,10 +8160,10 @@ GameObject:
   - component: {fileID: 1838550445}
   - component: {fileID: 1838550444}
   - component: {fileID: 1838550443}
-  - component: {fileID: 1838550442}
   - component: {fileID: 1838550447}
   - component: {fileID: 1838550448}
   - component: {fileID: 1838550449}
+  - component: {fileID: 1838550442}
   m_Layer: 9
   m_Name: SpiderBody
   m_TagString: Untagged
@@ -8103,11 +8178,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838550441}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c11822b3163e404d8f7bdb1f5372058, type: 3}
+  m_Script: {fileID: 11500000, guid: 44483bfa2e287b94eb43dcb749f3b131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 165437397}
+  frontTargets:
+  - {fileID: 946060373}
+  - {fileID: 475521803}
+  - {fileID: 1366487008}
+  - {fileID: 1927304684}
+  bodyChange: {x: 0, y: 0, z: 0}
+  bodySpin: 25
+  attackTime: 7
 --- !u!50 &1838550443
 Rigidbody2D:
   serializedVersion: 4
@@ -8237,6 +8321,7 @@ Transform:
   m_LocalPosition: {x: 4.5, y: -3.05, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
+  - {fileID: 1137867414}
   - {fileID: 101063363}
   - {fileID: 1755371202}
   - {fileID: 610417012}
@@ -8334,7 +8419,8 @@ MonoBehaviour:
   - {fileID: 1037142903}
   - {fileID: 106278794}
   - {fileID: 867314572}
-  flipped: 0
+  speed: 2
+  facingLeft: 1
 --- !u!1 &1839993836
 GameObject:
   m_ObjectHideFlags: 0
@@ -13587,6 +13673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927304685}
   - component: {fileID: 1927304686}
+  - component: {fileID: 1927304687}
   m_Layer: 9
   m_Name: SpiderTargetF(1r)
   m_TagString: Untagged
@@ -13622,9 +13709,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLegBase: {fileID: 1222374261}
   spiderBody: {fileID: 1838550441}
-  footOffset: 1.7
+  footOffset: 1.5
   pXLeeway: 1.1
   nXLeeway: 0.8
+--- !u!114 &1927304687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927304684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33c7b5c8389fa4fbd0f095fa49be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderBody: {fileID: 1838550441}
+  legChange: {x: 0.5, y: 2.3, z: 0}
 --- !u!1 &1972001319
 GameObject:
   m_ObjectHideFlags: 0

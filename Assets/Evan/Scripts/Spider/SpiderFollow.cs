@@ -16,8 +16,11 @@ public class SpiderFollow : MonoBehaviour
     public GameObject[] legs = new GameObject[12];
     public GameObject[] targets = new GameObject[12];
     public GameObject[] feet = new GameObject[12];
-    public bool flipped = false;
-    bool facingLeft = true;
+
+    public float speed = 2;
+
+    [HideInInspector]
+    public bool facingLeft = true;
 
     SpriteRenderer sr;
     Rigidbody2D rb2;
@@ -58,9 +61,14 @@ public class SpiderFollow : MonoBehaviour
     {
         Vector2 localPpos = t.InverseTransformPoint(pT.position);
 
-        if (localPpos.y > 5)
+        if (localPpos.y > 7)
         {
-            rb2.velocity = -transform.right * 2;
+            if (!facingLeft)
+            {
+                facingLeft = true;
+                spiderFlip();
+            }
+            rb2.velocity = -transform.right * speed;
         }
         else if (localPpos.x < -0.5f)
         {
@@ -69,7 +77,7 @@ public class SpiderFollow : MonoBehaviour
                 facingLeft = true;
                 spiderFlip();
             }
-            rb2.velocity = -transform.right * 2;
+            rb2.velocity = -transform.right * speed;
         }
         else if(localPpos.x > 0.5f)
         {
@@ -78,7 +86,7 @@ public class SpiderFollow : MonoBehaviour
                 facingLeft = false;
                 spiderFlip();
             }
-            rb2.velocity = transform.right * 2;
+            rb2.velocity = transform.right * speed;
         }
     }
 

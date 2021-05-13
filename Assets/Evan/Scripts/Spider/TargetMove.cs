@@ -41,26 +41,10 @@ public class TargetMove : MonoBehaviour
         Vector3 localLimbStart = st.InverseTransformPoint(lt.position);
         Vector3 localPosition = st.InverseTransformPoint(transform.position);
 
-        float curFootOffset;
-        float curPXLeeway;
-        float curNXLeeway;
-        if (sf.flipped)
-        {
-            curFootOffset = -footOffset;
-            curPXLeeway = -pXLeeway;
-            curNXLeeway = -nXLeeway;
-        }
-        else
-        {
-            curFootOffset = footOffset;
-            curPXLeeway = pXLeeway;
-            curNXLeeway = nXLeeway;
-        }
+        localWantedX = st.InverseTransformPoint(lt.position).x + footOffset;
+        wantedX = lt.position.x + footOffset;
 
-        localWantedX = st.InverseTransformPoint(lt.position).x + curFootOffset;
-        wantedX = lt.position.x + curFootOffset;
-
-        if (localPosition.x > localWantedX + pXLeeway) 
+        if (localPosition.x > localWantedX + pXLeeway || localPosition.x < localWantedX - nXLeeway) 
         {
             /*
             RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, -st.right, 4, layerMask);
@@ -92,40 +76,6 @@ public class TargetMove : MonoBehaviour
                 StartCoroutine(coroutine);
             //}
         }
-        
-
-        if (localPosition.x < localWantedX - nXLeeway)
-        {
-            /*
-            RaycastHit2D wallChecker = Physics2D.Raycast(lt.position, st.right, 4f, layerMask);
-            Debug.DrawRay(lt.position, st.right, Color.blue, 3);
-
-            if (wallChecker.point != Vector2.zero)
-            {
-                if (CR_running)
-                {
-                    StopCoroutine(coroutine);
-                    CR_running = false;
-                }
-                coroutine = arcMove(wallChecker.point);
-                StartCoroutine(coroutine);
-            }
-            else
-            {
-            */
-                Vector2 floorCheckStart2 = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
-                RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart2, -st.up, 4f, layerMask);
-                Debug.DrawRay(floorCheckStart2, -st.up, Color.blue, 3);
-
-                if (CR_running)
-                {
-                    StopCoroutine(coroutine);
-                    CR_running = false;
-                }
-                coroutine = arcMove(floorChecker.point);
-                StartCoroutine(coroutine);
-            //}
-        }
     }
 
     private IEnumerator arcMove(Vector3 endPoint)
@@ -133,9 +83,9 @@ public class TargetMove : MonoBehaviour
         CR_running = true;
 
         Vector3 difference = endPoint - transform.position;
-        Vector3 lift = new Vector3(-st.InverseTransformDirection(new Vector3(0, 0.05f, 0)).x, st.InverseTransformDirection(new Vector3(0, 0.05f, 0)).y, 0);
+        Vector3 lift = new Vector3(-st.InverseTransformDirection(new Vector3(0, 0.1f, 0)).x, st.InverseTransformDirection(new Vector3(0, 0.1f, 0)).y, 0);
 
-        int times = 25;
+        int times = 7;
 
         for(int i = 0; i < times; i++)
         {
@@ -149,7 +99,8 @@ public class TargetMove : MonoBehaviour
             {
                 transform.position -= lift;
             }
-            yield return new WaitForSeconds(0.0025f / st.InverseTransformDirection(rb2.velocity).x); //Wait
+            yield return new WaitForFixedUpdate();
+            //yield return new WaitForSeconds(0.03f / Mathf.Abs(st.InverseTransformDirection(rb2.velocity).x)); //Wait
         }
         CR_running =false;
     }
