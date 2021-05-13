@@ -101,7 +101,8 @@ public class PlayerPop : MonoBehaviour
             GetComponent<Collider2D>().isTrigger = true;
             GetComponent<PlayerMoveV2>().enabled = false;
             GetComponent<AudioSource>().Play();
-            GetComponent<Animator>().enabled = true;
+            //GetComponent<Animator>().enabled = true;
+            GetComponent<Animator>().Play("PlayerDeath");
             Color temp = Fade.color;
             for (float i = 0; i <= 1; i += 1 / 60f) {
                 vignette.intensity.SetValue(new NoInterpFloatParameter(i, true));
@@ -112,7 +113,7 @@ public class PlayerPop : MonoBehaviour
             foreach (Transform child in popsHolder.transform) {
                 Destroy(child.gameObject);
             }
-            GetComponent<Animator>().enabled = false;
+            GetComponent<Animator>().Play("PlayerIdle");
             GetComponent<SpriteRenderer>().sprite = defaultSprite;
             arm.GetComponent<SpriteRenderer>().sprite = defaultArm;
             yield return new WaitForSeconds(1);

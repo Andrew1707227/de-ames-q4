@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour {
 
-    public GameObject template;
-    public TextScroller textScroller;
+    public GameObject[] template;
     public float fireRate;
-    private bool debounce;
+    private int frameCount;
 
     void Start() {
-        debounce = true;
+        frameCount = 0;
     }
 
     void FixedUpdate() {
-        if (Time.frameCount % fireRate == 0) {
-            Instantiate(template);
+        if (frameCount % fireRate == 0) {
+            Instantiate(template[Random.Range(0,template.Length)]);
+            frameCount = 0;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        debounce = true;
-    }
-
-    public IEnumerator AsteroidWarning() {
-        textScroller.RunText(new string[] {""});
-        yield return null;
+        frameCount++;
     }
 }

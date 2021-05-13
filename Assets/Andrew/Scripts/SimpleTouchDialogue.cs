@@ -25,7 +25,7 @@ public class SimpleTouchDialogue : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (!debounce) {
+        if (!debounce && collision.tag == "Player") {
             debounce = true;
             StartCoroutine(runTextScroller());
         }
