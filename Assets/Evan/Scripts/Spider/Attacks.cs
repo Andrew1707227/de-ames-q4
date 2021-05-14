@@ -91,8 +91,6 @@ public class Attacks : MonoBehaviour
 
     private IEnumerator rearUpSpit()
     {
-        Debug.Log("shoot");
-
         rb2.velocity = Vector3.zero;
 
         ss.enabled = false;
@@ -144,7 +142,7 @@ public class Attacks : MonoBehaviour
             for (int i = 25; i >= -25; i -= 25)
             {
                 GameObject acidClone = Instantiate(acidSpit, spT[0].position, Quaternion.Euler(0, 0, i));
-                acidClone.GetComponent<AcidSpitFly>().shootDir = -transform.right * 5;
+                acidClone.GetComponent<AcidSpitFly>().shootDir = -transform.right * 3.5f;
             }
         }
         else
@@ -153,7 +151,7 @@ public class Attacks : MonoBehaviour
             for (int i = 25; i >= -25; i -= 25)
             {
                 GameObject acidClone = Instantiate(acidSpit, spT[1].position, Quaternion.Euler(0, 0, i));
-                acidClone.GetComponent<AcidSpitFly>().shootDir = transform.right * 5;
+                acidClone.GetComponent<AcidSpitFly>().shootDir = transform.right * 3.5f;
             }
         }
 
