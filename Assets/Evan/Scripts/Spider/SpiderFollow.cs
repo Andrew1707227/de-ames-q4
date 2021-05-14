@@ -9,6 +9,8 @@ public class SpiderFollow : MonoBehaviour
     public GameObject targetHolder;
     public GameObject spiderHead;
     public GameObject spiderHeadRight;
+    public GameObject damageBox;
+    public GameObject damageBoxRight;
     public GameObject leftLegs;
     public GameObject rightLegs;
     public GameObject leftTargets;
@@ -31,6 +33,7 @@ public class SpiderFollow : MonoBehaviour
     Transform[] tTS = new Transform[12];
     Transform[] tFS = new Transform[12];
     IKSolver[] iKS = new IKSolver[12];
+    PolygonCollider2D[] pc = new PolygonCollider2D[2];
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +57,8 @@ public class SpiderFollow : MonoBehaviour
         {
             iKS[i] = legs[i].GetComponent<IKSolver>();
         }
+
+        pc = gameObject.GetComponents<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -101,10 +106,14 @@ public class SpiderFollow : MonoBehaviour
         leftTargets.SetActive(!leftTargets.activeSelf);
         leftLegs.SetActive(!leftLegs.activeSelf);
         spiderHead.SetActive(!spiderHead.activeSelf);
+        damageBox.SetActive(!damageBox.activeSelf);
+        pc[0].enabled = !pc[0].enabled;
 
         rightTargets.SetActive(!rightTargets.activeSelf);
         rightLegs.SetActive(!rightLegs.activeSelf);
         spiderHeadRight.SetActive(!spiderHeadRight.activeSelf);
+        damageBoxRight.SetActive(!damageBoxRight.activeSelf);
+        pc[1].enabled = !pc[1].enabled;
 
         sr.flipX = !sr.flipX;
 

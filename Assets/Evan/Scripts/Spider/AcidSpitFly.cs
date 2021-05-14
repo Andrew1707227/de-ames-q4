@@ -7,6 +7,7 @@ public class AcidSpitFly : MonoBehaviour
     [HideInInspector]
     public Vector2 shootDir;
 
+
     Rigidbody2D rb2;
 
     // Start is called before the first frame update

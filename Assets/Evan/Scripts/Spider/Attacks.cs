@@ -6,6 +6,7 @@ public class Attacks : MonoBehaviour
 {
     public GameObject player;
     public GameObject acidSpit;
+    public GameObject[] spitParticles = new GameObject[2];
     public GameObject[] shootPoints = new GameObject[2];
     public GameObject[] heads = new GameObject[2];
     public GameObject[] frontTargets = new GameObject[4];
@@ -13,7 +14,7 @@ public class Attacks : MonoBehaviour
     public float bodySpin;
     public float headSpin;
 
-    public float attackTime = 7;
+    public float attackTime = 10;
     float curAttackTime;
 
     bool shooting = false;
@@ -25,6 +26,7 @@ public class Attacks : MonoBehaviour
     Transform pT;
     Transform[] spT = new Transform[2];
     Transform[] hT = new Transform[2];
+    ParticleSystem[] ps = new ParticleSystem[2];
     LegRear[] lr = new LegRear[4];
 
     // Start is called before the first frame update
@@ -36,6 +38,10 @@ public class Attacks : MonoBehaviour
         sf = gameObject.GetComponent<SpiderFollow>();
         pT = player.GetComponent<Transform>();
 
+        for (int i = 0; i <= 1; i++)
+        {
+            ps[i] = spitParticles[i].GetComponent<ParticleSystem>();
+        }
         for (int i = 0; i <= 1; i++)
         {
             spT[i] = shootPoints[i].GetComponent<Transform>();
@@ -75,7 +81,8 @@ public class Attacks : MonoBehaviour
                 StartCoroutine(rearUpSpit());
             }
         }
-        else if (curAttackTime <= 0 && !shooting)
+        
+        if (curAttackTime <= 0 && !shooting)
         {
             shooting = true;
             StartCoroutine(rearUpSpit());
@@ -92,7 +99,7 @@ public class Attacks : MonoBehaviour
         bh.enabled = false;
         sf.enabled = false;
 
-        int times = 10;
+        int times = 15;
         float bRotation;
         float hRotation;
         if (sf.facingLeft)
@@ -110,6 +117,9 @@ public class Attacks : MonoBehaviour
             lr[3].doRearUp();
         }
 
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+
         for (int i = 0; i < times; i++)
         {
             transform.Rotate(new Vector3(0, 0, bRotation));
@@ -119,8 +129,18 @@ public class Attacks : MonoBehaviour
             yield return new WaitForFixedUpdate(); //Wait
         }
 
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+
         if (sf.facingLeft)
         {
+            ps[0].Play();
             for (int i = 25; i >= -25; i -= 25)
             {
                 GameObject acidClone = Instantiate(acidSpit, spT[0].position, Quaternion.Euler(0, 0, i));
@@ -129,6 +149,7 @@ public class Attacks : MonoBehaviour
         }
         else
         {
+            ps[1].Play();
             for (int i = 25; i >= -25; i -= 25)
             {
                 GameObject acidClone = Instantiate(acidSpit, spT[1].position, Quaternion.Euler(0, 0, i));
@@ -136,13 +157,36 @@ public class Attacks : MonoBehaviour
             }
         }
 
-        //yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(3f); //Wait
 
-        //ss.enabled = true;
-        //bh.enabled = true;
-        //sf.enabled = true;
+        if (sf.facingLeft)
+        {
+            lr[0].doRearDown();
+            lr[1].doRearDown();
+        }
+        else
+        {
+            lr[2].doRearDown();
+            lr[3].doRearDown();
+        }
+
+        yield return new WaitForFixedUpdate(); //Wait
+        yield return new WaitForFixedUpdate(); //Wait
+
+        for (int i = 0; i < times; i++)
+        {
+            transform.Rotate(new Vector3(0, 0, -bRotation));
+            hT[0].Rotate(new Vector3(0, 0, -hRotation));
+            hT[1].Rotate(new Vector3(0, 0, -hRotation));
+
+            yield return new WaitForFixedUpdate(); //Wait
+        }
+
+        ss.enabled = true;
+        bh.enabled = true;
+        sf.enabled = true;
 
         curAttackTime = attackTime;
-        //shooting = false;
+        shooting = false;
     }
 }
