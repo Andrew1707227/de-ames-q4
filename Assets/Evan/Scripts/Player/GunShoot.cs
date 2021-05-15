@@ -42,9 +42,8 @@ public class GunShoot : MonoBehaviour
     void Update()
     {
         //If trying to reload and is possible
-        if (currentAmmo != maxAmmo && Input.GetKeyDown("r") && !PauseMenu.gameIsPaused)
+        if (currentAmmo != maxAmmo && Input.GetKeyDown("r") && !PauseMenu.gameIsPaused && !reloadingFast && !reloadingSlow)
         {
-
             //Check if ammo = 0 or not
             if (currentAmmo != 0)
             {

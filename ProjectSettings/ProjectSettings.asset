@@ -16,7 +16,7 @@ PlayerSettings:
   productName: An Opportunity
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.9490197, g: 0.6392157, b: 0.5176471, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.24705884, g: 0.21960786, b: 0.18823531, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 0.627
