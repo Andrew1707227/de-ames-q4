@@ -34,9 +34,12 @@ public class PlayerPop : MonoBehaviour
 
     public Volume deathFadeVolume;
     public MMUEffects mMUEffects;
-    public Sprite defaultSprite;
-    public Sprite defaultArm;
+    private Sprite defaultSprite;
+    private Sprite defaultArm;
     Image Fade;
+
+    public AudioClip playerDamage;
+    private AudioSource Asource;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +54,7 @@ public class PlayerPop : MonoBehaviour
         Fade = GameObject.Find("Fade").GetComponent<Image>();
         defaultSprite = GetComponent<SpriteRenderer>().sprite;
         defaultArm = arm.GetComponent<SpriteRenderer>().sprite;
+        Asource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -87,6 +91,8 @@ public class PlayerPop : MonoBehaviour
 
             //Gives pop object push direction
             newPop.GetComponent<PopPush>().pushDirection = contact.normal;
+
+            Asource.PlayOneShot(playerDamage);
         }
 
         //If dead

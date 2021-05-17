@@ -51,7 +51,7 @@ public class TODDRises : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         yield return new WaitForSeconds(1);
-        StartCoroutine(textScroller.RunText(new string[] {"Hello traveller! You must be so confused.", "Well, welcome to the worm!", "Since you're here, it's only fair that I properly introduce myself.",
+        StartCoroutine(textScroller.RunText(new string[] {"Hello traveller! You must be so confused.", "Since you're here, it's only fair that I properly introduce myself.",
         "My name is T.O.D.D." ,"What does my name stand for you ask?","<d>Well, I'm not telling you, disgusting human.","<d>So you can just go on by."}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         PlayerManager.StartMoving();
@@ -60,7 +60,8 @@ public class TODDRises : MonoBehaviour {
         PlayerManager.StopMoving();
         TODD.GetComponent<RobotFollow>().enabled = true;
         StartCoroutine(textScroller.RunText(new string[] { "Wait!", "Don't leave I....","I need your help.", "I know a place where there's a working spaceship, but I can't repair it alone.",
-            "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical." }));
+            "<d>Since you aren't doing anything meaningful,","I figured that you could help.","What do you say?","...              ", "<d>Well, looks like you're the quiet type.", "<d>Typical.", 
+            "Just... don't touch the walls ok?"}));
         yield return new WaitUntil(() => textScroller.isTextFinished());
         PlayerManager.StartMoving();
         yield return new WaitForSeconds(.5f);
