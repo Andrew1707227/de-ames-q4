@@ -13,7 +13,8 @@ public class TargetMove : MonoBehaviour
     float localWantedX;
     float wantedX;
 
-    int layerMask;
+    public LayerMask layerMask;
+    //int layerMask;
 
     bool CR_running = false;
     IEnumerator coroutine;
@@ -32,7 +33,7 @@ public class TargetMove : MonoBehaviour
         rb2 = spiderBody.GetComponent<Rigidbody2D>();
 
         //Get layermask
-        layerMask = ~LayerMask.GetMask("Spider");
+        //layerMask = ~LayerMask.GetMask("Spider");
     }
 
     // Update is called once per frame
@@ -65,7 +66,7 @@ public class TargetMove : MonoBehaviour
             */
                 Vector2 floorCheckStart = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
                 RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -st.up, 4, layerMask);
-                Debug.DrawRay(floorCheckStart, -st.up, Color.red, 3);
+                //Debug.DrawRay(floorCheckStart, -st.up, Color.red, 3);
 
                 if (CR_running)
                 {
@@ -103,5 +104,36 @@ public class TargetMove : MonoBehaviour
             //yield return new WaitForSeconds(0.03f / Mathf.Abs(st.InverseTransformDirection(rb2.velocity).x)); //Wait
         }
         CR_running =false;
+    }
+
+    public void toGround()
+    {
+        Vector3 localLimbStart = st.InverseTransformPoint(lt.position);
+        Vector3 localPosition = st.InverseTransformPoint(transform.position);
+
+        localWantedX = st.InverseTransformPoint(lt.position).x + footOffset;
+        wantedX = lt.position.x + footOffset;
+
+        Vector2 floorCheckStart = st.TransformPoint(new Vector2(localWantedX, localLimbStart.y));
+        RaycastHit2D floorChecker = Physics2D.Raycast(floorCheckStart, -st.up, 4, layerMask);
+        Debug.DrawRay(floorCheckStart, (-st.up) * 4, Color.red, 5);
+        Debug.Log(floorChecker.point);
+
+        StartCoroutine(straightMove(floorChecker.point));
+    }
+
+    private IEnumerator straightMove(Vector3 endPoint)
+    {
+        Vector3 difference = endPoint - transform.position;
+
+        int times = 7;
+
+        for (int i = 0; i < times; i++)
+        {
+            transform.position += difference / times;
+
+            yield return new WaitForFixedUpdate();
+        }
+        CR_running = false;
     }
 }
