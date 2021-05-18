@@ -17,6 +17,12 @@ public class TextScroller : MonoBehaviour {
     Vector2 bSize;
     Vector2 bPos;
 
+    public Sprite angryTODDOpen;
+    public Sprite angryTODDClosed;
+    public Sprite normalTODDOpen;
+    public Sprite normalTODDClosed;
+    public SpriteRenderer TODDSr;
+
     private void Awake() {
         ASource = GetComponent<AudioSource>();
         TextComponent = GetComponent<Text>();
@@ -93,17 +99,24 @@ public class TextScroller : MonoBehaviour {
             ASource.volume = Random.Range(.7f, 1f);
             if (text.Substring(i, 1) != " ") ASource.Play();
             yield return new WaitForFixedUpdate();
+            if (tone == distortedClip) {
+                TODDSr.sprite = angryTODDClosed;
+            } else {
+                TODDSr.sprite = normalTODDClosed;
+            }
             yield return new WaitForFixedUpdate();
+            if (tone == distortedClip) {
+                TODDSr.sprite = angryTODDOpen;
+            } else {
+                TODDSr.sprite = normalTODDOpen;
+            }
             ASource.Stop();
         }
+        TODDSr.sprite = normalTODDClosed;
         isFinished = true;
     }
 
     private IEnumerator GlitchEffect() {
-        /*var shape = ps.shape;
-        shape.scale = shape.scale;
-        shape.position = Camera.main.ScreenToWorldPoint(new Vector3());//new Vector3(shape.position.x, Camera.main.orthographicSize / -1.5f, shape.position.z);*/
-        //background.canvas.renderMode = RenderMode.ScreenSpaceCamera;
         ps.Play();
         int noiseAmount = Shader.PropertyToID("Vector1_82F66C44");
         Material glitchMaterial = background.material;
@@ -112,7 +125,6 @@ public class TextScroller : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         ps.Stop();
-        //background.canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
     public bool isTextFinished() {

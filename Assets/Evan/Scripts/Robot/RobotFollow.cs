@@ -28,45 +28,41 @@ public class RobotFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         //Gets player position
         playerPos = playerTr.position;
 
         Vector3 distance = (playerPos + offset) - transform.position;
         Vector3 currentDistance;
 
-        int layerMask =~ LayerMask.GetMask("Player");
+        int layerMask = ~LayerMask.GetMask("Player");
 
         RaycastHit2D obstaclesFinder = Physics2D.Raycast(gameObject.transform.position, distance, distance.magnitude + 0.4f, layerMask);
-        if (obstaclesFinder.point != Vector2.zero)
-        {
+        if (obstaclesFinder.point != Vector2.zero) {
 
             RaycastHit2D upCheck = Physics2D.Raycast(gameObject.transform.position, Vector2.up, distance.magnitude + 0.2f, layerMask);
             RaycastHit2D rightCheck = Physics2D.Raycast(gameObject.transform.position, Vector2.right, distance.magnitude + 0.2f, layerMask);
             RaycastHit2D leftCheck = Physics2D.Raycast(gameObject.transform.position, -Vector2.right, distance.magnitude + 0.2f, layerMask);
 
 
-            if (rightCheck.point != Vector2.zero)
-            {
+            if (rightCheck.point != Vector2.zero) {
 
                 currentOffset = new Vector3(-offset.x, currentOffset.y, 0);
 
-            }
-            else if (leftCheck.point != Vector2.zero)
-            {
+            } else if (leftCheck.point != Vector2.zero) {
                 currentOffset = new Vector3(-offset.x, currentOffset.y, 0);
             }
 
-            if (upCheck.point != Vector2.zero)
-            {
+            if (upCheck.point != Vector2.zero) {
                 currentOffset = new Vector3(currentOffset.x, offset.y - 0.5f, 0);
             }
-        }
-        else
-        {
+        } else {
             currentOffset = offset;
         }
+        //hover
+        Vector3 downPos = currentOffset - new Vector3(0, .25f);
+        Vector3 upPos = currentOffset;
+        currentOffset = Vector2.MoveTowards(downPos, upPos, (Mathf.Cos(Time.realtimeSinceStartup) + 1) / 8);
 
         currentDistance = (playerPos + currentOffset) - transform.position;
 
