@@ -8,7 +8,8 @@ public class SpiderSpinner : MonoBehaviour
     public GameObject leftCheck;
     public GameObject rightCheck;
 
-    int layerMask;
+    //int layerMask;
+    public LayerMask layerMask;
 
     [HideInInspector]
     public Transform lT;
@@ -23,7 +24,7 @@ public class SpiderSpinner : MonoBehaviour
         rT = rightCheck.GetComponent<Transform>();
 
         //Get layermask
-        layerMask = ~LayerMask.GetMask("Spider");
+        //layerMask = ~LayerMask.GetMask("Spider");
     }
 
     // Update is called once per frame

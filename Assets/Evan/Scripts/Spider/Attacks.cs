@@ -18,6 +18,9 @@ public class Attacks : MonoBehaviour
     public float attackTime = 10;
     float curAttackTime;
 
+    [HideInInspector]
+    public bool startedRear = false;
+
     bool attacking = false;
     int choice = 0;
 
@@ -246,6 +249,7 @@ public class Attacks : MonoBehaviour
             }
         }
 
+        startedRear = true;
         StartCoroutine(rearUpSpit(false));
     }
 
@@ -366,5 +370,10 @@ public class Attacks : MonoBehaviour
 
         curAttackTime = attackTime;
         attacking = false;
+
+        if (!spitting)
+        {
+            startedRear = false;
+        }
     }
 }

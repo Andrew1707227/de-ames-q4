@@ -11,10 +11,12 @@ public class LegPounce : MonoBehaviour
 
     //int layerMask;
     public LayerMask layerMask;
+    public LayerMask noPLayerMask;
 
     Transform mpT;
     TargetMove tm;
     SpiderSpinner ss;
+    Attacks a;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class LegPounce : MonoBehaviour
         mpT = miniRearPoint.GetComponent<Transform>();
         tm = gameObject.GetComponent<TargetMove>();
         ss = spiderBody.GetComponent<SpiderSpinner>();
+        a = spiderBody.GetComponent<Attacks>();
 
         //layerMask = ~LayerMask.GetMask("Spider");
     }
@@ -124,12 +127,6 @@ public class LegPounce : MonoBehaviour
                     transform.Rotate(new Vector3(0, 0, -0.75f));
                 }
 
-                if (front)
-                {
-                    Debug.Log("still in");
-                }
-
-
                 k++;
                 floorDistance = Physics2D.Raycast(transform.position, -transform.up, 10, layerMask);
                 yield return new WaitForFixedUpdate();
@@ -140,6 +137,50 @@ public class LegPounce : MonoBehaviour
         }
         else
         {
+
+            for (int i = 0; i < 16; i++)
+            {
+                transform.position += difference / 35;
+
+                transform.position += lift;
+
+                yield return new WaitForFixedUpdate();
+            }
+
+            RaycastHit2D floorDistance = Physics2D.Raycast(transform.position, -transform.up, 10, noPLayerMask);
+            while (floorDistance.distance > 1.1f && !a.startedRear)
+            {
+
+                transform.position += difference / 35;
+
+                transform.position -= lift;
+
+
+                //Checks grond distance on both ends
+                RaycastHit2D leftDistance = Physics2D.Raycast(ss.lT.position, -transform.up, 20, layerMask);
+                RaycastHit2D rightDistance = Physics2D.Raycast(ss.rT.position, -transform.up, 20, layerMask);
+
+                //If distance uneven enough rotate until fixed
+                if (Mathf.Round(leftDistance.distance * 10f) / 10f > Mathf.Round(rightDistance.distance * 10f) / 10f)
+                {
+                    transform.Rotate(new Vector3(0, 0, 0.75f));
+                }
+                else if (Mathf.Round(leftDistance.distance * 10f) / 10f < Mathf.Round(rightDistance.distance * 10f) / 10f)
+                {
+                    transform.Rotate(new Vector3(0, 0, -0.75f));
+                }
+
+                if (front)
+                {
+                    Debug.Log("still in");
+                }
+
+
+                floorDistance = Physics2D.Raycast(transform.position, -transform.up, 10, noPLayerMask);
+                yield return new WaitForFixedUpdate();
+            }
+
+            /*
             for (int i = 0; i < 35; i++)
             {
                 transform.position += difference / 35;
@@ -154,6 +195,9 @@ public class LegPounce : MonoBehaviour
                 }
                 yield return new WaitForFixedUpdate();
             }
+            */
+
+            Debug.Log("Done");
         }
     }
 }

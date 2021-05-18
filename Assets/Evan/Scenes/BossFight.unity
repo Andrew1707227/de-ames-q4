@@ -6775,7 +6775,7 @@ MonoBehaviour:
   nXLeeway: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &409968819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6791,6 +6791,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &436513335
@@ -7055,7 +7058,7 @@ MonoBehaviour:
   nXLeeway: 1.1
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &475521806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7084,6 +7087,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1830562374}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &480227220
@@ -14612,8 +14618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 184.57}
-  m_SizeDelta: {x: 507.41757, y: 33.263992}
+  m_AnchoredPosition: {x: 0, y: 183.015}
+  m_SizeDelta: {x: 507.41757, y: 32.522446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921710537
 MonoBehaviour:
@@ -14717,7 +14723,7 @@ MonoBehaviour:
   nXLeeway: 0.8
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &946060376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14746,6 +14752,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1940425774}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &958161443
@@ -15179,7 +15188,7 @@ MonoBehaviour:
   nXLeeway: 0.9
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &989587017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15195,6 +15204,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &997021766
@@ -15873,7 +15885,7 @@ MonoBehaviour:
   nXLeeway: 0.7
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1098397130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15889,6 +15901,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1106076032
@@ -17212,8 +17227,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.55999947}
+  m_SizeDelta: {x: 0, y: 1.1284485}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251866938
 MonoBehaviour:
@@ -17303,7 +17318,7 @@ MonoBehaviour:
   nXLeeway: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1253213457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17319,6 +17334,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1253849035
@@ -17913,7 +17931,7 @@ MonoBehaviour:
   nXLeeway: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1366487011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17942,6 +17960,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1124485402}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1369343751
@@ -18159,7 +18180,7 @@ MonoBehaviour:
   nXLeeway: 0.8
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1453510801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18175,6 +18196,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1455372750
@@ -18482,10 +18506,10 @@ RectTransform:
   m_Father: {fileID: 921710536}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.930008, y: -200.57}
-  m_SizeDelta: {x: 337.2381, y: 442.1905}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -25.930008, y: -200.145}
+  m_SizeDelta: {x: 845.2381, y: 476.1905}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475171715
 MonoBehaviour:
@@ -18692,7 +18716,7 @@ MonoBehaviour:
   nXLeeway: 0.7
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1482985154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18708,6 +18732,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1544718928
@@ -24055,7 +24082,7 @@ MonoBehaviour:
   nXLeeway: 0.7
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1619921556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24071,6 +24098,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1658137104
@@ -25346,9 +25376,10 @@ MonoBehaviour:
   bodySpin: 25
   headSpin: 35
   attackTime: 7
+  startedRear: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!50 &1838550443
 Rigidbody2D:
   serializedVersion: 4
@@ -25501,6 +25532,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCheck: {fileID: 1739113272}
   rightCheck: {fileID: 1290244085}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
   lT: {fileID: 0}
   rT: {fileID: 0}
 --- !u!114 &1838550448
@@ -25516,6 +25550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverDist: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
 --- !u!114 &1838550449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25677,7 +25714,7 @@ MonoBehaviour:
   nXLeeway: 0.7
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1839993839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25693,6 +25730,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 1327314808}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1854326937
@@ -26334,7 +26374,7 @@ MonoBehaviour:
   nXLeeway: 0.8
   layerMask:
     serializedVersion: 2
-    m_Bits: 7187
+    m_Bits: 7443
 --- !u!114 &1927304687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26363,6 +26403,9 @@ MonoBehaviour:
   miniRearPoint: {fileID: 157516668}
   spiderBody: {fileID: 1838550441}
   layerMask:
+    serializedVersion: 2
+    m_Bits: 7443
+  noPLayerMask:
     serializedVersion: 2
     m_Bits: 7187
 --- !u!1 &1940425774

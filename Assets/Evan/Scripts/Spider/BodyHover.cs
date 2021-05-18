@@ -6,13 +6,14 @@ public class BodyHover : MonoBehaviour
 {
     public float hoverDist = 1.1f;
 
-    int layerMask;
+    //int layerMask;
+    public LayerMask layerMask;
 
     // Start is called before the first frame update
     void Start()
     {
         //Get layermask
-        layerMask = ~LayerMask.GetMask("Spider");
+        //layerMask = ~LayerMask.GetMask("Spider");
     }
 
     // Update is called once per frame
