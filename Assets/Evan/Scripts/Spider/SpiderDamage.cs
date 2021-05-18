@@ -30,10 +30,10 @@ public class SpiderDamage : MonoBehaviour
         s = healthBar.GetComponent<Slider>();
         ei = Endcutscene.GetComponent<Image>();
         s.maxValue = maxHealth;
-        s.value = 1;// maxHealth;
+        s.value = maxHealth;
 
-        currentHealth = 1;// maxHealth;
-        sd.currentHealth = 1;// maxHealth;
+        currentHealth = maxHealth;
+        sd.currentHealth = maxHealth;
     }
 
     // Update is called once per frame
