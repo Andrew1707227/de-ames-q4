@@ -24,6 +24,9 @@ public class SpiderFollow : MonoBehaviour
     [HideInInspector]
     public bool facingLeft = true;
 
+    [HideInInspector]
+    public bool dead = false;
+
     SpriteRenderer sr;
     Rigidbody2D rb2;
     BodyHover bh;
@@ -64,6 +67,11 @@ public class SpiderFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            speed = 0;
+        }
+
         Vector2 localPpos = t.InverseTransformPoint(pT.position);
 
         if (localPpos.y > 7)

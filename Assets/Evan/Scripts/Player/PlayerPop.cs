@@ -25,6 +25,9 @@ public class PlayerPop : MonoBehaviour
 
     public bool respawnBot = true;
 
+    [HideInInspector]
+    public bool popsDead = false;
+
     Transform pT;
     Rigidbody2D rb2;
     Rigidbody2D rRb2;
@@ -96,7 +99,7 @@ public class PlayerPop : MonoBehaviour
         }
 
         //If dead
-        if(currentPops <= 0)
+        if(currentPops <= 0 && !popsDead)
         {
             StartCoroutine(Respawn());
         }
