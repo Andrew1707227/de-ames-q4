@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -24,6 +25,9 @@ public class PlayerPop : MonoBehaviour
     float currentInvuln = 0;
 
     public bool respawnBot = true;
+
+    [HideInInspector]
+    public bool popsDead;
 
     Transform pT;
     Rigidbody2D rb2;
@@ -98,8 +102,8 @@ public class PlayerPop : MonoBehaviour
             StartCoroutine(ChangeSprite());
         }
 
-        //If dead
-        if(currentPops <= 0)
+        //If dead and not boss dead
+        if(currentPops <= 0 && !popsDead)
         {
             StartCoroutine(Respawn());
         }
@@ -126,6 +130,14 @@ public class PlayerPop : MonoBehaviour
                 Fade.color = new Color(temp.r, temp.g, temp.b, (i - .75f) * 4);
                 yield return new WaitForFixedUpdate();
             }
+
+            //if in bossfight
+            if (SceneManager.GetActiveScene().name == "BossFight")
+            {
+                //Reload scene
+                SceneManager.LoadScene("BossFight");
+            }
+
             //Get rid of pop objects
             foreach (Transform child in popsHolder.transform) {
                 Destroy(child.gameObject);

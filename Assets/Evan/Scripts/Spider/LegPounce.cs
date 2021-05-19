@@ -170,12 +170,6 @@ public class LegPounce : MonoBehaviour
                     transform.Rotate(new Vector3(0, 0, -0.75f));
                 }
 
-                if (front)
-                {
-                    Debug.Log("still in");
-                }
-
-
                 floorDistance = Physics2D.Raycast(transform.position, -transform.up, 10, noPLayerMask);
                 yield return new WaitForFixedUpdate();
             }
@@ -196,8 +190,6 @@ public class LegPounce : MonoBehaviour
                 yield return new WaitForFixedUpdate();
             }
             */
-
-            Debug.Log("Done");
         }
     }
 }

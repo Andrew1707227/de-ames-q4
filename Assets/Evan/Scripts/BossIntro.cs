@@ -1,26 +1,120 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossIntro : MonoBehaviour
 {
 
     public GameObject player;
+    public GameObject effects;
     public GameObject spiderBody;
+    public GameObject targets;
     public GameObject introSpiderBody;
+    public GameObject introTargets;
+    public GameObject ship;
+    public GameObject bossBarFill;
+    public GameObject bossBarBorder;
     public Camera mainCamera;
 
+    Transform eT;
     Transform pT;
+    Rigidbody2D rb2;
+    FollowCamera fc;
+    ParticleSystem ps;
+    AudioSource aSource;
+    Image fI;
+    Image bI;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        eT = effects.GetComponent<Transform>();
         pT = player.GetComponent<Transform>();
+        rb2 = player.GetComponent<Rigidbody2D>();
+        fc = mainCamera.GetComponent<FollowCamera>();
+        ps = effects.GetComponent<ParticleSystem>();
+        aSource = effects.GetComponent<AudioSource>();
+        fI = bossBarFill.GetComponent<Image>();
+        bI = bossBarBorder.GetComponent<Image>();
+
+        StartCoroutine(bossIntro());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
+    }
+
+    private IEnumerator bossIntro()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        rb2.AddForce(new Vector2(0, 2f), ForceMode2D.Impulse);
+
+        float zRot = 0;
+        float xPos = .3f;
+        float yPos = -.03f;
+
+        Vector3 pos = eT.localPosition;
+        Vector3 coneRot = eT.eulerAngles;
+
+        xPos = -.24f;
+        yPos = -.31f;
+        zRot = 270;
+
+        eT.eulerAngles = new Vector3(coneRot.x, coneRot.y, zRot);
+        eT.localPosition = new Vector3(xPos, yPos, pos.z);
+
+        ps.Play();
+        aSource.pitch = Mathf.Clamp(rb2.velocity.magnitude / 2, .8f, 1.2f) + Random.Range(-.05f, .05f);
+        aSource.Play();
+
+
+        yield return new WaitForSeconds(2);
+
+        xPos = -.24f;
+        yPos = .31f;
+        zRot = 90;
+
+        eT.eulerAngles = new Vector3(coneRot.x, coneRot.y, zRot);
+        eT.localPosition = new Vector3(xPos, yPos, pos.z);
+
+        ps.Play();
+        aSource.pitch = Mathf.Clamp(rb2.velocity.magnitude / 2, .8f, 1.2f) + Random.Range(-.05f, .05f);
+        aSource.Play();
+
+        rb2.velocity = Vector2.zero;
+        player.GetComponent<PolygonCollider2D>().enabled = true;
+
+        //Close door here --------------
+
+        fc.player = ship;
+
+        yield return new WaitForSeconds(3);
+
+        fc.player = introSpiderBody;
+
+        for (float i = 0; i <= 1; i += 1 / 120f)
+        {
+            fI.color = new Color(fI.color.r, fI.color.g, fI.color.b, i);
+            bI.color = new Color(bI.color.r, bI.color.g, bI.color.b, i);
+            yield return new WaitForFixedUpdate();
+        }
+        fI.color = new Color(fI.color.r, fI.color.g, fI.color.b, 1);
+        bI.color = new Color(bI.color.r, bI.color.g, bI.color.b, 1);
+
+        yield return new WaitForSeconds(0.5f);
+
+        fc.player = player;
+        player.GetComponent<PlayerMoveV2>().enabled = true;
+
+        introSpiderBody.SetActive(false);
+        introTargets.SetActive(false);
+
+        spiderBody.SetActive(true);
+        targets.SetActive(true);
     }
 }
