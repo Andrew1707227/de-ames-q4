@@ -25,7 +25,9 @@ public class BodyHover : MonoBehaviour
         {
             Vector3 wantedPos = new Vector3(floorDistance.point.x, floorDistance.point.y, 0) + transform.up * 1.1f;
 
-            transform.position += (wantedPos - transform.position) / 60;
+           // Debug.Log(wantedPos);
+
+            transform.position += (wantedPos - transform.position) / 4;
 
             //transform.position = wantedPos;
         }
