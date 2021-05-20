@@ -67,7 +67,7 @@ public class TextScroller : MonoBehaviour {
                 StartCoroutine(WriteText(text[i], defaultClip));
             }
             yield return new WaitUntil(() => isFinished);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.5f);
             TextComponent.text = "";
             ASource.Stop();
         }

@@ -28,6 +28,11 @@ public class Attacks : MonoBehaviour
     public LayerMask layerMask;
 
     AudioSource aS;
+
+    public AudioClip chargeSFX;
+    public AudioClip lungeSFX;
+    public AudioClip acidSpitSFX;
+
     Rigidbody2D rb2;
     SpiderSpinner ss;
     BodyHover bh;
@@ -141,6 +146,8 @@ public class Attacks : MonoBehaviour
         choice = 0;
         rb2.velocity = Vector3.zero;
 
+        aS.PlayOneShot(chargeSFX);
+
         ss.enabled = false;
         bh.enabled = false;
         sf.enabled = false;
@@ -189,6 +196,7 @@ public class Attacks : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
+        aS.PlayOneShot(lungeSFX);
 
         for (int i = 0; i < (times / 2); i++)
         {
@@ -262,6 +270,8 @@ public class Attacks : MonoBehaviour
         choice = 0;
         rb2.velocity = Vector3.zero;
 
+        aS.PlayOneShot(chargeSFX);
+
         ss.enabled = false;
         bh.enabled = false;
         sf.enabled = false;
@@ -324,7 +334,7 @@ public class Attacks : MonoBehaviour
             if (sf.facingLeft)
             {
                 ps[0].Play();
-                aS.Play();
+                aS.PlayOneShot(acidSpitSFX);
                 for (int i = 25; i >= -25; i -= 25)
                 {
                     GameObject acidClone = Instantiate(acidSpit, spT[0].position, Quaternion.Euler(0, 0, i));
@@ -334,7 +344,7 @@ public class Attacks : MonoBehaviour
             else
             {
                 ps[1].Play();
-                aS.Play();
+                aS.PlayOneShot(acidSpitSFX);
                 for (int i = 25; i >= -25; i -= 25)
                 {
                     GameObject acidClone = Instantiate(acidSpit, spT[1].position, Quaternion.Euler(0, 0, i));

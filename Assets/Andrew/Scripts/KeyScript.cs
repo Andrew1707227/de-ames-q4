@@ -11,6 +11,9 @@ public class KeyScript : MonoBehaviour {
     public bool keyFound;
     private bool debounce;
 
+    public Sprite OpenDoorSprite;
+    public TextScroller textScroller;
+
     void Start() {
         player = GameObject.Find("Player");
         roboMove = robot.GetComponent<RobotFollow>();
@@ -43,6 +46,7 @@ public class KeyScript : MonoBehaviour {
             robot.transform.position = Vector2.MoveTowards(robot.transform.position, keyPos,.25f);
             yield return new WaitForFixedUpdate();
         }
+        StartCoroutine(textScroller.RunText(new string[] {"Looks like we found the keycard.", "Let's head back."}));
         roboMove.enabled = true;
         keyFound = true;
         debounce = false;
@@ -57,7 +61,11 @@ public class KeyScript : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         roboMove.enabled = true;
-        Destroy(door);
+        door.GetComponent<Animator>().enabled = true;
+        yield return new WaitForSeconds(.25f);
+        door.GetComponent<Animator>().enabled = false;
+        door.GetComponent<SpriteRenderer>().sprite = OpenDoorSprite;
+        door.GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject);
     }
 }
