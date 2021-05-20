@@ -19,6 +19,7 @@ public class TargetMove : MonoBehaviour
     bool CR_running = false;
     IEnumerator coroutine;
 
+    AudioSource aS;
     Transform st;
     Transform lt;
     SpiderFollow sf;
@@ -27,6 +28,7 @@ public class TargetMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aS = gameObject.GetComponent<AudioSource>();
         st = spiderBody.GetComponent<Transform>();
         lt = targetLegBase.GetComponent<Transform>();
         sf = spiderBody.GetComponent<SpiderFollow>();
@@ -103,6 +105,9 @@ public class TargetMove : MonoBehaviour
             yield return new WaitForFixedUpdate();
             //yield return new WaitForSeconds(0.03f / Mathf.Abs(st.InverseTransformDirection(rb2.velocity).x)); //Wait
         }
+
+        aS.Play();
+
         CR_running =false;
     }
 

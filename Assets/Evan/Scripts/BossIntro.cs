@@ -15,10 +15,12 @@ public class BossIntro : MonoBehaviour
     public GameObject ship;
     public GameObject bossBarFill;
     public GameObject bossBarBorder;
+    public GameObject door;
     public Camera mainCamera;
 
     Transform eT;
     Transform pT;
+    Animator a;
     Rigidbody2D rb2;
     FollowCamera fc;
     ParticleSystem ps;
@@ -30,6 +32,7 @@ public class BossIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        a = door.GetComponent<Animator>();
         eT = effects.GetComponent<Transform>();
         pT = player.GetComponent<Transform>();
         rb2 = player.GetComponent<Rigidbody2D>();
@@ -73,7 +76,9 @@ public class BossIntro : MonoBehaviour
         aSource.Play();
 
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.4f);
+        a.enabled = true;
+        yield return new WaitForSeconds(0.6f);
 
         xPos = -.24f;
         yPos = .31f;
@@ -89,11 +94,11 @@ public class BossIntro : MonoBehaviour
         rb2.velocity = Vector2.zero;
         player.GetComponent<PolygonCollider2D>().enabled = true;
 
-        //Close door here --------------
+        yield return new WaitForSeconds(0.6f);
 
         fc.player = ship;
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2.4f);
 
         fc.player = introSpiderBody;
 

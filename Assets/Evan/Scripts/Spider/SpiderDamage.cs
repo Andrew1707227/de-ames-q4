@@ -19,6 +19,7 @@ public class SpiderDamage : MonoBehaviour
 
     bool didDeath = false;
 
+    Animator a;
     SpiderDamage sd;
     Slider s;
     Image ei;
@@ -26,6 +27,7 @@ public class SpiderDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        a = spiderBody.GetComponent<Animator>();
         sd = otherDamageBox.GetComponent<SpiderDamage>();
         s = healthBar.GetComponent<Slider>();
         ei = Endcutscene.GetComponent<Image>();
@@ -60,6 +62,7 @@ public class SpiderDamage : MonoBehaviour
 
                 //Pause sound
                 AudioListener.pause = true;
+                a.enabled = true;
 
                 StartCoroutine(FadeToWhite());
 

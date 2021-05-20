@@ -27,6 +27,7 @@ public class Attacks : MonoBehaviour
     //int layerMask;
     public LayerMask layerMask;
 
+    AudioSource aS;
     Rigidbody2D rb2;
     SpiderSpinner ss;
     BodyHover bh;
@@ -42,6 +43,7 @@ public class Attacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aS = gameObject.GetComponent<AudioSource>();
         rb2 = gameObject.GetComponent<Rigidbody2D>();
         ss = gameObject.GetComponent<SpiderSpinner>();
         bh = gameObject.GetComponent<BodyHover>();
@@ -322,6 +324,7 @@ public class Attacks : MonoBehaviour
             if (sf.facingLeft)
             {
                 ps[0].Play();
+                aS.Play();
                 for (int i = 25; i >= -25; i -= 25)
                 {
                     GameObject acidClone = Instantiate(acidSpit, spT[0].position, Quaternion.Euler(0, 0, i));
@@ -331,6 +334,7 @@ public class Attacks : MonoBehaviour
             else
             {
                 ps[1].Play();
+                aS.Play();
                 for (int i = 25; i >= -25; i -= 25)
                 {
                     GameObject acidClone = Instantiate(acidSpit, spT[1].position, Quaternion.Euler(0, 0, i));
