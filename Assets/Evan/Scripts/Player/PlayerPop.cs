@@ -19,8 +19,10 @@ public class PlayerPop : MonoBehaviour
     public GameObject robot;
     public GameObject dial;
 
-    public float maxPops = 3; //Max pop's before death
-    public float currentPops = 3; //Current pops left
+    [HideInInspector]
+    public float maxPops = 5; //Max pop's before death
+    [HideInInspector]
+    public float currentPops = 5; //Current pops left
     public float invulnTime = 1f; //Time invuln after hit
     float currentInvuln = 0;
 

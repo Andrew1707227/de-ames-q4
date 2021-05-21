@@ -11,6 +11,8 @@ public class PopPush : MonoBehaviour
     //Holds direction to push player
     public Vector3 pushDirection;
 
+    float power = 2.5f;
+
     Vector3 originalPD;
 
     bool startFlip;
@@ -51,7 +53,7 @@ public class PopPush : MonoBehaviour
     void Update()
     {
         //Pushes player
-        pRB2.AddForce(pushDirection/2 * Time.deltaTime, ForceMode2D.Impulse);
+        pRB2.AddForce(pushDirection/power * Time.deltaTime, ForceMode2D.Impulse);
 
         //Check if the flip change from last time
         if (lastFlip != aF.Popflipx)
