@@ -97,19 +97,23 @@ public class TextScroller : MonoBehaviour {
         for (int i = 0; i < text.Length; i++) {
             TextComponent.text += text.Substring(i, 1);
             ASource.volume = Random.Range(.7f, 1f);
-            if (text.Substring(i, 1) != " ") ASource.Play();
+            if (text.Substring(i, 1) != " ") {
+                ASource.Play();
+                if (tone == distortedClip) {
+                    TODDSr.sprite = angryTODDOpen;
+                }
+                else {
+                    TODDSr.sprite = normalTODDOpen;
+                }
+            }
             yield return new WaitForFixedUpdate();
             if (tone == distortedClip) {
                 TODDSr.sprite = angryTODDClosed;
-            } else {
+            }
+            else {
                 TODDSr.sprite = normalTODDClosed;
             }
             yield return new WaitForFixedUpdate();
-            if (tone == distortedClip) {
-                TODDSr.sprite = angryTODDOpen;
-            } else {
-                TODDSr.sprite = normalTODDOpen;
-            }
             ASource.Stop();
         }
         TODDSr.sprite = normalTODDClosed;
