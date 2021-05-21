@@ -7,20 +7,21 @@ public class Spawner_script : MonoBehaviour
     public GameObject UngaSpawn;
     public GameObject Player;
     public GameObject SpawnToPlace;
+
     bool Stop = false;
     public float distance = 5;
     // Start is called before the first frame update
     void Start()
     {
         Stop = false;
-       // Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
+        // Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 difference = Player.transform.position - gameObject.transform.position;
-        if(difference.magnitude < distance && !Stop)
+        if (difference.magnitude < distance && !Stop)
         {
             Stop = true;
             Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
