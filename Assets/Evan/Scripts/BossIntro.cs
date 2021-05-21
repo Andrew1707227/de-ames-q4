@@ -18,6 +18,9 @@ public class BossIntro : MonoBehaviour
     public GameObject door;
     public Camera mainCamera;
 
+    Vector3 xStartBody = new Vector3(5.71f, -2.82f, 0);
+    Vector3 xStartTarg = new Vector3(7.757772f, -1.228127f, 0);
+
     Transform eT;
     Transform pT;
     Animator a;
@@ -42,13 +45,9 @@ public class BossIntro : MonoBehaviour
         fI = bossBarFill.GetComponent<Image>();
         bI = bossBarBorder.GetComponent<Image>();
 
-        StartCoroutine(bossIntro());
-    }
+        PlayerMoveV2.prevSpeed = Vector2.zero;
 
-    // Update is called once per frame
-    void Update()
-    {
-       
+        StartCoroutine(bossIntro());
     }
 
     private IEnumerator bossIntro()
@@ -119,7 +118,15 @@ public class BossIntro : MonoBehaviour
         introSpiderBody.SetActive(false);
         introTargets.SetActive(false);
 
+        introSpiderBody.GetComponent<Transform>().position = new Vector3(100, 100, 0);
+        introTargets.GetComponent<Transform>().position = new Vector3(100, 100, 0);
+
+        spiderBody.GetComponent<Transform>().position = xStartBody;
+        targets.GetComponent<Transform>().position = xStartBody;
+
         spiderBody.SetActive(true);
         targets.SetActive(true);
+
+        
     }
 }

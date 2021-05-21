@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AcidSpitFly : MonoBehaviour
 {
+    public GameObject acidEffect;
+
     [HideInInspector]
     public Vector2 shootDir;
 
@@ -19,6 +21,16 @@ public class AcidSpitFly : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject, 0.1f);
+        //Destroy(gameObject, 0.1f);
+        StartCoroutine(DestroyAcidSpit());
+    }
+
+    private IEnumerator DestroyAcidSpit()
+    {
+        rb2.velocity = Vector2.zero;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(.75f);
+        Destroy(gameObject);
     }
 }

@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184108efc04cef144867b001ad83d1d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acidEffect: {fileID: 1069312184572892995, guid: e5bcc2e5d7adf1640b917e07bca1d676,
+    type: 3}
   shootDir: {x: 0, y: 0}
 --- !u!199 &-556891330720836935
 ParticleSystemRenderer:

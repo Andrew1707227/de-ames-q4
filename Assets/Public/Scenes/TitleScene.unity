@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1202,8 +1202,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35, y: 35}
-  m_SizeDelta: {x: 100.4762, y: 93.3333}
+  m_AnchoredPosition: {x: 38, y: 35}
+  m_SizeDelta: {x: 90.4762, y: 83.3333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &310146046
 MonoBehaviour:
@@ -1282,7 +1282,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 1}
@@ -1292,7 +1292,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 6a9bf3c4828faf74ea1951a535469de5,
+    m_HighlightedSprite: {fileID: 21300000, guid: fb7fdfcbb3aede64c909cd13e97dd464,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf9e557d2929f564d92b5b1e88b82001, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a64df17aefc4d0b46ae04a002777f222, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

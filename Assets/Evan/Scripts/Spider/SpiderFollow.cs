@@ -27,6 +27,8 @@ public class SpiderFollow : MonoBehaviour
     [HideInInspector]
     public bool dead = false;
 
+    PolygonCollider2D dbPC;
+    PolygonCollider2D dbrPC;
     SpriteRenderer sr;
     Rigidbody2D rb2;
     BodyHover bh;
@@ -41,6 +43,9 @@ public class SpiderFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        dbPC = damageBox.GetComponent<PolygonCollider2D>();
+        dbrPC = damageBoxRight.GetComponent<PolygonCollider2D>(); ;
         sr = gameObject.GetComponent<SpriteRenderer>();
         rb2 = gameObject.GetComponent<Rigidbody2D>();
         bh = gameObject.GetComponent<BodyHover>();
@@ -114,13 +119,15 @@ public class SpiderFollow : MonoBehaviour
         leftTargets.SetActive(!leftTargets.activeSelf);
         leftLegs.SetActive(!leftLegs.activeSelf);
         spiderHead.SetActive(!spiderHead.activeSelf);
-        damageBox.SetActive(!damageBox.activeSelf);
+        //damageBox.SetActive(!damageBox.activeSelf);
+        dbPC.enabled = !dbPC.enabled;
         pc[0].enabled = !pc[0].enabled;
 
         rightTargets.SetActive(!rightTargets.activeSelf);
         rightLegs.SetActive(!rightLegs.activeSelf);
         spiderHeadRight.SetActive(!spiderHeadRight.activeSelf);
-        damageBoxRight.SetActive(!damageBoxRight.activeSelf);
+        //damageBoxRight.SetActive(!damageBoxRight.activeSelf);
+        dbrPC.enabled = !dbrPC.enabled;
         pc[1].enabled = !pc[1].enabled;
 
         sr.flipX = !sr.flipX;
