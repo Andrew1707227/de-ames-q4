@@ -19,9 +19,7 @@ public class PlayerPop : MonoBehaviour
     public GameObject robot;
     public GameObject dial;
 
-    [HideInInspector]
     public float maxPops = 5; //Max pop's before death
-    [HideInInspector]
     public float currentPops = 5; //Current pops left
     public float invulnTime = 1f; //Time invuln after hit
     float currentInvuln = 0;
@@ -52,9 +50,6 @@ public class PlayerPop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxPops = 5;
-        currentPops = 5;
-
         pT = popsHolder.GetComponent<Transform>();
         rb2 = gameObject.GetComponent<Rigidbody2D>();
         rRb2 = robot.GetComponent<Rigidbody2D>();
