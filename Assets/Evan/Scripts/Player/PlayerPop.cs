@@ -52,6 +52,9 @@ public class PlayerPop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxPops = 5;
+        currentPops = 5;
+
         pT = popsHolder.GetComponent<Transform>();
         rb2 = gameObject.GetComponent<Rigidbody2D>();
         rRb2 = robot.GetComponent<Rigidbody2D>();
@@ -148,7 +151,7 @@ public class PlayerPop : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = defaultSprite;
             arm.GetComponent<SpriteRenderer>().sprite = defaultArm;
             yield return new WaitForSeconds(1);
-            currentPops = 3; //Reset pops
+            currentPops = maxPops; //Reset pops
             //Reset position
             transform.position = new Vector3(checkpoint.x, checkpoint.y, transform.position.z);
             GetComponent<Collider2D>().isTrigger = false;
