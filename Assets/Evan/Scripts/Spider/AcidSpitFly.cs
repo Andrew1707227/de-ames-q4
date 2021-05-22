@@ -29,8 +29,8 @@ public class AcidSpitFly : MonoBehaviour
     {
         rb2.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(.75f);
+        GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject);
     }
 }
