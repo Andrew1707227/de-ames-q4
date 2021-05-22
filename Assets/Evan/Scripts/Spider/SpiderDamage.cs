@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SpiderDamage : MonoBehaviour
 {
@@ -89,6 +90,9 @@ public class SpiderDamage : MonoBehaviour
         }
 
         Endcutscene.GetComponent<Animator>().enabled = true;
-        //SceneManager.LoadScene(SceneName);
+
+        yield return new WaitForSeconds(9.5f);
+
+        SceneManager.LoadScene("CreditsScene");
     }
 }
