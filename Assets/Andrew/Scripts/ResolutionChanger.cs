@@ -15,6 +15,7 @@ public class ResolutionChanger : MonoBehaviour {
         text = GetComponent<Text>();
         if (Application.platform == RuntimePlatform.WebGLPlayer) {
             resolutionHolder.SetActive(false);
+            enabled = false;
         }
         isFullScreen = Screen.fullScreen;
         for (int i = resolutionOptions.Length - 1; i >= 0; i--) {
