@@ -85,10 +85,10 @@ public class Attacks : MonoBehaviour
         {
             if (choice == 0)
             {
-                choice = Random.Range(1, 4);
+                choice = Random.Range(1, 5);
             }
 
-            if (choice == 1)
+            if (choice == 1 || choice == 2)
             {
                 Vector3 toPlayer = pT.position - transform.position;
 
@@ -104,7 +104,7 @@ public class Attacks : MonoBehaviour
                     //Debug.DrawRay(lfT[0].position, transform.right * 9, Color.white, 2);
                 }
 
-                if (wallChecker.point != Vector2.zero && wallChecker.distance > 8 && toPlayer.magnitude < 10)
+                if (wallChecker.point != Vector2.zero && wallChecker.distance > 8.5 && toPlayer.magnitude < 10)
                 {
                     attacking = true;
                     StartCoroutine(leap());
@@ -114,7 +114,7 @@ public class Attacks : MonoBehaviour
                     //choice = 2;
                 }
             }
-            else if (choice == 2 || choice == 3)
+            else if (choice == 3 || choice == 4)
             {
                 Vector3 toPlayer = pT.position - transform.position;
 
