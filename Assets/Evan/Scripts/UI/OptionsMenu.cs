@@ -26,10 +26,6 @@ public class OptionsMenu : MonoBehaviour
         //Updates brightnessShift
         BrightManager.brightnessShift = s.value;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            toggleOptions();
-        }
     }
 
     public void toggleOptions()

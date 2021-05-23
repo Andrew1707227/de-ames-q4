@@ -19,9 +19,9 @@ public class DevMode : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.T) && Input.GetKey(KeyCode.F11)) {
-            devHolder.SetActive(toggleAll);
+        if (Input.GetKeyDown(KeyCode.BackQuote)) { 
             toggleAll = !toggleAll;
+            devHolder.SetActive(toggleAll);
         }
     }
 

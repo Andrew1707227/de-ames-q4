@@ -13,6 +13,8 @@ public class SpiderDamage : MonoBehaviour
     public GameObject Endcutscene;
     public GameObject player;
     public Image Fade;
+    public AudioSource BossTheme;
+    public AudioSource BossDeathTheme;
 
     public int maxHealth = 15;
     [HideInInspector]
@@ -62,7 +64,7 @@ public class SpiderDamage : MonoBehaviour
                 spiderBody.GetComponent<Attacks>().enabled = false;
 
                 //Pause sound
-                AudioListener.pause = true;
+                //AudioListener.pause = true;
                 a.enabled = true;
 
                 StartCoroutine(FadeToWhite());
@@ -74,14 +76,17 @@ public class SpiderDamage : MonoBehaviour
 
     private IEnumerator FadeToWhite()
     {
+        BossDeathTheme.Play();
         Color temp = Color.white;
         for (float i = 0; i <= 1; i += 1 / 120f)
         {
             Fade.color = new Color(temp.r, temp.g, temp.b, i);
+            BossDeathTheme.volume = i;
+            BossTheme.volume = 1 - i;
             yield return new WaitForFixedUpdate();
         }
         Fade.color = new Color(temp.r, temp.g, temp.b, 1);
-        PlayerMoveV2.prevSpeed = GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity;
+        player.SetActive(false);
 
         for (float i = 0; i <= 1; i += 1 / 120f)
         {
