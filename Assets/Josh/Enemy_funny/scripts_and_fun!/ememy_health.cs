@@ -8,11 +8,15 @@ public class ememy_health : MonoBehaviour
     public float maxLives;
     private float currLives;
 
+    public AudioClip hurt;
+    public AudioClip die;
+    AudioSource aS;
+
     private bool debounce;
     private float coolDown;
 
     //private hitEffect hitEffect;
-    private Animator anim;
+    //private Animator anim;
 
     private float aniTimer;
     private bool isDead;
@@ -21,7 +25,8 @@ public class ememy_health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        aS = GetComponent<AudioSource>();
+       // anim = GetComponent<Animator>();
        // hitEffect = GetComponent<bullets>();
         currLives = maxLives;
         aniTimer = 0;
@@ -31,18 +36,22 @@ public class ememy_health : MonoBehaviour
     {
         if (collision.tag == "Bullets" && !debounce)
         {
+            aS.clip = hurt;
+            aS.Play();
             debounce = true; //keep it from hitting twice
             if (currLives - 1 <= 0)
             {
+                aS.clip = die;
+                aS.Play();
                 isDead = true;
                 if (GetComponent<AstarPath>() != null)
                 {
                     GetComponent<AstarPath>().enabled = false;
                     GetComponent<Flippy>().enabled = false;
                 }
-                GetComponents<CircleCollider2D>()[0].enabled = false;
-                GetComponents<CircleCollider2D>()[1].enabled = false;
-                anim.enabled = true;
+                GetComponents<PolygonCollider2D>()[0].enabled = false;
+                //GetComponents<PolygonCollider2D>()[1].enabled = false;
+                //anim.enabled = true;
                // anim.Play("Deadunga");
                 tempPos = transform.position;
             }
@@ -53,6 +62,8 @@ public class ememy_health : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(currLives);
+
         if (debounce) coolDown += Time.deltaTime;
         if (coolDown > .45)
         {
@@ -63,6 +74,10 @@ public class ememy_health : MonoBehaviour
         {
             aniTimer += Time.deltaTime;
             transform.position = tempPos;
+        }
+        else
+        {
+            tempPos = transform.position;
         }
         if (aniTimer > 1) Destroy(gameObject);
     }

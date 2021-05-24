@@ -8,11 +8,15 @@ public class Spawner_script : MonoBehaviour
     public GameObject Player;
     public GameObject SpawnToPlace;
 
-    bool Stop = false;
+    AudioSource aS;
+
+    public bool Stop = false;
     public float distance = 5;
     // Start is called before the first frame update
     void Start()
     {
+        aS = GetComponent<AudioSource>();
+
         Stop = false;
         // Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
     }
@@ -23,8 +27,10 @@ public class Spawner_script : MonoBehaviour
         Vector3 difference = Player.transform.position - gameObject.transform.position;
         if (difference.magnitude < distance && !Stop)
         {
+            aS.Play();
             Stop = true;
-            Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
+            GameObject clone = Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
+            clone.SetActive(true);
         }
     }
 }
