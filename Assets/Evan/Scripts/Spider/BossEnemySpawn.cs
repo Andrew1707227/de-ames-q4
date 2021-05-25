@@ -17,11 +17,13 @@ public class BossEnemySpawn : MonoBehaviour
 
     Transform t;
     SpiderDamage sd;
+    AudioSource aS;
     Transform[] spawns = new Transform[8];
 
     // Start is called before the first frame update
     void Start()
     {
+        aS = gameObject.GetComponent<AudioSource>();
         t = player.GetComponent<Transform>();
         sd = damageBox.GetComponent<SpiderDamage>();
 
@@ -55,6 +57,7 @@ public class BossEnemySpawn : MonoBehaviour
                 }
             }
 
+            aS.Play();
             GameObject clone = Instantiate(UngaSpawn, spawns[farthest].position, Quaternion.identity);
             clone.SetActive(true);
         }
