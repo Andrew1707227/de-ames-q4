@@ -13,10 +13,17 @@ public class ResolutionChanger : MonoBehaviour {
 
     void Start() {
         text = GetComponent<Text>();
+        StartCoroutine(StartUp());
+
+    }
+
+    public IEnumerator StartUp() {
         if (Application.platform == RuntimePlatform.WebGLPlayer) {
             resolutionHolder.SetActive(false);
             enabled = false;
         }
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
         isFullScreen = Screen.fullScreen;
         for (int i = resolutionOptions.Length - 1; i >= 0; i--) {
             if (resolutionOptions[i].x <= Display.main.renderingWidth) {

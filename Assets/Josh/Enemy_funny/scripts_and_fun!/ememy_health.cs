@@ -15,6 +15,8 @@ public class ememy_health : MonoBehaviour
     private bool debounce;
     private float coolDown;
 
+    private SpriteRenderer sr;
+
     //private hitEffect hitEffect;
     //private Animator anim;
 
@@ -26,6 +28,7 @@ public class ememy_health : MonoBehaviour
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
        // anim = GetComponent<Animator>();
        // hitEffect = GetComponent<bullets>();
         currLives = maxLives;
@@ -36,11 +39,17 @@ public class ememy_health : MonoBehaviour
     {
         if (collision.tag == "Bullets" && !debounce)
         {
-            aS.clip = hurt;
-            aS.Play();
             debounce = true; //keep it from hitting twice
+            if (!aS.isPlaying) aS.PlayOneShot(hurt);
+
             if (currLives - 1 <= 0)
             {
+                if (sr.flipX) {
+                    var shape = GetComponent<ParticleSystem>().shape;
+                    shape.position = new Vector3(.15f, -.72f, 0);
+                }
+                GetComponent<ParticleSystem>().Play();
+                StartCoroutine(Fade());
                 aS.clip = die;
                 aS.Play();
                 isDead = true;
@@ -59,10 +68,17 @@ public class ememy_health : MonoBehaviour
             currLives--;
         }
     }
+    
+    private IEnumerator Fade() {
+        for (float i = 1; i >= 0; i -= 1/60f) {
+            sr.color = new Color(1, 1, 1, i);
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
+    }
 
     void Update()
     {
-        Debug.Log(currLives);
 
         if (debounce) coolDown += Time.deltaTime;
         if (coolDown > .45)
@@ -79,7 +95,7 @@ public class ememy_health : MonoBehaviour
         {
             tempPos = transform.position;
         }
-        if (aniTimer > 1) Destroy(gameObject);
+        //if (aniTimer > 1) Destroy(gameObject);
     }
     public float getLives()
     {

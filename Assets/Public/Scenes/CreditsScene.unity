@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f0ebc78dd75e5e4fa58d641e2c4c5b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 149596d4372e44c44971c082538a7176, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1060,7 +1060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &697559628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2508,7 +2508,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A* Pathfinding Algorithm
+  m_Text: A* Pathfinding Package by Aron G
 --- !u!222 &1419317376
 CanvasRenderer:
   m_ObjectHideFlags: 0
