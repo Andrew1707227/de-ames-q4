@@ -40,7 +40,7 @@ public class ememy_health : MonoBehaviour
         if (collision.tag == "Bullets" && !debounce)
         {
             debounce = true; //keep it from hitting twice
-            if (!aS.isPlaying) aS.PlayOneShot(hurt);
+            if (!aS.isPlaying && !isDead) aS.PlayOneShot(hurt);
 
             if (currLives - 1 <= 0)
             {
@@ -50,8 +50,7 @@ public class ememy_health : MonoBehaviour
                 }
                 GetComponent<ParticleSystem>().Play();
                 StartCoroutine(Fade());
-                aS.clip = die;
-                aS.Play();
+                if (!isDead) aS.PlayOneShot(die);
                 isDead = true;
                 if (GetComponent<AstarPath>() != null)
                 {

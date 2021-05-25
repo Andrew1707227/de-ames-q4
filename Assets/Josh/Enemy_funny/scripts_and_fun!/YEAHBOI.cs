@@ -15,7 +15,7 @@ public class YEAHBOI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        a = ChargeUnga.GetComponent<Animator>();
+        a = GetComponent<Animator>();
         
         
         // Instantiate(UngaSpawn, SpawnToPlace.transform.position, Quaternion.identity);
