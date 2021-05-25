@@ -37,7 +37,7 @@ public class DevMode : MonoBehaviour {
     }
 
     public void NoDamage() {
-        GameObject.Find("Player").GetComponent<PlayerPop>().popsDead = toggleDamage;
+        GameObject.Find("Player").GetComponent<PlayerPop>().enabled = toggleDamage;
         toggleDamage = !toggleDamage;
     }
 

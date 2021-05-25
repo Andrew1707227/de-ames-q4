@@ -58,7 +58,7 @@ public class ememy_health : MonoBehaviour
                     GetComponent<Flippy>().enabled = false;
                 }
                 GetComponents<PolygonCollider2D>()[0].enabled = false;
-                //GetComponents<PolygonCollider2D>()[1].enabled = false;
+                GetComponents<PolygonCollider2D>()[1].enabled = false;
                 //anim.enabled = true;
                // anim.Play("Deadunga");
                 tempPos = transform.position;
