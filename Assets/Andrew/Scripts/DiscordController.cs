@@ -8,39 +8,29 @@ using Discord;
 public class DiscordController : MonoBehaviour {
 
     public Discord.Discord discord;
-
-    void Start() {
+    public string Location;
+    void OnEnable() {
         if (Application.platform == RuntimePlatform.WebGLPlayer) {
             enabled = false;
         } else {
             try {
                 TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
-                long epoch = (long)t.TotalSeconds;
+                long epoch = (long)(t.TotalSeconds - Time.realtimeSinceStartup);
                 discord = new Discord.Discord(847250392340234290, (ulong)CreateFlags.Default);
                 var activityManager = discord.GetActivityManager();
-                var activty = new Activity {
-                    Details = "In Game",
+                var activity = new Activity {
+                    Details = Location,
                     Timestamps = {
-                Start = epoch
-            },
+                        Start = epoch
+                    },
                     Assets = {
-                LargeImage = "icon",
-                LargeText = "An Opportunity"
-            }
-
+                        LargeImage = "icon",
+                        LargeText = "An Opportunity"
+                    }
                 };
-                activityManager.UpdateActivity(activty, (res) => {
+                activityManager.UpdateActivity(activity, (res) => {
                     if (res == Result.Ok) Debug.Log("Discord status set.");
                     else Debug.LogWarning("Discord status failed.");
-                });
-
-                activityManager.ClearActivity((result) =>
-                {
-                    if (result == Result.Ok) {
-                        Console.WriteLine("Success!");
-                    } else {
-                        Console.WriteLine("Failed");
-                    }
                 });
 
             } catch {}
